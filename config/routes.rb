@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   get 'persons/profile', as: 'user_root'
 
+  namespace :admin do
+    resources :videos
+    resources :users
+    get "" => 'videos#index'
+  end
+
+
   # You can have the root of your site routed with "root"
   root 'videos#index'
 

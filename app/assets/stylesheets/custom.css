@@ -63,3 +63,16 @@ footer {
  * Style custom
  * --------------------------------------------------
  */
+ 
+
+ /*
+ * Style custom admin
+ * --------------------------------------------------
+ */
+ .admin{
+
+ }
+
+  .admin .navbar-fixed-top{
+    background: red;
+  }
