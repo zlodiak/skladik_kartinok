@@ -15,3 +15,17 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$( document ).ready(function() {
+    $('#about').on('click', function(e){
+      e.preventDefault();
+      $('#modalAbout').modal();
+    });
+
+    $('#rules').on('click', function(e){
+      e.preventDefault();
+      $('#modalRules').modal();
+    });
+});
+
+
