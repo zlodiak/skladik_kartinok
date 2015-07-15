@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'bcrypt'
-gem 'devise'
+gem 'devise', '~> 3.4.0'
 gem 'warden'
 gem 'orm_adapter'
 gem 'thread_safe'
