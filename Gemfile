@@ -10,7 +10,13 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
+gem 'devise'
+gem 'warden'
+gem 'orm_adapter'
+gem 'thread_safe'
+gem 'railties'
+gem 'bcrypt-ruby'
 
 group :development, :test do
   gem 'byebug'
