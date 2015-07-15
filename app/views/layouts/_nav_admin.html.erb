@@ -11,16 +11,10 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#1" id="about">О проекте</a></li>
-        <li><a href="#2" id="rules">Правила</a></li>
-        <% if user_signed_in? %>
-          <li><a href="#6">Добавить видео</a></li>
-          <li><a href="#6">Анкета</a></li>          
-          <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>          
-        <% else %>
-          <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
-          <li><%= link_to 'Войти', new_user_session_path %></li>
-        <% end %>
+        <li><a href="#1">Видео</a></li>
+        <li><a href="#2">Пользователи</a></li>
+        <li><a href="#3">Жалобы</a></li>
+        <li><a href="#4">В публичную часть</a></li>
       </ul>
     </div><!-- /.nav-collapse -->
   </div><!-- /.container -->
