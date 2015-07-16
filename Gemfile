@@ -17,6 +17,8 @@ gem 'orm_adapter'
 gem 'thread_safe'
 gem 'railties'
 gem 'bcrypt-ruby'
+gem 'faker'
+gem 'populate'
 
 group :development, :test do
   gem 'byebug'
