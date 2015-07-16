@@ -1,13 +1,29 @@
 module SessionsHelper
-  def admin_user
+  def admin_status
     if current_user
-      unless current_user.admin?
-        flash[:error] = "You are not admin"
-        redirect_to root_path
-      end
+      current_user.status == 3 ? return true : return nil
     else
-      flash[:error] = "You are not logged"
-      redirect_to root_path
-    end
+      return nil
+    end    
+  end
+
+  def manager_status
+    if current_user
+      current_user.status == 2 ? return true : return nil
+    else
+      return nil
+    end  
+  end  
+
+  def user_status
+    if current_user
+      current_user.status == 1 ? return true : return nil
+    else
+      return nil
+    end  
+  end   
+
+  def guest_status
+    current_user ? return nil : return true 
   end   
 end
