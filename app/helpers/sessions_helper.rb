@@ -1,7 +1,11 @@
 module SessionsHelper
   def admin_status
     if current_user
-      current_user.status == 3 ? return true : return nil
+      if current_user.status_id == 3
+        return true 
+      else
+        return nil
+      end
     else
       return nil
     end    
@@ -9,21 +13,40 @@ module SessionsHelper
 
   def manager_status
     if current_user
-      current_user.status == 2 ? return true : return nil
+      if current_user.status_id == 2
+        return true 
+      else
+        return nil
+      end
     else
       return nil
-    end  
+    end   
   end  
 
   def user_status
     if current_user
-      current_user.status == 1 ? return true : return nil
+      if current_user.status_id == 1
+        return true 
+      else
+        return nil
+      end
     else
       return nil
     end  
   end   
 
   def guest_status
-    current_user ? return nil : return true 
+    if current_user
+      return true
+    else
+      return false
+    end
   end   
+
+  def admin_check
+    unless admin_status
+      flash[:notice] = "Please sign in"
+      redirect_to new_user_session_path      
+    end
+  end  
 end

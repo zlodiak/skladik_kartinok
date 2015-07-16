@@ -1,6 +1,6 @@
 class Admin::VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user
+  before_action :admin_check
 
   layout 'admin'
 
