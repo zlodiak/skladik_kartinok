@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+  <div class="row">
+    <div class="label_table col-xs-4 col-sm-2"><%= :title %>:</div>
+    <div class="info_table col-xs-8 col-sm-10"><%= @video.title %></div>
+  </div>  
+
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>
