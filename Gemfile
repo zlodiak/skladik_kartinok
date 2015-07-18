@@ -20,6 +20,7 @@ gem 'bcrypt-ruby'
 gem 'faker'
 gem 'populate'
 gem 'paperclip'
+gem 'paperclip-av-transcoder'
 
 group :development, :test do
   gem 'byebug'
