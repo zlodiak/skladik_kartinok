@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    #@videos = Video.all if 
+    @videos = Video.all 
   end
 
   # GET /videos/1

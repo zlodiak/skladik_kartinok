@@ -2,8 +2,38 @@
 
   <div class="row">
     <div class="label_table col-xs-4 col-sm-2"><%= :title %>:</div>
-    <div class="info_table col-xs-8 col-sm-10"><%= @video.title %></div>
+    <div class="info_table col-xs-4 col-sm-5"><%= @video.title %></div>
+    <div class="col-xs-4 col-sm-5"><%= video_tag @video.video.url(:thumb), type: 'video/flv' %></div>
+
+    <video controls>
+      <source src="<%= @video.video.url(:medium) %>" type: 'video/flv' >
+    </video>    
+
+
   </div>  
+
+  <%#= video_tag @video.video.url(:medium), type: 'video/flv' %>
+
+
+
+  <br />
+  original preview:
+  <br /> 
+  <%= image_tag @video.video.url(:thumb), type: 'video/jpg' %>  
+
+  <br />
+  original video without poster with autoplay:
+  <br />
+  <video controls autoplay>
+    <source src="<%= @video.video.url(:original) %>" type: "<%= @video.video_content_type %>" >
+  </video>    
+
+  <br />
+  original video with poster:
+  <br />
+  <video controls poster="<%= @video.video.url(:thumb) %>">
+    <source src="<%= @video.video.url(:original) %>" type: "<%= @video.video_content_type %>" >
+  </video>      
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>
