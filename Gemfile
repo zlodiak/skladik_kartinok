@@ -19,6 +19,7 @@ gem 'railties'
 gem 'bcrypt-ruby'
 gem 'faker'
 gem 'populate'
+gem 'paperclip'
 
 group :development, :test do
   gem 'byebug'

@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.all
+    #@videos = Video.all if 
   end
 
   # GET /videos/1
@@ -24,30 +24,34 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    @video = Video.new(video_params)
-
-    respond_to do |format|
-      if @video.save
-        format.html { redirect_to @video, notice: 'Video was successfully created.' }
-        format.json { render :show, status: :created, location: @video }
-      else
-        format.html { render :new }
-        format.json { render json: @video.errors, status: :unprocessable_entity }
-      end
+    @video = Video.new(video_params)   
+    
+    if @video.save
+      flash[:success] = :video_created
+      redirect_to @video
+    else
+      flash.now[:error] = :user_not_created
+      redirect_to @video
     end
   end
 
   # PATCH/PUT /videos/1
   # PATCH/PUT /videos/1.json
   def update
-    respond_to do |format|
-      if @video.update(video_params)
-        format.html { redirect_to @video, notice: 'Video was successfully updated.' }
-        format.json { render :show, status: :ok, location: @video }
-      else
-        format.html { render :edit }
-        format.json { render json: @video.errors, status: :unprocessable_entity }
+    if @video.update_attributes(video_params)
+      if params[:video]
+        @video.update_attributes(
+          video_file_name: nil, 
+          video_content_type: nil, 
+          video_file_size: nil
+        )
       end
+      
+      flash[:success] = :profile_updated
+      redirect_to @video
+    else
+      flash[:error] = :profile_update_failed
+      render  'index'
     end
   end
 
@@ -69,6 +73,6 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title)
+      params.require(:video).permit(:title, :video)
     end
 end
