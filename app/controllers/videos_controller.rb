@@ -28,7 +28,7 @@ class VideosController < ApplicationController
     if params[:video][:filename]
       filename = params[:video][:filename].original_filename
       p filename
-      upload(filename)
+      #upload(filename)
     else
       filename = nil
     end
@@ -36,7 +36,8 @@ class VideosController < ApplicationController
     p '================================================='
     p params[:video][:title]
 
-    @video = Video.new(title: params[:video][:title], filename: filename)   
+    # @video = Video.new(title: params[:video][:title], filename: filename)   
+    @video = Video.new(video_params)   
     
     if @video.save
       flash[:success] = :video_created

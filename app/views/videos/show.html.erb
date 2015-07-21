@@ -3,11 +3,8 @@
   <div class="row">
     <div class="label_table col-xs-4 col-sm-2"><%= :title %>:</div>
     <div class="info_table col-xs-4 col-sm-5"><%= @video.title %></div>
-    <div class="col-xs-4 col-sm-5"><%#= video_tag @video.video.url(:thumb), type: 'video/flv' %></div>
+    <div class="col-xs-4 col-sm-5"><%= image_tag @video.filename.path %></div>
 
-    <video controls>
-      <source src="<%#= @video.video.url(:medium) %>" type: 'video/flv' >
-    </video>    
 
 
   </div>  
