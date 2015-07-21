@@ -8,5 +8,6 @@ class User < ActiveRecord::Base
           :trackable, 
           :validatable
 
-  has_one :status
+  belongs_to :status
+  has_many :videos
 end

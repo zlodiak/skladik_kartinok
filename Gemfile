@@ -19,8 +19,8 @@ gem 'railties'
 gem 'bcrypt-ruby'
 gem 'faker'
 gem 'populate'
-gem 'paperclip'
-gem 'paperclip-av-transcoder'
+gem 'carrierwave'
+
 
 group :development, :test do
   gem 'byebug'
