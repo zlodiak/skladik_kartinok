@@ -24,7 +24,18 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    @video = Video.new(video_params)   
+    p '----------------------------------------------------'
+    if params[:video][:filename]
+      filename = params[:video][:filename].original_filename
+      p filename
+    else
+      filename = nil
+    end
+
+    p '================================================='
+    p params[:video][:title]
+
+    @video = Video.new(title: params[:video][:title], filename: filename)   
     
     if @video.save
       flash[:success] = :video_created
@@ -73,6 +84,6 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title, :video)
+      params.require(:video).permit(:title, :filename)
     end
 end

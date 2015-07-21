@@ -19,7 +19,7 @@ gem 'railties'
 gem 'bcrypt-ruby'
 gem 'faker'
 gem 'populate'
-gem 'carrierwave'
+gem 'paperclip'
 
 
 group :development, :test do
