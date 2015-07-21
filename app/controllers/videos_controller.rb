@@ -28,6 +28,7 @@ class VideosController < ApplicationController
     if params[:video][:filename]
       filename = params[:video][:filename].original_filename
       p filename
+      upload(filename)
     else
       filename = nil
     end
@@ -77,6 +78,12 @@ class VideosController < ApplicationController
   end
 
   private
+    def upload(filename)
+      directory = "public/videos"
+      path = File.join(directory, filename)
+      File.open(path, "wb") { |f| f.write(params[:video][:filename].read) }
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_video
       @video = Video.find(params[:id])
