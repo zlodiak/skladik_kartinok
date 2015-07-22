@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :logged_check, only: [:create, :edit, :update, :destroy]
 
   # GET /videos
   # GET /videos.json
@@ -40,6 +41,8 @@ class VideosController < ApplicationController
     @video = Video.new(video_params)   
     
     if @video.save
+      @video.update_attributes(user: current_user)
+
       flash[:success] = :video_created
       redirect_to @video
     else
