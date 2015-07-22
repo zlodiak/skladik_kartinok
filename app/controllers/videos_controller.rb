@@ -24,19 +24,19 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    p '----------------------------------------------------'
-    if params[:video][:filename]
-      filename = params[:video][:filename].original_filename
-      p filename
-      #upload(filename)
-    else
-      filename = nil
-    end
+    #p '----------------------------------------------------'
+    #if params[:video][:video]
+    #  video = params[:video][:video].original_video
+    #  p video
+    #  #upload(video)
+    #else
+    #  video = nil
+    #end
 
-    p '================================================='
-    p params[:video][:title]
+    #p '================================================='
+    #p params[:video][:title]
 
-    # @video = Video.new(title: params[:video][:title], filename: filename)   
+    # @video = Video.new(title: params[:video][:title], video: video)   
     @video = Video.new(video_params)   
     
     if @video.save
@@ -44,7 +44,7 @@ class VideosController < ApplicationController
       redirect_to @video
     else
       flash.now[:error] = :user_not_created
-      redirect_to @video
+      render 'new'
     end
   end
 
@@ -79,10 +79,10 @@ class VideosController < ApplicationController
   end
 
   private
-    def upload(filename)
+    def upload(video)
       directory = "public/videos"
-      path = File.join(directory, filename)
-      File.open(path, "wb") { |f| f.write(params[:video][:filename].read) }
+      path = File.join(directory, video)
+      File.open(path, "wb") { |f| f.write(params[:video][:video].read) }
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -92,6 +92,6 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title, :filename)
+      params.require(:video).permit(:title, :video)
     end
 end
