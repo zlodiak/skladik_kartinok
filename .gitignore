@@ -14,3 +14,4 @@
 
 /config/database.yml
 /lib/tasks
+/public/system
