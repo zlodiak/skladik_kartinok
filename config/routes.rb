@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   #get 'persons/profile'
 
   resources :videos
-  resources :users
+  resources :users, only: [:index]
 
   get 'persons/profile', as: 'user_root'
 
