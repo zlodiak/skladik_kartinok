@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  resources :albums
+  
   devise_for :users
 
   #get 'persons/profile'
 
   resources :videos
-  resources :users, only: [:index]
+
+  resources :users, only: [:index, :show] do
+    resources :albums
+  end
+
 
   get 'persons/profile', as: 'user_root'
 
