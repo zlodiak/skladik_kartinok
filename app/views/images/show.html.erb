@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="row">
+    <div class="label_table col-xs-4 col-sm-2"><%= :title %>:</div>
+    <div class="info_table col-xs-4 col-sm-5"><%= @image.title %></div>
+    <div class="col-xs-4 col-sm-5"><%= image_tag @image.image.url %></div>
+
+
+
+  </div>  
+
+  
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>

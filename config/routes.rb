@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   #get 'persons/profile'
 
-  resources :videos
+  resources :images
 
   resources :users, only: [:index, :show] do
     resources :albums
@@ -14,14 +14,14 @@ Rails.application.routes.draw do
   get 'persons/profile', as: 'user_root'
 
   namespace :admin do
-    resources :videos
+    resources :images
     resources :users
-    get "" => 'videos#index'
+    get "" => 'images#index'
   end
 
 
   # You can have the root of your site routed with "root"
-  root 'videos#index'
+  root 'images#index'
 
   #devise_for :users, :controllers => { registrations: 'registrations' }
 

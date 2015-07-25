@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
           :validatable
 
   belongs_to :status
-  has_many :videos    #, dependent:  :destroy
+  has_many :images    #, dependent:  :destroy
 end

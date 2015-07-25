@@ -1,10 +1,10 @@
-<%= form_for(@video) do |f| %>
-  <% if @video.errors.any? %>
+<%= form_for(@image) do |f| %>
+  <% if @image.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
 
       <ul>
-      <% @video.errors.full_messages.each do |message| %>
+      <% @image.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -22,10 +22,10 @@
 
   <div class="row">
     <div class="col-xs-12 col-sm-2">
-      <%= f.label :video %>
+      <%= f.label :image %>
     </div>
     <div class="col-xs-12 col-sm-10">
-      <%= f.file_field  :video %>
+      <%= f.file_field  :image %>
     </div>
   </div>
 

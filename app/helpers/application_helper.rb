@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def get_videos_new
-    Video.new
+  def get_images_new
+    Image.new
   end 
 end
