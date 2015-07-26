@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
 
   belongs_to :status
   has_many :images    #, dependent:  :destroy
+  has_many :albums    #, dependent:  :destroy
 end

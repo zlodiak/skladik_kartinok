@@ -24,30 +24,28 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-    @album = Album.new(album_params)
+    #@album = Album.new(album_params)
 
-    respond_to do |format|
-      if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
-        format.json { render :show, status: :created, location: @album }
-      else
-        format.html { render :new }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
+    @album = current_user.albums.build(album_params)
+
+    if @album.save
+      flash[:success] = :album_saved
+      redirect_to user_album_path(@current_user, @album)
+    else
+      flash.now[:error] = :album_not_saved
+      render 'new'
     end
   end
 
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
-    respond_to do |format|
-      if @album.update(album_params)
-        format.html { redirect_to @album, notice: 'Album was successfully updated.' }
-        format.json { render :show, status: :ok, location: @album }
-      else
-        format.html { render :edit }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
+    if @album.update_attributes(album_params)
+      flash[:success] = :album_updated
+      redirect_to user_album_path(current_user, @album)
+    else
+      flash[:error] = :album_not_updated
+      render  'edit'
     end
   end
 
@@ -69,6 +67,6 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params[:album]
+      params.require(:album).permit(:title)
     end
 end

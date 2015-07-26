@@ -12,9 +12,10 @@
   <tbody>
     <% @albums.each do |album| %>
       <tr>
-        <td><%= link_to 'Show', album %></td>
-        <td><%= link_to 'Edit', edit_album_path(album) %></td>
-        <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= album.title %></td>
+        <td><%= link_to 'Show', user_album_path(current_user, album.id) %></td>
+        <td><%= link_to 'Edit', edit_user_album_path(current_user, album) %></td>
+        <td><%#= link_to 'Destroy', user_album_path(current_user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Album', new_album_path %>
+<%= link_to 'New Album', new_user_album_path(current_user) %>
