@@ -25,7 +25,7 @@ $( document ).ready(function() {
     $('#rules').on('click', function(e){
       e.preventDefault();
       $('#modalRules').modal();
-    });
+    });    
 });
 
 

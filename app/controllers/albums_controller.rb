@@ -24,8 +24,6 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-    #@album = Album.new(album_params)
-
     @album = current_user.albums.build(album_params)
 
     if @album.save
