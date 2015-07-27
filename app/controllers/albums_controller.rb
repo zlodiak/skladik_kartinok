@@ -24,6 +24,8 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
+
+
     @album = current_user.albums.build(album_params)
 
     if @album.save
@@ -50,10 +52,8 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
-    @album.destroy
-    respond_to do |format|
-      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
-      format.json { head :no_content }
+    if @album.destroy
+      redirect_to user_albums_path
     end
   end
 
