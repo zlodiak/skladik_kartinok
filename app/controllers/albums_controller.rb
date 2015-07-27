@@ -54,6 +54,7 @@ class AlbumsController < ApplicationController
   def destroy
     if @album.destroy
       redirect_to user_albums_path
+      # render 'index'
     end
   end
 

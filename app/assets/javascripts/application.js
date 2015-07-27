@@ -42,7 +42,8 @@ $( document ).ready(function() {
         success: function(result){
           console.log('del ok');
           tr.fadeOut(1000);
-          $('.notice_area').html('<div class="alert  alert-success">album is added successfull.</div>');     
+          $('.notice_area').html('<div class="alert  alert-success">album is added successfull.</div>');
+          handleModal('title', 'album is delete successfull', '00ff2a', 2000);
         },
         error: function(xhr, ajaxOptions, thrownError){
           $('.notice_area').html('<div class="alert  alert-error">album is added failed.</div>');   
@@ -50,7 +51,22 @@ $( document ).ready(function() {
           console.log(thrownError);
         }        
       })
-    });   
+    });  
+
+    function handleModal(title, body, colorHex, timeout){
+      $('#titleModalInfo').html(title).css({'color': '#' + colorHex});
+      $('#bodyModalInfo').html(body);
+      $('#modalInfo').modal();
+
+      setTimeout(deinitializationModalInfo, timeout)
+
+      function deinitializationModalInfo(){
+        $('#modalInfo').modal('hide');
+        $('#titleModalInfo').empty();
+        $('#bodyModalInfo').empty();
+      };
+    }
+
 
 });
 
