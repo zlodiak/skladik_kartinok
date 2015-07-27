@@ -20,11 +20,9 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.build(album_params)
 
     if @album.save
-      flash[:success] = :album_saved
-      redirect_to user_album_path(@current_user, @album)
+      redirect_to new_user_album_path(@current_user)
     else
-      flash.now[:error] = :album_not_saved
-      render 'new'
+      redirect_to new_user_album_path(@current_user), :status => 403 
     end
   end
 

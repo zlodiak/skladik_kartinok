@@ -26,9 +26,9 @@ $( document ).ready(function() {
       $('#modalRules').modal();
     });   
 
-
-    $('.destroy_record').on('click', function(e){
-      console.log(11111);
+    // modals ajax
+    // destroy album ajax
+    $('.destroy_album').on('click', function(e){
       var link = $(this),
           td = link.closest('td'),
           tr = td.closest('tr'),
@@ -40,20 +40,35 @@ $( document ).ready(function() {
         type: 'POST',
         data: { _method: 'DELETE' },
         success: function(result){
-          console.log('del ok');
           tr.fadeOut(1000);
-          //$('.notice_area').html('<div class="alert  alert-success">album delete successfull.</div>');
-          handleModal('title', 'album is delete successfull', '00ff2a', 2000);
+          handleModal('album delete', 'is successfull', '00ff2a', 2000);
         },
         error: function(xhr, ajaxOptions, thrownError){
-          handleModal('no perm', 'album is delete failed' + xhr.status + ' error', 'f00', 2000);
-          //$('.notice_area').html('<div class="alert  alert-error">album deleted failed.</div>');   
-          //console.log(xhr.status);
-          //console.log(thrownError);
+          handleModal('album delete', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);
         }        
       })
     });  
 
+    // create album ajax
+    $('#new_album').on('submit', function(e){
+      e.preventDefault();
+
+      var currentUserId = $(this).attr('data-current-user');
+
+      $.ajax({
+        url: '/users/' + currentUserId + '/albums',
+        type: 'POST',
+        data: $('#new_album').serialize(),
+        success: function(result){
+          handleModal('album create', 'is successfull', '00ff2a', 2000);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          handleModal('album create', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);
+        }        
+      })
+    });  
+
+    // handle modal window
     function handleModal(title, body, colorHex, timeout){
       $('#titleModalInfo').html(title).css({'color': '#' + colorHex});
       $('#bodyModalInfo').html(body);
