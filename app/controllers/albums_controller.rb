@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :admin_or_owner_check, only: [:edit, :update, :destroy]
 
   # GET /albums
   # GET /albums.json
@@ -24,8 +25,6 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-
-
     @album = current_user.albums.build(album_params)
 
     if @album.save
@@ -54,7 +53,6 @@ class AlbumsController < ApplicationController
   def destroy
     if @album.destroy
       redirect_to user_albums_path
-      # render 'index'
     end
   end
 
@@ -69,4 +67,20 @@ class AlbumsController < ApplicationController
     def album_params
       params.require(:album).permit(:title)
     end
+
+    def admin_or_owner_check
+      p '============================================'
+      p admin_status
+      p @album.user.id
+      p current_user.id
+      p '---------------------'
+      unless admin_status || @album.user.id == current_user.id
+        p 'zzzzzzzzzzzzzzzzzzzzzz'
+        flash[:error] = :no_have_permission
+        render 'index'
+      else
+        p 'pppppppppppppppp'
+        redirect_to user_albums_path        
+      end
+    end    
 end

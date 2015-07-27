@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
 
@@ -29,6 +28,7 @@ $( document ).ready(function() {
 
 
     $('.destroy_record').on('click', function(e){
+      console.log(11111);
       var link = $(this),
           td = link.closest('td'),
           tr = td.closest('tr'),
@@ -42,11 +42,11 @@ $( document ).ready(function() {
         success: function(result){
           console.log('del ok');
           tr.fadeOut(1000);
-          $('.notice_area').html('<div class="alert  alert-success">album is added successfull.</div>');
+          $('.notice_area').html('<div class="alert  alert-success">album delete successfull.</div>');
           handleModal('title', 'album is delete successfull', '00ff2a', 2000);
         },
         error: function(xhr, ajaxOptions, thrownError){
-          $('.notice_area').html('<div class="alert  alert-error">album is added failed.</div>');   
+          $('.notice_area').html('<div class="alert  alert-error">album deleted failed.</div>');   
           console.log(xhr.status);
           console.log(thrownError);
         }        
