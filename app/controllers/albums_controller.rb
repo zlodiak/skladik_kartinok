@@ -60,6 +60,7 @@ class AlbumsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
+      flash[:success] = :album_deleted
       @album = Album.find(params[:id])
     end
 

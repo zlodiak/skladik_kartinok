@@ -9,13 +9,13 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody data-current-user="<%= current_user.id %>">
     <% @albums.each do |album| %>
       <tr>
         <td><%= album.title %></td>
         <td><%= link_to 'Show', user_album_path(current_user, album.id) %></td>
         <td><%= link_to 'Edit', edit_user_album_path(current_user, album) %></td>
-        <td><%= link_to 'Destroy', user_album_path(current_user, album), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', user_album_path(current_user, album), method: :delete, data: { confirm: 'Are you sure?' } %>---<span class="destroy_record" data-album-id="<%= album.id %>">destroy</span></td>
       </tr>
     <% end %>
   </tbody>
