@@ -2,28 +2,20 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   before_action :admin_or_owner_check, only: [:edit, :update, :destroy]
 
-  # GET /albums
-  # GET /albums.json
   def index
     @albums = Album.all
   end
 
-  # GET /albums/1
-  # GET /albums/1.json
   def show
   end
 
-  # GET /albums/new
   def new
     @album = Album.new
   end
 
-  # GET /albums/1/edit
   def edit
   end
 
-  # POST /albums
-  # POST /albums.json
   def create
     @album = current_user.albums.build(album_params)
 
@@ -36,8 +28,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /albums/1
-  # PATCH/PUT /albums/1.json
   def update
     if @album.update_attributes(album_params)
       flash[:success] = :album_updated
@@ -48,8 +38,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # DELETE /albums/1
-  # DELETE /albums/1.json
   def destroy
     if @album.destroy
       redirect_to user_albums_path
@@ -59,7 +47,6 @@ class AlbumsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
-      flash[:success] = :album_deleted
       @album = Album.find(params[:id])
     end
 
@@ -69,18 +56,8 @@ class AlbumsController < ApplicationController
     end
 
     def admin_or_owner_check
-      p '============================================'
-      p admin_status
-      p @album.user.id
-      p current_user.id
-      p '---------------------'
       unless admin_status || @album.user.id == current_user.id
-        p 'zzzzzzzzzzzzzzzzzzzzzz'
-        flash[:error] = :no_have_permission
-        render 'index'
-      else
-        p 'pppppppppppppppp'
-        redirect_to user_albums_path        
+        redirect_to user_albums_path, :status => 403      
       end
     end    
 end

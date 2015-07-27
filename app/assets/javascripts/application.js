@@ -42,13 +42,14 @@ $( document ).ready(function() {
         success: function(result){
           console.log('del ok');
           tr.fadeOut(1000);
-          $('.notice_area').html('<div class="alert  alert-success">album delete successfull.</div>');
+          //$('.notice_area').html('<div class="alert  alert-success">album delete successfull.</div>');
           handleModal('title', 'album is delete successfull', '00ff2a', 2000);
         },
         error: function(xhr, ajaxOptions, thrownError){
-          $('.notice_area').html('<div class="alert  alert-error">album deleted failed.</div>');   
-          console.log(xhr.status);
-          console.log(thrownError);
+          handleModal('no perm', 'album is delete failed' + xhr.status + ' error', 'f00', 2000);
+          //$('.notice_area').html('<div class="alert  alert-error">album deleted failed.</div>');   
+          //console.log(xhr.status);
+          //console.log(thrownError);
         }        
       })
     });  
