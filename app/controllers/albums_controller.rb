@@ -4,6 +4,7 @@ class AlbumsController < ApplicationController
 
   def index
     @albums = Album.all
+    @album = Album.new
   end
 
   def show
@@ -20,6 +21,7 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.build(album_params)
 
     if @album.save
+      # @album_id = @album.id
       redirect_to new_user_album_path(@current_user)
     else
       redirect_to new_user_album_path(@current_user), :status => 403 

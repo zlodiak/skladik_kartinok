@@ -53,14 +53,23 @@ $( document ).ready(function() {
     $('#new_album').on('submit', function(e){
       e.preventDefault();
 
-      var currentUserId = $(this).attr('data-current-user');
+      var currentUserId = $(this).attr('data-current-user'),
+          albumTitle = $('input#album_title').val();
 
       $.ajax({
         url: '/users/' + currentUserId + '/albums',
         type: 'POST',
         data: $('#new_album').serialize(),
         success: function(result){
+          console.log(result);
           handleModal('album create', 'is successfull', '00ff2a', 2000);
+          $('input#album_title').val('');
+          $('#albumsList tbody').append('<tr> \
+            <td>' + albumTitle + '</td> \
+            <td></td> \
+            <td></td> \
+            <td><span class="destroy_album" data-album-id="">destroy</span></td> \
+          </tr>');
         },
         error: function(xhr, ajaxOptions, thrownError){
           handleModal('album create', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);
