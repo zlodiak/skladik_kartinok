@@ -23,9 +23,9 @@ class AlbumsController < ApplicationController
     if @album.save
       # @album_id = @album.id
       #redirect_to new_user_album_path(@current_user)
-      render json: @album, :status => 200 
+      render json: @album.id, :status => 200 
     else
-      render json: @album, :status => 403 
+      render nothing: true, :status => 403 
     end
   end
 
