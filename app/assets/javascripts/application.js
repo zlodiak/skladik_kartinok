@@ -28,32 +28,28 @@ $( document ).ready(function() {
 
     // modals ajax
     // destroy album ajax
-    $(document).on({
-      click : function(e){
-        var link = $(this),
-            td = link.closest('td'),
-            tr = td.closest('tr'),
-            currentUserNameId = link.closest('tbody').attr('data-current-user'),
-            albumId = link.attr('data-album-id');
+    $(document).on('click', '.destroy_album', handlerDestroy);
 
-        console.log(currentUserNameId)
-        console.log(albumId)
+    function handlerDestroy(e){
+      var link = $(this),
+          td = link.closest('td'),
+          tr = td.closest('tr'),
+          currentUserNameId = link.closest('tbody').attr('data-current-user'),
+          albumId = link.attr('data-album-id');
 
-        $.ajax({
-          url: '/users/' + currentUserNameId + '/albums/' + albumId,
-          type: 'POST',
-          data: { _method: 'DELETE' },
-          success: function(result){
-            tr.fadeOut(1000);
-            handleModal('album delete', 'is successfull', '00ff2a', 2000);
-          },
-          error: function(xhr, ajaxOptions, thrownError){
-            handleModal('album delete', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);
-          }        
-        })
-      }
-    }, '.destroy_album'); 
-
+      $.ajax({
+        url: '/users/' + currentUserNameId + '/albums/' + albumId,
+        type: 'POST',
+        data: { _method: 'DELETE' },
+        success: function(result){
+          tr.fadeOut(300);
+          handleModal('album delete', 'is successfull', '00ff2a', 2000);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          handleModal('album delete', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);
+        }        
+      })
+    }
 
     // create album ajax
     $('#new_album').on('submit', function(e){
