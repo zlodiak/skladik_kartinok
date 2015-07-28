@@ -59,6 +59,7 @@ $( document ).ready(function() {
       $.ajax({
         url: '/users/' + currentUserId + '/albums',
         type: 'POST',
+        dataType: "JSON", 
         data: $('#new_album').serialize(),
         success: function(result){
           console.log(result);
@@ -68,7 +69,7 @@ $( document ).ready(function() {
             <td>' + albumTitle + '</td> \
             <td></td> \
             <td></td> \
-            <td><span class="destroy_album" data-album-id="">destroy</span></td> \
+            <td><span class="destroy_album" data-album-id="' + result.id + '">destroy</span></td> \
           </tr>');
         },
         error: function(xhr, ajaxOptions, thrownError){
