@@ -28,26 +28,32 @@ $( document ).ready(function() {
 
     // modals ajax
     // destroy album ajax
-    $('.destroy_album').on('click', function(e){
-      var link = $(this),
-          td = link.closest('td'),
-          tr = td.closest('tr'),
-          currentUserNameId = link.closest('tbody').attr('data-current-user'),
-          albumId = link.attr('data-album-id');
+    $(document).on({
+      click : function(e){
+        var link = $(this),
+            td = link.closest('td'),
+            tr = td.closest('tr'),
+            currentUserNameId = link.closest('tbody').attr('data-current-user'),
+            albumId = link.attr('data-album-id');
 
-      $.ajax({
-        url: '/users/' + currentUserNameId + '/albums/' + albumId,
-        type: 'POST',
-        data: { _method: 'DELETE' },
-        success: function(result){
-          tr.fadeOut(1000);
-          handleModal('album delete', 'is successfull', '00ff2a', 2000);
-        },
-        error: function(xhr, ajaxOptions, thrownError){
-          handleModal('album delete', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);
-        }        
-      })
-    });  
+        console.log(currentUserNameId)
+        console.log(albumId)
+
+        $.ajax({
+          url: '/users/' + currentUserNameId + '/albums/' + albumId,
+          type: 'POST',
+          data: { _method: 'DELETE' },
+          success: function(result){
+            tr.fadeOut(1000);
+            handleModal('album delete', 'is successfull', '00ff2a', 2000);
+          },
+          error: function(xhr, ajaxOptions, thrownError){
+            handleModal('album delete', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);
+          }        
+        })
+      }
+    }, '.destroy_album'); 
+
 
     // create album ajax
     $('#new_album').on('submit', function(e){
@@ -69,7 +75,7 @@ $( document ).ready(function() {
             <td>' + albumTitle + '</td> \
             <td></td> \
             <td></td> \
-            <td><span class="destroy_album" data-album-id="' + result.id + '">destroy</span></td> \
+            <td><span class="destroy_album" data-album-id="' + result + '">destroy</span></td> \
           </tr>');
         },
         error: function(xhr, ajaxOptions, thrownError){

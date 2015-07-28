@@ -41,7 +41,7 @@ class AlbumsController < ApplicationController
 
   def destroy
     if @album.destroy
-      redirect_to user_albums_path
+      render nothing: true, :status => 200 
     end
   end
 
