@@ -21,8 +21,6 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.build(album_params)
 
     if @album.save
-      # @album_id = @album.id
-      #redirect_to new_user_album_path(@current_user)
       render json: @album.id, :status => 200 
     else
       render nothing: true, :status => 403 
@@ -53,7 +51,7 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:title)
+      params.require(:album).permit(:title, :description)
     end
 
     def admin_or_owner_check

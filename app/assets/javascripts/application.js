@@ -67,6 +67,7 @@ $( document ).ready(function() {
           console.log(result);
           handleModal('album create', 'is successfull', '00ff2a', 2000);
           $('input#album_title').val('');
+          $('#album_description').val('');
           $('#albumsList tbody').append('<tr> \
             <td>' + albumTitle + '</td> \
             <td></td> \
