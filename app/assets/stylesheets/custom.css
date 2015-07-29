@@ -67,6 +67,17 @@ footer {
   padding: 20px;
 }
 
+.glyphicon{
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.glyphicon-remove,
+.glyphicon-remove:hover{
+  text-decoration: none;
+  color: red;
+}
 
  /* create album form */
 .desc_album{

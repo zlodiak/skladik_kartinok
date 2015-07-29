@@ -3,7 +3,7 @@ class AlbumsController < ApplicationController
   before_action :admin_or_owner_check, only: [:edit, :update, :destroy]
 
   def index
-    @albums = Album.all
+    @albums = current_user.albums
     @album = Album.new
   end
 
@@ -11,7 +11,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = Album.new
+    #@album = Album.new
   end
 
   def edit
@@ -40,23 +40,23 @@ class AlbumsController < ApplicationController
   def destroy
     if @album.destroy
       render nothing: true, :status => 200 
+    else
+      render nothing: true, :status => 403 
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_album
       @album = Album.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
       params.require(:album).permit(:title, :description)
     end
 
     def admin_or_owner_check
       unless admin_status || @album.user.id == current_user.id
-        redirect_to user_albums_path, :status => 403      
+        render json: @album, :status => 403   
       end
     end    
 end

@@ -31,22 +31,23 @@ $( document ).ready(function() {
     $(document).on('click', '.destroy_album', handlerDestroy);
 
     function handlerDestroy(e){
+      e.preventDefault();
+
       var link = $(this),
-          td = link.closest('td'),
-          tr = td.closest('tr'),
-          currentUserNameId = link.closest('tbody').attr('data-current-user'),
-          albumId = link.attr('data-album-id');
+          article = link.closest('article'),
+          currentUserNameId = article.attr('data-current-user'),
+          albumId = article.attr('data-album-id');
 
       $.ajax({
         url: '/users/' + currentUserNameId + '/albums/' + albumId,
         type: 'POST',
         data: { _method: 'DELETE' },
         success: function(result){
-          tr.fadeOut(300);
-          handleModal('album delete', 'is successfull', '00ff2a', 2000);
+          article.fadeOut(300);
+          handleModal('Удаление альбома', 'прошло успешно', '00ff2a', 2000);
         },
         error: function(xhr, ajaxOptions, thrownError){
-          handleModal('album delete', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);
+          handleModal('Удаление альбома', 'завершилось с ошибкой. ' + xhr.status + ' error.', 'f00', 2000);
         }        
       })
     }
@@ -68,10 +69,13 @@ $( document ).ready(function() {
           handleModal('album create', 'is successfull', '00ff2a', 2000);
           albumTitle.val('');
           albumDescription.val('');
-          $('#albumsList').prepend('<article class="col-xs-12 col-sm-6 col-md-4"> \
+          $('#albumsList').prepend('<article class="col-xs-12 col-sm-6 col-md-4" data-current-user="' + currentUserId + '" data-album-id="' + result.id + '"> \
             <h3 class="title">' + result.title + '</h3> \
             <p class="body">' + result.description + '</p> \
-            <p class="details"><a class="btn btn-default" href="/users/' + result.user_id + '/albums/' + result.id + '">Подробнее...</a></p> \
+            <p class="details"> \
+              <a class="btn btn-default" href="/users/' + currentUserId + '/albums/' + result.id + '">Подробнее...</a> \
+              <span class="glyphicon glyphicon-remove pull-right destroy_album"></span> \
+            </p> \
           </article>');
         },
         error: function(xhr, ajaxOptions, thrownError){

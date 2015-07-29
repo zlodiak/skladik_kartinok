@@ -2,14 +2,18 @@
   <%= render 'form' %>
 </div>
 
-<h1>Listing Albums</h1>
+<h1>Список ваших альбомов</h1>
 
 <div class="row albums_user_container" id="albumsList">
   <% @albums.each do |album| %>
-    <article class="col-xs-12 col-sm-6 col-md-4" data-current-user="<%= current_user.id %>">
+    <article class="col-xs-12 col-sm-6 col-md-4" data-current-user="<%= current_user.id %>" data-album-id="<%= album.id %>">
       <h3 class="title"><%= album.title %></h3>
       <p class="body">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p class="details"><%= link_to 'Подробнее...', user_album_path(current_user, album.id), class: "btn btn-default" %></p>
+      <p class="details">
+        <%= link_to 'Подробнее...', user_album_path(current_user, album.id), class: "btn btn-default" %>
+        <%#= link_to '', user_album_path(current_user, album), method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove pull-right destroy_album" %>
+        <span class="glyphicon glyphicon-remove pull-right destroy_album"></span>
+      </p>
     </article>
   <% end %>
 </div>
