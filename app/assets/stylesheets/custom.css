@@ -63,26 +63,18 @@ footer {
  * Style custom
  * --------------------------------------------------
  */
- 
-
- /*
- * Style custom admin
- * --------------------------------------------------
- */
- .admin{
-
- }
-
-  .admin .navbar-fixed-top{
-    background: red;
-  }
+.container .jumbotron{
+  padding: 20px;
+}
 
 
+ /* create album form */
+.desc_album{
+  margin-bottom: 25px;
+}
 
- /*
- * Style custom modals
- * --------------------------------------------------
- */
+
+ /* Style custom modals */
 .modal_info{
 
 }
@@ -99,3 +91,24 @@ footer {
     .modal_info .body{
       padding-bottom: 15px;
     }  
+
+
+
+
+
+
+
+
+
+
+ /*
+ * Style custom admin
+ * --------------------------------------------------
+ */
+ .admin{
+
+ }
+
+  .admin .navbar-fixed-top{
+    background: red;
+  }

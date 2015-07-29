@@ -56,7 +56,8 @@ $( document ).ready(function() {
       e.preventDefault();
 
       var currentUserId = $(this).attr('data-current-user'),
-          albumTitle = $('input#album_title').val();
+          albumTitle = $('input#album_title'),
+          albumDescription = $('textarea#album_description');
 
       $.ajax({
         url: '/users/' + currentUserId + '/albums',
@@ -64,16 +65,14 @@ $( document ).ready(function() {
         dataType: "JSON", 
         data: $('#new_album').serialize(),
         success: function(result){
-          console.log(result);
           handleModal('album create', 'is successfull', '00ff2a', 2000);
-          $('input#album_title').val('');
-          $('#album_description').val('');
-          $('#albumsList tbody').append('<tr> \
-            <td>' + albumTitle + '</td> \
-            <td></td> \
-            <td></td> \
-            <td><span class="destroy_album" data-album-id="' + result + '">destroy</span></td> \
-          </tr>');
+          albumTitle.val('');
+          albumDescription.val('');
+          $('#albumsList').prepend('<article class="col-xs-12 col-sm-6 col-md-4"> \
+            <h3 class="title">' + result.title + '</h3> \
+            <p class="body">' + result.description + '</p> \
+            <p class="details"><a class="btn btn-default" href="/users/' + result.user_id + '/albums/' + result.id + '">Подробнее...</a></p> \
+          </article>');
         },
         error: function(xhr, ajaxOptions, thrownError){
           handleModal('album create', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);

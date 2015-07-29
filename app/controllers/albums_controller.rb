@@ -21,7 +21,7 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.build(album_params)
 
     if @album.save
-      render json: @album.id, :status => 200 
+      render json: @album, :status => 200 
     else
       render nothing: true, :status => 403 
     end
