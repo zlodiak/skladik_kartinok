@@ -1,28 +1,15 @@
-<h1>New Album</h1>
-
-<%= render 'form' %>
+<div class="jumbotron">
+  <%= render 'form' %>
+</div>
 
 <h1>Listing Albums</h1>
 
-<table id="albumsList">
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody data-current-user="<%= current_user.id %>">
-    <% @albums.each do |album| %>
-      <tr>
-        <td><%= album.title %></td>
-        <td><%= link_to 'Show', user_album_path(current_user, album.id) %></td>
-        <td><%= link_to 'Edit', edit_user_album_path(current_user, album) %></td>
-        <td><%= link_to 'Destroy', user_album_path(current_user, album), method: :delete, data: { confirm: 'Are you sure?' } %>---<span class="destroy_album" data-album-id="<%= album.id %>">destroy</span></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Album', new_user_album_path(current_user) %>
+<div class="row albums_user_container" id="albumsList">
+  <% @albums.each do |album| %>
+    <article class="col-xs-12 col-sm-6 col-md-4" data-current-user="<%= current_user.id %>">
+      <h3 class="title"><%= album.title %></h3>
+      <p class="body">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      <p class="details"><%= link_to 'Подробнее...', user_album_path(current_user, album.id), class: "btn btn-default" %></p>
+    </article>
+  <% end %>
+</div>

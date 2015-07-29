@@ -1,16 +1,4 @@
 <%= form_for [current_user, @album], :html => { 'data-current-user' => current_user.id }  do |f| %>
-  <% if @album.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
-
-      <ul>
-      <% @album.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="row">
     <div class="col-xs-12 col-sm-2">
       <%= f.label :title %>
@@ -33,3 +21,21 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<form>
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-6">
+      <label for="exampleInputEmail1">Название</label>
+      <input type="text" class="form-control" id="" />
+    </div>
+
+    <div class="form-group col-xs-12 col-sm-6">
+      <label for="exampleInputPassword1">Описание</label>
+      <textarea class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="col-xs-12">
+      <button type="submit" class="btn btn-default pull-right">Создать альбом</button>
+    </div>
+  </div>
+</form>
