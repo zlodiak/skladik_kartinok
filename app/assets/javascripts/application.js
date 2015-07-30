@@ -44,10 +44,10 @@ $( document ).ready(function() {
         data: { _method: 'DELETE' },
         success: function(result){
           article.fadeOut(300);
-          handleModal('Удаление альбома', 'прошло успешно', '00ff2a', 2000);
+          handleModal('Удаление альбома прошло успешно', '', '00ff2a', 2000);
         },
         error: function(xhr, ajaxOptions, thrownError){
-          handleModal('Удаление альбома', 'завершилось с ошибкой. ' + xhr.status + ' error.' + xhr.responseText + '--', 'f00', 2000);
+          handleModal('Удаление альбома завершилось с ошибкой', 'У вас не хватает прав. ' + xhr.status + ' error', 'f00', 2000);
         }        
       })
     }
@@ -82,7 +82,7 @@ $( document ).ready(function() {
           var errorText = '';
 
           $.each(JSON.parse(xhr.responseText), function(key, val){
-            errorText += (key+1) + '.' + val + '<br /><br />'
+            errorText += (key + 1) + '.' + val + '<br /><br />'
           })
           handleModal('Альбом не создан', errorText, 'f00', 10000);
         }        

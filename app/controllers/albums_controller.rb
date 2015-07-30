@@ -3,7 +3,8 @@ class AlbumsController < ApplicationController
   before_action :admin_or_owner_check, only: [:edit, :update, :destroy]
 
   def index
-    @albums = current_user.albums
+    #@albums = current_user.albums
+    @albums = Album.all
     @album = Album.new
   end
 
@@ -23,16 +24,7 @@ class AlbumsController < ApplicationController
     if @album.save
       render json: @album, :status => 200 
     else
-      @errors = Array.new
-      p '----------------'
-      @album.errors.full_messages.each do |msg|
-        p msg
-        @errors.push(msg)
-      end    
-      p '----------------'
-      p @errors
-      render json: @errors, :status => 403 
-      #render nothing: true, :status => 403 
+      render json: @album.errors.full_messages, :status => 403 
     end
   end
 
@@ -65,7 +57,7 @@ class AlbumsController < ApplicationController
 
     def admin_or_owner_check
       unless admin_status || @album.user.id == current_user.id
-        render json: @album, :status => 403   
+        render nothing: true, :status => 403 
       end
     end    
 end
