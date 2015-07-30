@@ -23,7 +23,16 @@ class AlbumsController < ApplicationController
     if @album.save
       render json: @album, :status => 200 
     else
-      render nothing: true, :status => 403 
+      @errors = Array.new
+      p '----------------'
+      @album.errors.full_messages.each do |msg|
+        p msg
+        @errors.push(msg)
+      end    
+      p '----------------'
+      p @errors
+      render json: @errors, :status => 403 
+      #render nothing: true, :status => 403 
     end
   end
 
@@ -40,7 +49,7 @@ class AlbumsController < ApplicationController
   def destroy
     if @album.destroy
       render nothing: true, :status => 200 
-    else
+    else      
       render nothing: true, :status => 403 
     end
   end

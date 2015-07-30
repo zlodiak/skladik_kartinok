@@ -20,6 +20,7 @@ gem 'bcrypt-ruby'
 gem 'faker'
 gem 'populate'
 gem 'paperclip'
+gem 'russian'
 
 
 group :development, :test do

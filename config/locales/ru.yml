@@ -1,0 +1,6 @@
+ru:
+  activerecord:
+    attributes: 
+      album:    
+        description: Описание
+        title: Название 
