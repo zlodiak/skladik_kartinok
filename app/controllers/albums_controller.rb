@@ -3,8 +3,7 @@ class AlbumsController < ApplicationController
   before_action :admin_or_owner_check, only: [:edit, :update, :destroy]
 
   def index
-    #@albums = current_user.albums
-    @albums = Album.all
+    @albums = current_user.albums
     @album = Album.new
   end
 
@@ -12,7 +11,6 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    #@album = Album.new
   end
 
   def edit
@@ -47,6 +45,7 @@ class AlbumsController < ApplicationController
   end
 
   private
+
     def set_album
       @album = Album.find(params[:id])
     end

@@ -8,7 +8,7 @@
   <% @albums.each do |album| %>
     <article class="col-xs-12 col-sm-6 col-md-4" data-current-user="<%= current_user.id %>" data-album-id="<%= album.id %>">
       <h3 class="title"><%= album.title %></h3>
-      <p class="body">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      <p class="body"><%= album.description %></p>
       <p class="details">
         <%= link_to 'Подробнее...', user_album_path(current_user, album.id), class: "btn btn-default" %>
         <span class="glyphicon glyphicon-remove pull-right destroy_album"></span>
