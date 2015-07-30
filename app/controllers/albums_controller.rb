@@ -8,6 +8,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @user = @album.user
   end
 
   def new

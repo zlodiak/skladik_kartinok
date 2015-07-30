@@ -1,8 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <h1 class="h1"><%= @album.title %></h1>
+  <%= @album.description %>
+</div>
 
-title:<%= @album.title %>
-<br />
-username: <%= @album.user.name %>
+<div class="row thumb_album_container" id="thumbsList">
+    <article class="col-xs-12 col-sm-6 col-md-4">
+      <a class="link" href="#"><img class="thumb" src="dfgdfg" alt="" /></a>
+      <p class="description"><%= truncate('album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description album.description ', length: 100, omission: '...') %></p>
+    </article>
+</div>
 
-<%= link_to 'Edit', edit_user_album_path(current_user, @album) %> |
-<%= link_to 'Back', user_albums_path(current_user) %>
+<%#= link_to 'Edit', edit_user_album_path(current_user, @album) %> 
+
