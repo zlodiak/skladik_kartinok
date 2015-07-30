@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :albums
+    get "get_album_data/:id" => 'albums#get_album_data'
   end
 
 

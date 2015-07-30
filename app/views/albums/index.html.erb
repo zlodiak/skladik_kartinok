@@ -2,7 +2,7 @@
   <%= render 'form' %>
 </div>
 
-<h1>Список ваших альбомов</h1>
+<h1>Список альбомов</h1>
 
 <div class="row albums_user_container" id="albumsList">
   <% @albums.each do |album| %>
@@ -12,6 +12,7 @@
       <p class="details">
         <%= link_to 'Подробнее...', user_album_path(current_user, album.id), class: "btn btn-default" %>
         <span class="glyphicon glyphicon-remove pull-right destroy_album"></span>
+        <span class="glyphicon glyphicon-edit pull-right edit_album"></span>
       </p>
     </article>
   <% end %>

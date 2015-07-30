@@ -69,14 +69,20 @@ footer {
 
 .glyphicon{
   font-size: 20px;
+  text-decoration: none;
 
   cursor: pointer;
+  margin-left: 5px;
 }
 
 .glyphicon-remove,
 .glyphicon-remove:hover{
-  text-decoration: none;
   color: red;
+}
+
+.glyphicon-edit,
+.glyphicon-edit:hover{
+  color: orange;
 }
 
  /* create album form */

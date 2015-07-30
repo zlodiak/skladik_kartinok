@@ -1,6 +1,31 @@
 $( document ).ready(function() {
-    // destroy album ajax event
+    // album ajax events
     $(document).on('click', '.destroy_album', handlerDestroyAlbum);
+    $(document).on('click', '.edit_album', handlerEditAlbumFormOutput);
+
+    // function(){ $('#modalEditAlbum').modal(); }
+
+    // edit album form output ajax
+    function handlerEditAlbumFormOutput(e){
+      e.preventDefault();
+
+      var link = $(this),
+          article = link.closest('article'),
+          currentUserNameId = article.attr('data-current-user'),
+          albumId = article.attr('data-album-id');
+
+      $.ajax({
+        url: '/users/' + currentUserNameId + '/get_album_data/' + albumId,
+        type: 'POST',
+        data: $('form').serialize(),
+        success: function(result){
+          // fill form inputs
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          handleModal('Невозможно редактировать альбом', 'Ошибка на сервере. Повторите попытку через некоторое время. ', 'f00', 2000);
+        }        
+      })
+    }    
 
     // destroy album ajax handler
     function handlerDestroyAlbum(e){

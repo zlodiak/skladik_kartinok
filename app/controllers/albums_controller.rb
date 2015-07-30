@@ -45,6 +45,10 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def get_album_data
+
+  end
+
   private
 
     def set_album
