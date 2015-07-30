@@ -47,7 +47,7 @@ $( document ).ready(function() {
           handleModal('Удаление альбома', 'прошло успешно', '00ff2a', 2000);
         },
         error: function(xhr, ajaxOptions, thrownError){
-          handleModal('Удаление альбома', 'завершилось с ошибкой. ' + xhr.status + ' error.', 'f00', 2000);
+          handleModal('Удаление альбома', 'завершилось с ошибкой. ' + xhr.status + ' error.' + xhr.responseText + '--', 'f00', 2000);
         }        
       })
     }
@@ -66,7 +66,7 @@ $( document ).ready(function() {
         dataType: "JSON", 
         data: $('#new_album').serialize(),
         success: function(result){
-          handleModal('album create', 'is successfull', '00ff2a', 2000);
+          handleModal('Альбом создан', '', '00ff2a', 2000);
           albumTitle.val('');
           albumDescription.val('');
           $('#albumsList').prepend('<article class="col-xs-12 col-sm-6 col-md-4" data-current-user="' + currentUserId + '" data-album-id="' + result.id + '"> \
@@ -79,7 +79,12 @@ $( document ).ready(function() {
           </article>');
         },
         error: function(xhr, ajaxOptions, thrownError){
-          handleModal('album create', 'is failed. ' + xhr.status + ' error.', 'f00', 2000);
+          var errorText = '';
+
+          $.each(JSON.parse(xhr.responseText), function(key, val){
+            errorText += (key+1) + '.' + val + '<br /><br />'
+          })
+          handleModal('Альбом не создан', errorText, 'f00', 10000);
         }        
       })
     });  
