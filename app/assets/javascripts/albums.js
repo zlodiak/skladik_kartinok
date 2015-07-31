@@ -16,9 +16,11 @@ $( document ).ready(function() {
 
       $.ajax({
         url: '/users/' + currentUserNameId + '/get_album_data/' + albumId,
-        type: 'POST',
+        type: 'GET',
         data: $('form').serialize(),
-        success: function(result){
+        success: function(album){
+          $('body').append(constructUpdateForm(album));
+          $('#modalUpdateAlbum').modal();
           // fill form inputs
         },
         error: function(xhr, ajaxOptions, thrownError){
@@ -26,6 +28,42 @@ $( document ).ready(function() {
         }        
       })
     }    
+
+    function constructUpdateForm(album){
+      var form ='';
+
+      form = '<div class="modal fade" id="modalUpdateAlbum" tabindex="-1" role="dialog" aria-labelledby="modalAboutLabel"> \
+                <div class="modal-dialog" role="document"> \
+                  <div class="modal-content"> \
+                    <div class="modal-header"> \
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> \
+                      <h4 class="modal-title" id="modalAboutLabel">Редактирование альбома</h4> \
+                    </div> \
+                    <form> \
+                      <input name="_method" type="hidden" value="patch" /> \
+                      <input name="utf8" type="hidden" value="&#x2713;" /> \
+                      <input name="authenticity_token" type="hidden" value="??????????" /> \
+                      <div class="modal-body row"> \
+                        <div class="form-group col-xs-12"> \
+                          <label for="album_title_update">Название</label> \
+                          <input class="form-control title" type="text" name="album[title]" id="album_title_update" value="' + album.title + '" /> \
+                        </div> \
+                        <div class="form-group col-xs-12"> \
+                          <label for="album_description_updte">Описание</label> \
+                          <textarea rows="4" class="form-control" name="album[description]" id="album_description_updte">' + album.description + '</textarea> \
+                        </div> \
+                      </div> \
+                      <div class="modal-footer"> \
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button> \
+                        <button type="submit" class="btn btn-primary">Обновить</button> \
+                      </div> \
+                    </form> \
+                  </div> \
+                </div> \
+              </div>';
+
+      return form;
+    }
 
     // destroy album ajax handler
     function handlerDestroyAlbum(e){

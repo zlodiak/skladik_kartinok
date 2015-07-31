@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :set_album, only: [:show, :edit, :update, :destroy, :get_album_data]
   before_action :admin_or_owner_check, only: [:edit, :update, :destroy]
 
   def index
@@ -46,7 +46,11 @@ class AlbumsController < ApplicationController
   end
 
   def get_album_data
-
+    if @album
+      render json: @album, :status => 200 
+    else
+      render nothing: true, :status => 404  
+    end
   end
 
   private
