@@ -3,12 +3,8 @@ $( document ).ready(function() {
     $(document).on('click', '.destroy_album', handlerDestroyAlbum);
     $(document).on('click', '.edit_album', handlerEditAlbumFormOutput);
 
-    // function(){ $('#modalEditAlbum').modal(); }
-
-    // edit album form output ajax
-    function handlerEditAlbumFormOutput(e){
-      e.preventDefault();
-
+    // editalbum form output through ajax
+    function handlerEditAlbumFormOutput(){
       var link = $(this),
           article = link.closest('article'),
           currentUserNameId = article.attr('data-current-user'),
@@ -19,51 +15,41 @@ $( document ).ready(function() {
         type: 'GET',
         data: $('form').serialize(),
         success: function(album){
-          $('body').append(constructUpdateForm(album));
+          $('#album_title_update').val(album.title);
+          $('#album_description_updte').val(album.description);
           $('#modalUpdateAlbum').modal();
-          // fill form inputs
         },
         error: function(xhr, ajaxOptions, thrownError){
           handleModal('Невозможно редактировать альбом', 'Ошибка на сервере. Повторите попытку через некоторое время. ', 'f00', 2000);
         }        
       })
-    }    
 
-    function constructUpdateForm(album){
-      var form ='';
+      $(document).on('click', '#updateAlbumSubmit', handlerEditAlbumUpdate);
 
-      form = '<div class="modal fade" id="modalUpdateAlbum" tabindex="-1" role="dialog" aria-labelledby="modalAboutLabel"> \
-                <div class="modal-dialog" role="document"> \
-                  <div class="modal-content"> \
-                    <div class="modal-header"> \
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> \
-                      <h4 class="modal-title" id="modalAboutLabel">Редактирование альбома</h4> \
-                    </div> \
-                    <form> \
-                      <input name="_method" type="hidden" value="patch" /> \
-                      <input name="utf8" type="hidden" value="&#x2713;" /> \
-                      <input name="authenticity_token" type="hidden" value="??????????" /> \
-                      <div class="modal-body row"> \
-                        <div class="form-group col-xs-12"> \
-                          <label for="album_title_update">Название</label> \
-                          <input class="form-control title" type="text" name="album[title]" id="album_title_update" value="' + album.title + '" /> \
-                        </div> \
-                        <div class="form-group col-xs-12"> \
-                          <label for="album_description_updte">Описание</label> \
-                          <textarea rows="4" class="form-control" name="album[description]" id="album_description_updte">' + album.description + '</textarea> \
-                        </div> \
-                      </div> \
-                      <div class="modal-footer"> \
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button> \
-                        <button type="submit" class="btn btn-primary">Обновить</button> \
-                      </div> \
-                    </form> \
-                  </div> \
-                </div> \
-              </div>';
+      // editalbum form send data to update-action 
+      function handlerEditAlbumUpdate(e){
+        e.preventDefault();
 
-      return form;
-    }
+        $.ajax({
+          url: '/users/' + currentUserNameId + '/albums/' + albumId,
+          type: 'PATCH',
+          data: $('form').serialize(),
+          success: function(album){
+            article.find('.title').html(album.title);
+            article.find('.body').html(album.description);
+            $('#modalUpdateAlbum').modal('hide');
+          },
+          error: function(xhr, ajaxOptions, thrownError){
+            var errorText = '';
+
+            $.each(JSON.parse(xhr.responseText), function(key, val){
+              errorText += (key+1) + '.' + val + '<br /><br />'
+            })
+            handleModal('Альбом не создан', errorText, 'f00', 10000);
+          }        
+        })
+      }        
+    }   
 
     // destroy album ajax handler
     function handlerDestroyAlbum(e){
@@ -128,10 +114,16 @@ $( document ).ready(function() {
             <p class="details"> \
               <a class="btn btn-default" href="/users/' + currentUserId + '/albums/' + album.id + '">Подробнее...</a> \
               <span class="glyphicon glyphicon-remove pull-right destroy_album"></span> \
+              <span class="glyphicon glyphicon-edit pull-right edit_album"></span> \
             </p> \
           </article>';
 
       return albumTeaser;
+    }
+
+    // construct error messages to html-format
+    function handleConstructErrorMessage(currentUserId, album){
+
     }
 
     // handle modal window. for all ajax-requests

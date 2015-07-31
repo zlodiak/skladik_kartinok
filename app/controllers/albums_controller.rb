@@ -3,7 +3,7 @@ class AlbumsController < ApplicationController
   before_action :admin_or_owner_check, only: [:edit, :update, :destroy]
 
   def index
-    @albums = current_user.albums
+    @albums = current_user.albums.order(created_at: :DESC)
     @album = Album.new
   end
 
@@ -29,11 +29,9 @@ class AlbumsController < ApplicationController
 
   def update
     if @album.update_attributes(album_params)
-      flash[:success] = :album_updated
-      redirect_to user_album_path(current_user, @album)
+      render json: @album, :status => 200 
     else
-      flash[:error] = :album_not_updated
-      render  'edit'
+      render json: @album.errors.full_messages, :status => 403 
     end
   end
 

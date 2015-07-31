@@ -7,10 +7,28 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Складик картинок: </a>
+      <span class="navbar-brand logo_area" >
+        <a class="text_logo" href="#">Складик картинок: </a>
+        <% if user_signed_in? %>  
+          <span class="name">
+            <%= current_user.name %>
+            <%= link_to '(Выйти)', destroy_user_session_path, :method => :delete, :class => 'exit'  %>
+          </span>
+        <% end %>
+      </span>      
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
+        <% if user_signed_in? %>  
+          <li><%#= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>          
+        <% else %>
+          <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
+          <li><%= link_to 'Войти', new_user_session_path %></li>
+          <li><%#= link_to 'Восстановление пароля', new_user_password_path %></li>
+        <% end %>      
+        <li><%= link_to 'Мои альбомы', user_albums_path(current_user) %></li>
+        <li><%= link_to 'Добавить альбом', '' %></li>
+        <li><%= link_to 'Добавить фото', '' %></li>        
         <li><a href="#1" id="about">О проекте</a></li>
         <li><a href="#2" id="rules">Правила</a></li>
         <li class="dropdown">
@@ -18,15 +36,8 @@
           <ul class="dropdown-menu">
             <li><a href="#">Открытые</a></li>
             <li><a href="#">Закрытые</a></li>
-          </ul>
+          </ul>          
         </li>
-        <% if user_signed_in? %>  
-          <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>          
-        <% else %>
-          <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
-          <li><%= link_to 'Войти', new_user_session_path %></li>
-          <li><%= link_to 'Восстановление пароля', new_user_password_path %></li>
-        <% end %>
       </ul>
     </div><!-- /.nav-collapse -->
   </div><!-- /.container -->

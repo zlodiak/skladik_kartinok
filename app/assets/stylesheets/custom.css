@@ -85,6 +85,52 @@ footer {
   color: orange;
 }
 
+/* nav_main */
+.navbar{
+}
+
+  .logo_area{
+
+  }
+
+    .logo_area .text_logo:hover{
+      color: rgb(119, 119, 119);
+      text-decoration: none;
+    }
+
+    .logo_area .text_logo{
+      text-transform: uppercase;
+      color: rgb(119, 119, 119);
+    }
+
+    .logo_area .exit{
+      position: absolute;
+      right: 1px;
+      bottom: -14px;
+
+      color: #fff;
+      font-size: 10px;      
+    }
+
+    .logo_area .name:before{
+      content: 'Вы вошли как: ';
+
+      position: absolute;
+      left: 1px;
+      top: -14px;
+
+      color: #fff;
+      font-size: 10px;
+    }
+
+    .logo_area .name:hover{
+      
+    }
+
+    .logo_area .name{
+      position: relative;
+    }    
+
  /* create album form */
 .desc_album{
   margin-bottom: 25px;
