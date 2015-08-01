@@ -85,6 +85,10 @@ footer {
   color: orange;
 }
 
+.albums_user_container > article{
+  overflow: hidden;
+}
+
 /* nav_main */
 .navbar{
 }
