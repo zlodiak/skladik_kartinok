@@ -1,19 +1,23 @@
-<div class="jumbotron">
-  <%= render 'form' %>
-</div>
+<% if admin_status || @user == current_user  %>
+  <div class="jumbotron">
+    <%= render 'form' %>
+  </div>
+<% end %>
 
 <h1>Список альбомов</h1>
 
 <div class="row albums_user_container" id="albumsList">
   <% @albums.each do |album| %>
-    <article class="col-xs-12 col-sm-6 col-md-4" data-current-user="<%= current_user.id %>" data-album-id="<%= album.id %>">
+    <article class="col-xs-12 col-sm-6 col-md-4" data-current-user="<%= current_user.id if current_user %>" data-album-id="<%= album.id %>">
       <h3 class="title"><%= album.title %></h3>
       <p class="body"><%= truncate(album.description, length: 225, omission: '...') %></p>
-      <p class="details">
-        <%= link_to 'Подробнее...', user_album_path(current_user, album.id), class: "btn btn-default" %>
-        <span class="glyphicon glyphicon-remove pull-right destroy_album"></span>
-        <span class="glyphicon glyphicon-edit pull-right edit_album"></span>
-      </p>
+        <p class="details">
+          <%= link_to 'Подробнее...', user_album_path(@user, album.id), class: "btn btn-default" %>
+            <% if admin_status || @user == current_user  %>
+            <span class="glyphicon glyphicon-remove pull-right destroy_album"></span>
+            <span class="glyphicon glyphicon-edit pull-right edit_album"></span>
+          <% end %>
+        </p>
     </article>
   <% end %>
 </div>
@@ -27,9 +31,6 @@
         <h4 class="modal-title" id="modalAboutLabel">Редактирование альбома</h4>
       </div>
        <%= form_tag('', method: :patch, id: 'update_album_form') do %> 
-        <input name="_method" type="hidden" value="patch" />
-        <input name="utf8" type="hidden" value="&#x2713;" />
-        <input name="authenticity_token" type="hidden" value="??????????" />
         <div class="modal-body row">
           <div class="form-group col-xs-12">
             <label for="album_title_update">Название</label>

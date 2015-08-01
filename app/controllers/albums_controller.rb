@@ -3,7 +3,8 @@ class AlbumsController < ApplicationController
   before_action :admin_or_owner_check, only: [:edit, :update, :destroy]
 
   def index
-    @albums = current_user.albums.order(created_at: :DESC)
+    @user = User.find(params[:user_id])
+    @albums = @user.albums.order(created_at: :DESC)
     @album = Album.new
   end
 

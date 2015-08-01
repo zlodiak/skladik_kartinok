@@ -40,11 +40,7 @@ $( document ).ready(function() {
             $('#modalUpdateAlbum').modal('hide');
           },
           error: function(xhr, ajaxOptions, thrownError){
-            var errorText = '';
-
-            $.each(JSON.parse(xhr.responseText), function(key, val){
-              errorText += (key+1) + '.' + val + '<br /><br />'
-            })
+            errorText = handleConstructErrorMessage(xhr.responseText);
             handleModal('Альбом не создан', errorText, 'f00', 10000);
           }        
         })
@@ -94,17 +90,13 @@ $( document ).ready(function() {
           $('#albumsList').prepend(handleConstructAlbumTeaser(currentUserId, album));
         },
         error: function(xhr, ajaxOptions, thrownError){
-          var errorText = '';
-
-          $.each(JSON.parse(xhr.responseText), function(key, val){
-            errorText += (key+1) + '.' + val + '<br /><br />'
-          })
+          errorText = handleConstructErrorMessage(xhr.responseText);
           handleModal('Альбом не создан', errorText, 'f00', 10000);
         }        
       })
     });  
 
-    // handle construct album teaser
+    // handle construct album teaser to html-format
     function handleConstructAlbumTeaser(currentUserId, album){
       var albumTeaser;
 
@@ -122,8 +114,14 @@ $( document ).ready(function() {
     }
 
     // construct error messages to html-format
-    function handleConstructErrorMessage(currentUserId, album){
+    function handleConstructErrorMessage(errorsArray){
+      var errorText = '';
 
+      $.each(JSON.parse(errorsArray), function(key, val){
+        errorText += (key+1) + '.' + val + '<br /><br />'
+      })
+
+      return errorText;
     }
 
     // handle modal window. for all ajax-requests
