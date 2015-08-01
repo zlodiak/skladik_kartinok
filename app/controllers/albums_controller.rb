@@ -10,6 +10,7 @@ class AlbumsController < ApplicationController
 
   def show
     @user = @album.user
+    @image = Image.new
   end
 
   def new

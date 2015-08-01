@@ -1,4 +1,4 @@
-<%= form_for(@image), :html => { 'data-current-user' => current_user.id }  do |f| %>
+<%= form_for(@image) do |f| %>
   <div class="row">
     <div class="form-group col-xs-12 col-sm-6">
       <label for="exampleInputPassword1">Описание</label>
@@ -6,9 +6,9 @@
     </div>
 
     <div class="form-group col-xs-12 col-sm-6">
-      <label for="exampleInputEmail1">Название</label>
-      <%= f.text_field :title, class: "form-control desc_album" %>
-      <%= f.submit 'Создать альбом', class: 'btn btn-default pull-right' %>      
+      <label for="exampleInputEmail1">Картинка</label>
+      <%= f.file_field :image, class: "desc_album" %>
+      <%= f.submit 'Загрузить картинку', class: 'btn btn-default pull-right', id: 'loadImage' %>      
     </div>
   </div>
 <% end %>
