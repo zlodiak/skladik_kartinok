@@ -1,10 +1,15 @@
-<% if admin_status || @user == current_user  %>
+<% if @user == current_user  %>
   <div class="jumbotron">
     <%= render 'form' %>
   </div>
 <% end %>
 
-<h1>Список альбомов</h1>
+<h1>
+  <span class="">Список альбомов</span>
+  <% if @user != current_user  %>
+    <span class="name">:: <%= @user.name %></span>
+  <% end %>
+</h1>
 
 <div class="row albums_user_container" id="albumsList">
   <% @albums.each do |album| %>

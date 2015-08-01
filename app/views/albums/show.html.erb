@@ -4,12 +4,14 @@
     <%= @album.description %>
   </div>
 
+  <% if @user == current_user  %>
   <div class="add_image_area" id="addImageArea">
     <div class="add_image_form" id="addImageForm">
     <%= render 'images/form' %>
     </div>
     <span class="add_image_toggler btn btn-primary pull-right" id='addImageToggler'>Форма добавления картинки</span>
   </div>
+  <% end %>
 </div>
 
 <div class="row thumb_album_container" id="thumbsList">

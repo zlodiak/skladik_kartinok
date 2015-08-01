@@ -149,7 +149,7 @@ footer {
 }
 
 .jumbotron .description_area{
-  padding-bottom: 20px;
+  
 }
 
  /* create album form */
@@ -159,6 +159,7 @@ footer {
 
 .jumbotron .add_image_area{
   overflow: hidden;
+  padding-top: 20px;
 }
 
 .jumbotron .add_image_form{

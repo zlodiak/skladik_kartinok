@@ -24,12 +24,10 @@ class ImagesController < ApplicationController
       p '-------------------2'
       @image.update_attributes(user: current_user)
 
-      flash[:success] = :image_created
-      redirect_to @image
+      render json: @image, :status => 200 
     else
       p '-------------------3'
-      flash.now[:error] = :user_not_created
-      render 'new'
+      render json: @image.errors.full_messages, :status => 403 
     end
   end
 
