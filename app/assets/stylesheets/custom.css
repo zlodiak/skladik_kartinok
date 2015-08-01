@@ -89,47 +89,57 @@ footer {
 .navbar{
 }
 
-  .logo_area{
-
+  .navbar .container{
+    position: relarive;
   }
 
-    .logo_area .text_logo:hover{
-      color: rgb(119, 119, 119);
-      text-decoration: none;
-    }
-
-    .logo_area .text_logo{
-      text-transform: uppercase;
-      color: rgb(119, 119, 119);
-    }
-
-    .logo_area .exit{
+    .navbar .sidebar_toggler{
       position: absolute;
-      right: 1px;
-      bottom: -14px;
-
-      color: #fff;
-      font-size: 10px;      
+      right: 0;
+      bottom: -23px;
     }
 
-    .logo_area .name:before{
-      content: 'Вы вошли как: ';
+    .logo_area{
 
-      position: absolute;
-      left: 1px;
-      top: -14px;
-
-      color: #fff;
-      font-size: 10px;
     }
 
-    .logo_area .name:hover{
-      
-    }
+      .logo_area .text_logo:hover{
+        color: rgb(119, 119, 119);
+        text-decoration: none;
+      }
 
-    .logo_area .name{
-      position: relative;
-    }    
+      .logo_area .text_logo{
+        text-transform: uppercase;
+        color: rgb(119, 119, 119);
+      }
+
+      .logo_area .exit{
+        position: absolute;
+        right: 1px;
+        bottom: -14px;
+
+        color: #fff;
+        font-size: 10px;      
+      }
+
+      .logo_area .name:before{
+        content: 'Вы вошли как: ';
+
+        position: absolute;
+        left: 1px;
+        top: -14px;
+
+        color: #fff;
+        font-size: 10px;
+      }
+
+      .logo_area .name:hover{
+        
+      }
+
+      .logo_area .name{
+        position: relative;
+      }    
 
  /* create album form */
 .desc_album{
@@ -175,3 +185,46 @@ footer {
   .admin .navbar-fixed-top{
     background: red;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*
+ * media queries
+ * --------------------------------------------------
+ */
+@media (min-width: 768px) {
+  body{ background: red; }
+
+  .navbar .sidebar_toggler{
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  body{ background: lime; }
+}
+
+@media (min-width: 1200px) {
+  body{ background: orange; }
+}

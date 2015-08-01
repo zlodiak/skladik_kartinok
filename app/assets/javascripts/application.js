@@ -15,7 +15,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$( document ).ready(function() {
+$(document).ready(function() {
     // main menu some punkts handlers
     $('#about').on('click', function(e){
       e.preventDefault();
@@ -26,6 +26,25 @@ $( document ).ready(function() {
       e.preventDefault();
       $('#modalRules').modal();
     });   
+
+    // top border offset
+    checkOffsetTop();
+
+    $(window).on('resize', checkOffsetTop);
+
+    function checkOffsetTop(){
+      var navbarHeight = $('.navbar').outerHeight(),
+          offset = 0;
+
+      if(navbarHeight > 51){
+        offset = navbarHeight - 51;
+      }
+      else{
+        offset = 0;
+      }
+      
+      $('.content_container').css({'padding-top': offset + 'px'});
+    }
 });
 
 
