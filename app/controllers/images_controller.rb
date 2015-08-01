@@ -17,16 +17,12 @@ class ImagesController < ApplicationController
   end
 
   def create  
-    p '-------------------1'
     @image = Image.create(image_params)   
 
     if @image.save
-      p '-------------------2'
       @image.update_attributes(user: current_user)
-
       render json: @image, :status => 200 
     else
-      p '-------------------3'
       render json: @image.errors.full_messages, :status => 403 
     end
   end
@@ -63,6 +59,6 @@ class ImagesController < ApplicationController
     end
 
     def image_params
-      params.require(:image).permit(:description, :image)
+      params.require(:image).permit(:description, :image, :album_id)
     end
 end

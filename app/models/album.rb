@@ -3,4 +3,5 @@ class Album < ActiveRecord::Base
   validates :description, presence: true, length: { maximum:  600, minimum: 10 }
 
   belongs_to :user
+  has_many :images
 end

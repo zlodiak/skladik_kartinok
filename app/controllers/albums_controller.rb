@@ -11,6 +11,8 @@ class AlbumsController < ApplicationController
   def show
     @user = @album.user
     @image = Image.new
+    @album_id = params[:id]
+    #@images = Image.
   end
 
   def new

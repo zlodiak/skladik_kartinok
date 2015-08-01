@@ -1,4 +1,6 @@
 <%= form_for(@image) do |f| %>
+  <input name="image[album_id]" type="hidden" value="<%= @album_id %>">
+  
   <div class="row">
     <div class="form-group col-xs-12 col-sm-6">
       <label for="exampleInputPassword1">Описание</label>
