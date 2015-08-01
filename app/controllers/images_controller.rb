@@ -17,14 +17,17 @@ class ImagesController < ApplicationController
   end
 
   def create  
+    p '-------------------1'
     @image = Image.create(image_params)   
 
     if @image.save
+      p '-------------------2'
       @image.update_attributes(user: current_user)
 
       flash[:success] = :image_created
       redirect_to @image
     else
+      p '-------------------3'
       flash.now[:error] = :user_not_created
       render 'new'
     end
@@ -62,6 +65,6 @@ class ImagesController < ApplicationController
     end
 
     def image_params
-      params.require(:image).permit(:title, :image)
+      params.require(:image).permit(:description, :image)
     end
 end
