@@ -45,6 +45,11 @@ $(document).ready(function() {
       
       $('.content_container').css({'padding-top': offset + 'px'});
     }
+
+    // slide add image form on show album page
+    $('#addImageToggler').click(function(){
+      $('#addImageForm').slideToggle();
+    });
 });
 
 

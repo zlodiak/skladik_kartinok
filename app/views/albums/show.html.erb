@@ -1,6 +1,18 @@
-<div class="jumbotron">
-  <h1 class="h1"><%= @album.title %></h1>
-  <%= @album.description %>
+<div class="jumbotron jumbotron_show_album">
+  <div class="description_area">
+    <h1 class="h1"><%= @album.title %></h1>
+    <%= @album.description %>
+  </div>
+
+  <div class="add_image_area" id="addImageArea">
+    <div class="add_image_form" id="addImageForm">
+    dg<br>
+    dg<br>
+    dg<br>
+    dg<br>
+    </div>
+    <span class="add_image_toggler btn btn-primary pull-right" id='addImageToggler'>Форма добавления картинки</span>
+  </div>
 </div>
 
 <div class="row thumb_album_container" id="thumbsList">
