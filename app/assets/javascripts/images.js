@@ -8,8 +8,9 @@ $( document ).ready(function() {
 
         imageField.replaceWith(imageField = imageField.clone(true));
         $('#image_description').val('');
-
+        // $('#thumbsList').prepend($('<div>fuck. to do</div>'));
         handleModal('Картинка добавлена', '', '00ff2a', 2000);
+        setTimeout( function(){ location.reload(); } , 2000)                
       },
       error: function(xhr, ajaxOptions, thrownError){
         errorText = handleConstructErrorMessage(xhr.responseText);

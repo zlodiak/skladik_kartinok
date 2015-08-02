@@ -4,3 +4,5 @@ ru:
       album:    
         description: Описание
         title: Название 
+      image:
+        image: Картинка 
