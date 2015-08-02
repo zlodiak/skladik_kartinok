@@ -11,7 +11,7 @@ class Image < ActiveRecord::Base
                                   :medium => "300x300>", 
                                   :thumb => "200x100>" 
                     }, 
-                    :default_url => "/images/:style/missing.png"
+                    :default_url => "no_image.jpeg"
   
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/  
   validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]  
