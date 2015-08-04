@@ -7,6 +7,13 @@ class ImagesController < ApplicationController
   end
 
   def show
+    p '-----------------'
+    p image_params[:image_id]
+    if @image_detail = Image.find(image_params[:image_id])
+      render json: @image_detail.image.url(:large), :status => 200 
+    else
+      render nothing: true, :status => 404 
+    end
   end
 
   def new
@@ -59,6 +66,6 @@ class ImagesController < ApplicationController
     end
 
     def image_params
-      params.require(:image).permit(:description, :image, :album_id)
+      params.require(:image).permit(:description, :image, :album_id, :image_id)
     end
 end

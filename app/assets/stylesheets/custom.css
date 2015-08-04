@@ -94,6 +94,12 @@ footer {
     overflow: hidden;
   }
 
+
+
+.thumb_album_container .thumb{
+  cursor: pointer;
+}
+
 .thumb_album_container .description{
   overflow: hidden;
   height: 60px;
@@ -197,6 +203,18 @@ footer {
     .modal_info .body{
       padding-bottom: 15px;
     }  
+
+.modal_detail_image .modal-content{
+  background: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;  
+  border: none;
+}
+
+.modal_detail_image .modal-dialog{
+  width: 100%;
+
+}    
 
 
 
