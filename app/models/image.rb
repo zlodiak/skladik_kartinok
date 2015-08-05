@@ -6,7 +6,7 @@ class Image < ActiveRecord::Base
 
   has_attached_file :image, 
                     :styles => { 
-                                  :giant => "1000x500>", 
+                                  :giant => "1000x700>", 
                                   :large => "600x400>", 
                                   :medium => "300x300>", 
                                   :thumb => "200x100>" 

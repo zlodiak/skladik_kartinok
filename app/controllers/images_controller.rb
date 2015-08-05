@@ -7,10 +7,17 @@ class ImagesController < ApplicationController
   end
 
   def show
-    p '-----------------'
-    p image_params[:image_id]
-    if @image_detail = Image.find(image_params[:image_id])
-      render json: @image_detail.image.url(:large), :status => 200 
+    image_detail = Image.find(image_params[:image_id])
+    owner = User.find(image_detail.user_id)
+
+    if image_detail
+      render json: {
+                    url_giant: image_detail.image.url(:giant),
+                    description: image_detail.description,
+                    created_at: l(image_detail.created_at, format: "%e %b %Y, %H:%I"),
+                    updated_at: l(image_detail.updated_at, format: "%e %b %Y, %H:%I"),
+                    owner: owner.name
+      }, :status => 200 
     else
       render nothing: true, :status => 404 
     end

@@ -216,10 +216,40 @@ footer {
 
 }    
 
+.close_details_image{
+  position: absolute;
+  top: -55px;
+  right: 40px;
+
+  font-size: 60px;
+  color: #fff;
+}
 
 
+.modal_detail_image{
+  padding-top: 40px;
+}
+
+.modal_detail_image.in{
+   background: rgba(0,0,0,0.9);
+}
+
+  .detail_image_file{
+    text-align: center;
+  }
+
+    .detail_image_img{
+      margin: 0 auto;
+    }
 
 
+.detail_image_meta{
+  color: #fff;
+}
+
+  .detail_image_meta .value{
+    padding-bottom: 20px;
+  }
 
 
 
