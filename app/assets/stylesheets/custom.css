@@ -158,7 +158,10 @@ footer {
       }
 
       .logo_area .name{
+        display: inline-block;
         position: relative;
+        min-width: 100px;
+
       }    
 
 /* jumbotron */
@@ -184,6 +187,13 @@ footer {
 
 .jumbotron .add_image_form{
   display: none;
+}
+
+ /* alerts */
+.alert-notice {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
 }
 
  /* Style custom modals */
@@ -236,6 +246,8 @@ footer {
 
   .detail_image_file{
     text-align: center;
+
+    padding-bottom: 20px;
   }
 
     .detail_image_img{

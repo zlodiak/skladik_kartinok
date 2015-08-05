@@ -22,10 +22,7 @@
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>  
-          <li><%#= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>     
-          <li><%= link_to 'Мои альбомы', user_albums_path(current_user) %></li>
-          <li><%= link_to 'Добавить альбом', '' %></li>
-          <li><%= link_to 'Добавить фото', '' %></li>                
+          <li><%#= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>                  
         <% else %>
           <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
           <li><%= link_to 'Войти', new_user_session_path %></li>

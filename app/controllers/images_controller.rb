@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
   before_action :logged_check, only: [:create, :edit, :update, :destroy]
 
   def index
-    @images = Image.all 
+    @images = Image.all.order(created_at: :DESC)
   end
 
   def show
