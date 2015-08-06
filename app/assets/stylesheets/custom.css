@@ -18,6 +18,7 @@ footer {
 .h1, .h2, .h3, .h4,
 h1, h2, h3, h4{
   margin: 0;
+  padding-bottom: 20px;
 }
 
 /*
@@ -169,6 +170,22 @@ h1, h2, h3, h4{
 
       }    
 
+/* form */
+form .field_with_errors{
+  border: 1px solid red;
+  border-radius: 5px;
+
+}
+
+/* edit_form_profile */
+.edit_form_profile{
+
+}
+
+  .edit_form_profile label:after{
+    content: ': ';
+  }
+
 /* user_profile_container */
 .user_profile_container{
 
@@ -216,6 +233,12 @@ h1, h2, h3, h4{
   color: #31708f;
   background-color: #d9edf7;
   border-color: #bce8f1;
+}
+
+.alert-error {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
 }
 
  /* Style custom modals */

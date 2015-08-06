@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    p '-------------'
-    p @user
   end
 
   def new
@@ -15,7 +13,14 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def create  
+  def update
+    if @user.update_attributes(user_params)
+      flash[:success] = 'Данные профиля изменены'
+      redirect_to user_path(@user)
+    else
+      flash[:error] = 'Ошибка обновления данных профиля'
+      render  'edit'
+    end    
   end
 
   def destroy
@@ -27,6 +32,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      # params.require(:user).permit()
+      params.require(:user).permit(:name, :email, :info)
     end
 end
