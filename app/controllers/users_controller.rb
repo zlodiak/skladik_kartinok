@@ -15,6 +15,14 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
+      if params[:delete_avatar]
+        @user.update_attributes(
+          avatar_file_name: nil, 
+          avatar_content_type: nil, 
+          avatar_file_size: nil
+        )
+      end
+            
       flash[:success] = 'Данные профиля изменены'
       redirect_to user_path(@user)
     else
@@ -32,6 +40,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :info)
+      params.require(:user).permit(:name, :email, :info, :avatar, :delete_avatar)
     end
 end

@@ -2,24 +2,48 @@
   <div class="row edit_form_profile">
     <div class="form-group col-xs-12">
       <div class="row">
-        <div class="col-xs-12 col-sm-3 title"><label for="name">Имя</label></div>
+        <div class="col-xs-12 col-sm-3 title"><%= f.label :avatar, class: 'label_block' %></div>
+        <div class="col-xs-12 col-sm-9 value">
+          <% if @user.avatar_file_name %>
+            <div class="row avatar_current_user_block">
+              <div class="col-xs-12 col-sm-3 image_loaded">
+                <%= link_to @user.avatar.url, class: 'fancybox' do %>
+                  <%= image_tag(@user.avatar.url(:large) , class: "thumb_icon thumb_icon_h2 pull-left img-responsive", alt: '') %>
+                <% end %>
+              </div>
+
+              <div class="col-xs-12 col-sm-9 image_delete">
+                <%= check_box_tag(:delete_avatar) %>
+                <%= label_tag(:delete_avatar, "Удалить аватар") %>
+              </div>
+            </div>
+          <% end %>
+
+          <%= f.file_field :avatar %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group col-xs-12">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 title"><span class="label_block">Имя</span></div>
         <div class="col-xs-12 col-sm-9 value"><%= f.text_field :name, class: "form-control user_name" %></div>
       </div>
     </div>
 
     <div class="form-group col-xs-12">
       <div class="row">
-        <div class="col-xs-12 col-sm-3 title"><label for="name">Email</label></div>
+        <div class="col-xs-12 col-sm-3 title"><span class="label_block">Email</span></div>
         <div class="col-xs-12 col-sm-9 value"><%= f.text_field :email, class: "form-control user_email" %></div>
       </div>    
     </div>    
 
     <div class="form-group col-xs-12">
       <div class="row">
-        <div class="col-xs-12 col-sm-3 title"><label for="name">Дополнительная информация</label></div>
+        <div class="col-xs-12 col-sm-3 title"><span class="label_block">Дополнительная информация</span></div>
         <div class="col-xs-12 col-sm-9 value"><%= f.text_area :info, cols: 5, rows: 7, class: "form-control user_info" %></div>
       </div>      
-    </div>      
+    </div>          
 
     <div class="form-group col-xs-12">
       <div class="row">

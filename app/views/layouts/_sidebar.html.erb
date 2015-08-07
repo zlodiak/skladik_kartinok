@@ -3,8 +3,8 @@
     <div class="list-group">
       <%= link_to 'Мои альбомы', user_albums_path(current_user), class: 'list-group-item' %>
       <%= link_to 'Добавить альбом', new_user_album_path(current_user), class: 'list-group-item' %>
+      <%= link_to 'Анкета', user_path(current_user), class: 'list-group-item' %>
       <a href="#" class="list-group-item">Добавить картинку</a>      
-      <a href="#" class="list-group-item">Анкета</a>
     </div>
   <% else %>
     <div class="about_projest_sidebar">

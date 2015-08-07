@@ -2,6 +2,16 @@
   <h2 class="col-xs-12 h2">Профиль пользователя</h2>
 
   <div class="col-xs-12 profile">
+    <% if @user.avatar_file_name %>
+      <div class="row avatar_user_block">
+        <div class="col-xs-12">
+          <%= link_to @user.avatar.url, class: 'fancybox' do %>
+            <%= image_tag(@user.avatar.url(:large) , class: "thumb_icon thumb_icon_h2 pull-left img-responsive", alt: '') %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
     <% if @user.name %>
       <div class="row">
         <div class="col-xs-12 col-sm-3 title">Имя</div>
