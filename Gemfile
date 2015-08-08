@@ -21,6 +21,7 @@ gem 'faker'
 gem 'populate'
 gem 'paperclip'
 gem 'russian'
+gem 'will_paginate'
 
 
 group :development, :test do
