@@ -102,9 +102,15 @@ h1, h2, h3, h4{
 
 
 
+
+
 .thumb_album_container .thumb{
   cursor: pointer;
 }
+
+.main_thumb_album_container .thumb{
+  cursor: default;
+} 
 
 .thumb_album_container .description{
   overflow: hidden;

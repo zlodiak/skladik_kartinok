@@ -1,6 +1,16 @@
 <h1>Последние загруженные изображения</h1>
 
-<%= render 'albums/image_list' %>
+<div class="row thumb_album_container main_thumb_album_container" id="mainThumbsList">
+  <% @images.each do |image| %>
+    <article class="col-xs-12 col-sm-6 col-md-4" data-image-id="<%= image.id %>">
+      <%= form_tag('/images/' + image.id.to_s, method: :get) do %>
+        <%= hidden_field(:image, :image_id, :value => image.id) %>
+        <%= image_tag(image.image.url(:thumb), class: "thumb") %>
+        <p class="description"><%= truncate(image.description, length: 100, omission: '...') %></p>
+      <% end %>
+    </article>
+  <% end %>
+</div>
 
 
 
