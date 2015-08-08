@@ -185,6 +185,17 @@ h1, h2, h3, h4{
 
       }    
 
+/* pagination  */
+.pagination .next a:after{
+  content: '>>';
+}
+
+.pagination .prev a:after{
+  content: '<<';
+}
+
+
+
 /* form */
 form .title .field_with_errors{
   border: none;

@@ -3,3 +3,5 @@ module ApplicationHelper
     Image.new
   end 
 end
+
+
