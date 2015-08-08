@@ -2,7 +2,9 @@ ru:
   activerecord:
     attributes: 
       album:    
-        description: Описание
-        title: Название 
+        description: 'Описание'
+        title: 'Название' 
       image:
-        image: Картинка 
+        image: 'Картинка' 
+      user:
+        avatar: 'Аватар'

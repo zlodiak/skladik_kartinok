@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand logo_area" >
-        <a class="text_logo" href="#">Складик картинок: </a>
+        <%= link_to 'Складик картинок: ', root_path, class: 'text_logo' %>
         <% if user_signed_in? %>  
           <span class="name">
             <%= current_user.name %>
