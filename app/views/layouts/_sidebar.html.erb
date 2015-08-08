@@ -10,10 +10,9 @@
 
     <div class="list-group">
       <%= link_to 'Мои альбомы', user_albums_path(current_user), class: 'list-group-item' %>
-      <%= link_to 'Добавить альбом', new_user_album_path(current_user), class: 'list-group-item' %>
+      <%= link_to 'Добавить картинку', new_image_path, class: 'list-group-item' %>
       <%= link_to 'Анкета', user_path(current_user), class: 'list-group-item' %>
-      <%= link_to "Изменить пароль", edit_user_registration_path, class: 'list-group-item' %>
-      <a href="#" class="list-group-item">Добавить картинкуr</a>      
+      <%= link_to "Изменить пароль", edit_user_registration_path, class: 'list-group-item' %>    
     </div>
   <% else %>
     <div class="about_projest_sidebar">

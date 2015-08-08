@@ -1,5 +1,26 @@
-<h1>New image</h1>
+<h2>Добавить картинку</h2>
 
-<%= render 'form' %>
+<%= form_for(@image) do |f| %>
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-6">
+      <div class="label_block">Описание</div>
+      <%= f.text_area(:description, rows: 4, class: 'form-control') %>
+    </div>
 
-<%= link_to 'Back', images_path %>
+    <div class="form-group col-xs-12 col-sm-6">
+      <div class="label_block">Картинка</div>
+      <%= f.file_field :image %>    
+    </div>
+
+    <div class="form-group col-xs-12 col-sm-6">
+      <div class="label_block">Альбом</div>
+      <div><%= select("image", "album_id", @albums.collect {|p| [ p.title, p.id ] }, {include_blank: 'Выберите альбом'}, {class: 'form-control'}) %></div>   
+    </div>    
+
+    <div class="form-group col-xs-12 col-sm-6 pull-right">
+      <%= f.submit 'Загрузить картинку', class: 'btn btn-default pull-right', id: 'loadImage' %>      
+    </div>       
+  </div>
+<% end %>
+
+

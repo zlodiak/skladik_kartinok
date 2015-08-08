@@ -26,6 +26,7 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new
+    @albums = current_user.albums
   end
 
   def edit

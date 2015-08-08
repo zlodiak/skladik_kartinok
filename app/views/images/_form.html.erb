@@ -3,12 +3,12 @@
   
   <div class="row">
     <div class="form-group col-xs-12 col-sm-6">
-      <label for="exampleInputPassword1">Описание</label>
+      <div class="label_block">Описание</div>
       <%= f.text_area(:description, rows: 4, class: 'form-control') %>
     </div>
 
     <div class="form-group col-xs-12 col-sm-6">
-      <label for="exampleInputEmail1">Картинка</label>
+      <div class="label_block">Картинка</div>
       <%= f.file_field :image, class: "desc_album" %>
       <%= f.submit 'Загрузить картинку', class: 'btn btn-default pull-right', id: 'loadImage' %>      
     </div>
