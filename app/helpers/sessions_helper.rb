@@ -51,6 +51,10 @@ module SessionsHelper
   end  
 
   def logged_check
+    p '---------'
+    p admin_status
+    p manager_status
+    p user_status
     unless admin_status || manager_status || user_status
       flash[:notice] = "Please sign in"
       redirect_to new_user_session_path      

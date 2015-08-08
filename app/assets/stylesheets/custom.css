@@ -111,6 +111,14 @@ h1, h2, h3, h4{
   height: 60px;
 }
 
+.avatar_sidebar_block{
+  padding-bottom: 20px;
+}
+
+  .sidebar_avatar{
+    width: 100%;
+  }
+
 /* nav_main */
 .navbar{
 }
