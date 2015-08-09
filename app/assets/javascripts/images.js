@@ -71,17 +71,22 @@ $( document ).ready(function() {
   var options = { 
       dataType: 'json',
       success: function(data) { 
-        console.log('suss___');
+        clearFieldsLoadForm();
         handleModal('Картинка добавлена', 'в альбом ' + data.album_title, '00ff2a', 2000);              
       },
       error: function(xhr, ajaxOptions, thrownError){
-        console.log('error___' + xhr.staus + ajaxOptions + thrownError);
         errorText = handleConstructErrorMessage(xhr.responseText);
         handleModal('Альбом не создан', errorText, 'f00', 10000);
       } 
   }; 
    
   $('#new_image_direct').ajaxForm(options); 
+
+  function clearFieldsLoadForm(){
+    $('#image_image').val('');
+    $('#image_album_id').val('');
+    $('#image_description').val('');
+  }
 });
 
 

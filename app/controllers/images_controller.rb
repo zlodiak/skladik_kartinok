@@ -44,27 +44,20 @@ class ImagesController < ApplicationController
   end
 
   def create_direct  
-    @image = Image.create(image_params)   
-
-    p '00000000000000000000'
-    p image_params[:album_id].to_i
-    p image_params[:image]
-    p '111111111111111111'
+    @errors = [] 
     
+    # error messages construct block
+    @errors.push 'Выберите альбом' if image_params[:album_id].to_i == 0
+    @errors.push 'Выберите картинку' if image_params[:image] == ''
 
-
+    # response block
     if (image_params[:album_id].to_i != 0 && image_params[:image] != '')
-      p '3333333333333333'
+      @image = Image.create(image_params) 
       @image.update_attributes(user: current_user)
       render json: { album_title: @image.album.title }, :status => 200       
     else
-     p '44444444444444444444444'
-     render nothing: true, :status => 403 
+     render json: @errors, :status => 403 
     end
-
-
-
-
   end  
 
   def update
