@@ -281,6 +281,7 @@ form .field_with_errors{
   border-color: #bce8f1;
 }
 
+.alert-alert,
 .alert-error {
   color: #a94442;
   background-color: #f2dede;
