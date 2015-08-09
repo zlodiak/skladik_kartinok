@@ -100,6 +100,11 @@ h1, h2, h3, h4{
     overflow: hidden;
   }
 
+  .albums_user_container > article .details{
+    padding-bottom: 40px;
+    display: block;
+  }
+
 
 
 
@@ -114,7 +119,7 @@ h1, h2, h3, h4{
 
 .thumb_album_container .description{
   overflow: hidden;
-  height: 60px;
+  height: 80px;
 }
 
 .avatar_sidebar_block{

@@ -14,7 +14,7 @@ $( document ).ready(function() {
       },
       error: function(xhr, ajaxOptions, thrownError){
         errorText = handleConstructErrorMessage(xhr.responseText);
-        handleModal('Альбом не создан', errorText, 'f00', 10000);
+        handleModal('Картинка не добавлена', errorText, 'f00', 10000);
       } 
   }; 
    
@@ -66,6 +66,22 @@ $( document ).ready(function() {
       return meta;
     };
   });
+
+  // load image direct ajax
+  var options = { 
+      dataType: 'json',
+      success: function(data) { 
+        console.log('suss___');
+        handleModal('Картинка добавлена', 'в альбом ' + data.album_title, '00ff2a', 2000);              
+      },
+      error: function(xhr, ajaxOptions, thrownError){
+        console.log('error___' + xhr.staus + ajaxOptions + thrownError);
+        errorText = handleConstructErrorMessage(xhr.responseText);
+        handleModal('Альбом не создан', errorText, 'f00', 10000);
+      } 
+  }; 
+   
+  $('#new_image_direct').ajaxForm(options); 
 });
 
 

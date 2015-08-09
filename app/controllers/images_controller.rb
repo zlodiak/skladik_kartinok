@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
-  before_action :logged_check, only: [:create, :edit, :update, :destroy]
+  before_action :logged_check, only: [:create, :create_direct, :edit, :update, :destroy]
 
   def index
     # @images = Image.all.order(created_at: :DESC)
@@ -42,6 +42,30 @@ class ImagesController < ApplicationController
       render json: @image.errors.full_messages, :status => 403 
     end
   end
+
+  def create_direct  
+    @image = Image.create(image_params)   
+
+    p '00000000000000000000'
+    p image_params[:album_id].to_i
+    p image_params[:image]
+    p '111111111111111111'
+    
+
+
+    if (image_params[:album_id].to_i != 0 && image_params[:image] != '')
+      p '3333333333333333'
+      @image.update_attributes(user: current_user)
+      render json: { album_title: @image.album.title }, :status => 200       
+    else
+     p '44444444444444444444444'
+     render nothing: true, :status => 403 
+    end
+
+
+
+
+  end  
 
   def update
     if @image.update_attributes(image_params)

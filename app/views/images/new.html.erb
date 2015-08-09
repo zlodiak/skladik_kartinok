@@ -1,6 +1,6 @@
 <h2>Добавить картинку</h2>
 
-<%= form_for(@image) do |f| %>
+<%= form_for(@image, url: images_create_direct_path, :html => {:id => "new_image_direct"}) do |f| %>
   <div class="row">
     <div class="form-group col-xs-12 col-sm-6">
       <div class="label_block">Описание</div>
