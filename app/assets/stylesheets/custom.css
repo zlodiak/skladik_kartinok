@@ -207,6 +207,7 @@ form .title .field_with_errors{
   border: none;
 }
 
+.restore_pass_form .field_with_errors,
 form .field_with_errors{
   border: 1px solid red;
   border-radius: 5px;
