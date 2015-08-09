@@ -1,16 +1,23 @@
+<h1>
+  <span class="">Список картинок</span>
+  <% if @user != current_user  %>
+    <span class="name">:: <%= @user.name %></span>
+  <% end %>
+</h1>
+
 <div class="jumbotron jumbotron_show_album" id="jumbotronShowAlbum" data-album-id='<%= @album_id %>'>
   <div class="description_area">
-    <h1 class="h1"><%= @album.title %></h1>
+    <h1 class="h1">Альбом: <%= @album.title %></h1>
     <%= @album.description %>
   </div>
 
   <% if @user == current_user  %>
-  <div class="add_image_area" id="addImageArea">
-    <div class="add_image_form" id="addImageForm">
-      <%= render 'images/form' %>
+    <div class="add_image_area" id="addImageArea">
+      <div class="add_image_form" id="addImageForm">
+        <%= render 'images/form' %>
+      </div>
+      <span class="add_image_toggler btn btn-primary pull-right" id='addImageToggler'>Форма добавления картинки</span>
     </div>
-    <span class="add_image_toggler btn btn-primary pull-right" id='addImageToggler'>Форма добавления картинки</span>
-  </div>
   <% end %>
 </div>
 

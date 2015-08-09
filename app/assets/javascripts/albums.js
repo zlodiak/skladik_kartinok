@@ -76,6 +76,7 @@ $( document ).ready(function() {
 
     var currentUserId = $(this).attr('data-current-user'),
         albumTitle = $('input#album_title'),
+        noAlbums = $('#noAlbums'),
         albumDescription = $('textarea#album_description');
 
     $.ajax({
@@ -87,6 +88,7 @@ $( document ).ready(function() {
         handleModal('Альбом создан', '', '00ff2a', 2000);
         albumTitle.val('');
         albumDescription.val('');
+        noAlbums.empty();
         $('#albumsList').prepend(handleConstructAlbumTeaser(currentUserId, album));
       },
       error: function(xhr, ajaxOptions, thrownError){
