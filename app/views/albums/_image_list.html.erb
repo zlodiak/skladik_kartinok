@@ -1,11 +1,18 @@
 <div class="row thumb_album_container" id="thumbsList">
   <% if @images.length > 0  %>
     <% @images.each do |image| %>
-      <article class="col-xs-12 col-sm-6 col-md-4" data-image-id="<%= image.id %>">
+      <article class="col-xs-12 col-sm-6 col-md-4" data-image-id="<%= image.id %>" data-current-user="<%= current_user.id if current_user %>">
         <%= form_tag('/images/' + image.id.to_s, method: :get) do %>
           <%= hidden_field(:image, :image_id, :value => image.id) %>
           <%= image_tag(image.image.url(:thumb), class: "thumb") %>
           <p class="description"><%= truncate(image.description, length: 100, omission: '...') %></p>
+
+          <% if admin_status || @user == current_user  %>
+            <div class="actions">
+              <span class="glyphicon glyphicon-remove pull-right destroy_image"></span>
+              <span class="glyphicon glyphicon-edit pull-right edit_image"></span>
+            </div>
+          <% end %>          
         <% end %>
       </article>
     <% end %>

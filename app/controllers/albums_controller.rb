@@ -12,7 +12,7 @@ class AlbumsController < ApplicationController
     @user = @album.user
     @image = Image.new
     @album_id = params[:id]
-    @images = Image.where(album_id: @album_id, user_id: @user.id).order(created_at: :DESC)
+    @images = Image.where(album_id: @album_id, user_id: @user.id, is_delete: nil).order(created_at: :DESC)
   end
 
   def new

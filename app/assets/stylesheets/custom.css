@@ -119,8 +119,13 @@ h1, h2, h3, h4{
 
 .thumb_album_container .description{
   overflow: hidden;
-  height: 80px;
+  height: 70px;
 }
+
+  .thumb_album_container .actions{
+    padding-bottom: 60px;
+    display: block;
+  }
 
 .avatar_sidebar_block{
   padding-bottom: 20px;

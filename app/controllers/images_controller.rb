@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
 
   def index
     # @images = Image.all.order(created_at: :DESC)
-    @images = Image.paginate(page: params[:page], :per_page => 18).order(created_at: :DESC)  
+    @images = Image.where(is_delete: nil).paginate(page: params[:page], :per_page => 18).order(created_at: :DESC)  
   end
 
   def show
@@ -79,10 +79,10 @@ class ImagesController < ApplicationController
   end
 
   def destroy
-    @image.destroy
-    respond_to do |format|
-      format.html { redirect_to images_url, notice: 'image was successfully destroyed.' }
-      format.json { head :no_content }
+    if @image.update_attributes(is_delete: true)
+      render nothing: true, :status => 200 
+    else      
+      render nothing: true, :status => 403 
     end
   end
 

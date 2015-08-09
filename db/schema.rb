@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807182220) do
+ActiveRecord::Schema.define(version: 20150809110158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150807182220) do
     t.string   "image_content_type"
     t.text     "description"
     t.integer  "album_id"
+    t.boolean  "is_delete"
   end
 
   create_table "statuses", force: :cascade do |t|

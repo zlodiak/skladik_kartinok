@@ -1,4 +1,7 @@
 $( document ).ready(function() {
+  // image ajax events
+  $(document).on('click', '.destroy_image', handlerDestroyImage);
+
   // load image ajax
   var options = { 
       target: '#image_image',
@@ -87,6 +90,27 @@ $( document ).ready(function() {
     $('#image_album_id').val('');
     $('#image_description').val('');
   }
+
+  // destroy image ajax handler
+  function handlerDestroyImage(e){
+    var link = $(this),
+        article = link.closest('article'),
+        currentUserNameId = article.attr('data-current-user'),
+        imageId = article.attr('data-image-id');
+
+    $.ajax({
+      url: '/images/' + imageId,
+      type: 'POST',
+      data: { _method: 'DELETE' },
+      success: function(result){
+        article.fadeOut(300);
+        handleModal('Удаление картинки прошло успешно', '', '00ff2a', 2000);
+      },
+      error: function(xhr, ajaxOptions, thrownError){
+        handleModal('Удаление картинки завершилось с ошибкой', 'У вас не хватает прав. ' + xhr.status + ' error', 'f00', 2000);
+      }        
+    })
+  }  
 });
 
 
