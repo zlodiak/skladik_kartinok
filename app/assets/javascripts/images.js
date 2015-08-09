@@ -1,6 +1,52 @@
 $( document ).ready(function() {
   // image ajax events
   $(document).on('click', '.destroy_image', handlerDestroyImage);
+  $(document).on('click', '.edit_image', handlerEditAlbumFormOutput);
+
+  // editimage form output via ajax
+  function handlerEditAlbumFormOutput(){
+    var link = $(this),
+        article = link.closest('article'),
+        currentUserNameId = article.attr('data-current-user'),
+        imageId = article.attr('data-image-id'),
+        form = $(this).closest('form');
+
+    $.ajax({
+      url: '/get_image_data/' + imageId,
+      type: 'GET',
+      data: form.serialize(),
+      success: function(image){
+        $('#image_description_updte').val(image.description);
+        $('#modalUpdateImage').modal();
+      },
+      error: function(xhr, ajaxOptions, thrownError){
+        handleModal('Невозможно редактировать альбом', 'Ошибка на сервере. Повторите попытку через некоторое время. ', 'f00', 2000);
+      }        
+    })
+
+    $(document).on('click', '#updateImageSubmit', handlerEditImageUpdate);
+
+    // editalbum form send data to update-action 
+    function handlerEditAlbumUpdate(e){
+      e.preventDefault();
+
+      $.ajax({
+        url: '/users/' + currentUserNameId + '/albums/' + albumId,
+        type: 'PATCH',
+        data: $('form').serialize(),
+        success: function(album){
+          article.find('.title').html(album.title);
+          article.find('.body').html(album.description);
+          $('#modalUpdateAlbum').modal('hide');
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          errorText = handleConstructErrorMessage(xhr.responseText);
+          handleModal('Альбом не создан', errorText, 'f00', 10000);
+        }        
+      })
+    }        
+  }   
+
 
   // load image ajax
   var options = { 

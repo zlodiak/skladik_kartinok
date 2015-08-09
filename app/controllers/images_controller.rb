@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy, :get_image_data]
   before_action :logged_check, only: [:create, :create_direct, :edit, :update, :destroy]
 
   def index
@@ -86,7 +86,16 @@ class ImagesController < ApplicationController
     end
   end
 
+  def get_image_data
+    if @image
+      render json: @image, :status => 200 
+    else
+      render nothing: true, :status => 404  
+    end
+  end
+
   private
+
     def set_image
       @image = Image.find(params[:id])
     end

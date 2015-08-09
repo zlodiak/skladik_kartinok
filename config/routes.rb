@@ -13,8 +13,9 @@ Rails.application.routes.draw do
 
 
   get 'persons/profile', as: 'user_root'
-
   match 'images/create_direct', to: 'images#create_direct', via: :post
+  #match "get_image_data/:id", to: 'image#get_image_data', via: :post
+  get "get_image_data/:id" => 'images#get_image_data'
 
   namespace :admin do
     resources :images
