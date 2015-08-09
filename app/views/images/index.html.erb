@@ -1,6 +1,6 @@
 <h1>Последние загруженные изображения</h1>
 
-<div class="row thumb_album_container main_thumb_album_container" id="mainThumbsList">
+<div class="row thumb_album_container thumb_album_container" id="thumbsList">
   <% @images.each do |image| %>
     <article class="col-xs-12 col-sm-6 col-md-4" data-image-id="<%= image.id %>">
       <%= form_tag('/images/' + image.id.to_s, method: :get) do %>

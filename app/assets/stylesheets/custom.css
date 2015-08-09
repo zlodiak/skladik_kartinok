@@ -359,7 +359,19 @@ form .field_with_errors{
 
   .detail_image_meta .value{
     padding-bottom: 20px;
+
+
   }
+
+    .detail_image_meta  a:hover{
+      text-decoration: none;
+    }
+
+    .detail_image_meta a{
+      color: #fff;
+      text-decoration: underline;
+    }
+
 
 
 

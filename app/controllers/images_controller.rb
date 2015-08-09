@@ -15,6 +15,9 @@ class ImagesController < ApplicationController
       render json: {
                     url_giant: image_detail.image.url(:giant),
                     description: image_detail.description,
+                    album_id: image_detail.album_id,
+                    album_title: image_detail.album.title,
+                    user_id: image_detail.user_id,
                     created_at: l(image_detail.created_at, format: "%e %b %Y, %H:%I"),
                     updated_at: l(image_detail.updated_at, format: "%e %b %Y, %H:%I"),
                     owner: owner.name

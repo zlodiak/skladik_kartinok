@@ -78,8 +78,6 @@ $( document ).ready(function() {
       type: 'GET',
       data: form.serialize(),
       success: function(image){
-        console.log(image.url_giant);
-        console.log(image.description);
         $('#detailImageFile').html('<img class="detail_image_img img-responsive" src=' + image.url_giant + ' alt="" id="detailImageImg" />');        
         $('#detailImageMeta').html(constructMeta(image));
         $('#modalDetailImage').modal();
@@ -105,9 +103,13 @@ $( document ).ready(function() {
                 <strong class="title">Дата изменения: </strong> \
                 <div class="value">' + image.updated_at +'</div> \
               </div> \
-              <div class="col-xs-12"> \
+              <div class="col-xs-6"> \
                 <strong class="title">Владелец: </strong> \
-                <div class="value">' + image.owner +'</div> \
+                <div class="value"><a href="/users/' + image.user_id + '">' + image.owner +'</a></div> \
+              </div> \
+              <div class="col-xs-6"> \
+                <strong class="title">Альбом: </strong> \
+                <div class="value"><a href="/users/' + image.user_id + '/albums/' + image.album_id + '">' + image.album_title +'</a></div> \
               </div> \
               ';
 
