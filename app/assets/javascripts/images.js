@@ -111,6 +111,9 @@ $( document ).ready(function() {
                 <strong class="title">Альбом: </strong> \
                 <div class="value"><a href="/users/' + image.user_id + '/albums/' + image.album_id + '">' + image.album_title +'</a></div> \
               </div> \
+              <div class="col-xs-12"> \
+                <strong class="title"><a href="' + image.url_original + '">Ссылка на оригинал</a></strong> \
+              </div> \
               ';
 
       return meta;

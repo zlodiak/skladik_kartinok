@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy, :get_album_data]
-  before_action :admin_or_owner_check, only: [:edit, :update, :destroy]
+  before_action :owner_check, only: [:edit, :create, :update, :destroy]
 
   def index
     @user = User.find(params[:user_id])
@@ -65,8 +65,8 @@ class AlbumsController < ApplicationController
       params.require(:album).permit(:title, :description)
     end
 
-    def admin_or_owner_check
-      unless admin_status || @album.user.id == current_user.id
+    def owner_check
+      unless @album.user.id == current_user.id
         render nothing: true, :status => 403 
       end
     end    

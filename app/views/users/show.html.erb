@@ -1,5 +1,11 @@
 <div class="row user_profile_container" id="userProfile">
-  <h2 class="col-xs-12 h2">Профиль пользователя</h2>
+  <h2 class="col-xs-12 h2">
+    <% if @user == current_user  %>
+      <span>Ваш профиль</span>
+    <% else %>    
+      Профиль пользователя<span class="name"> :: <%= @user.name %></span>
+    <% end %>    
+  </h2>
 
   <div class="col-xs-12 profile">
     <% if @user.avatar_file_name %>
@@ -53,6 +59,10 @@
         <div class="col-xs-12 col-sm-9 value"><%= @user.info %></div>
       </div> 
     <% end %>     
+
+    <div class="row">
+      <div class="col-xs-12"><%= link_to 'Альбомы пользователя', user_albums_path(@user) %></div>
+    </div> 
 
     <% if @user == current_user %>
       <div class="row">
