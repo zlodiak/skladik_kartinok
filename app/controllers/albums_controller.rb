@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @albums = @user.albums.order(created_at: :DESC)
+    @albums = @user.albums.paginate(page: params[:page], :per_page => 6).order(created_at: :DESC)
     @album = Album.new
   end
 
@@ -12,7 +12,7 @@ class AlbumsController < ApplicationController
     @user = @album.user
     @image = Image.new
     @album_id = params[:id]
-    @images = Image.where(album_id: @album_id, user_id: @user.id, is_delete: nil).order(created_at: :DESC)
+    @images = Image.where(album_id: @album_id, user_id: @user.id, is_delete: nil).paginate(page: params[:page], :per_page => 6).order(created_at: :DESC)
   end
 
   def new

@@ -29,6 +29,8 @@
         </p>
       </article>
     <% end %>
+
+    <%= will_paginate @albums, :previous_label => '', :next_label => '' %>
   <% else %>
     <div class="col-xs-12 no_albums" id="noAlbums">Нет альбомов</div>
   <% end %>
