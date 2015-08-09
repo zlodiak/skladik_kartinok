@@ -1,10 +1,10 @@
 $( document ).ready(function() {
   // image ajax events
   $(document).on('click', '.destroy_image', handlerDestroyImage);
-  $(document).on('click', '.edit_image', handlerEditAlbumFormOutput);
+  $(document).on('click', '.edit_image', handlerEditImageFormOutput);
 
   // editimage form output via ajax
-  function handlerEditAlbumFormOutput(){
+  function handlerEditImageFormOutput(){
     var link = $(this),
         article = link.closest('article'),
         currentUserNameId = article.attr('data-current-user'),
@@ -27,17 +27,16 @@ $( document ).ready(function() {
     $(document).on('click', '#updateImageSubmit', handlerEditImageUpdate);
 
     // editalbum form send data to update-action 
-    function handlerEditAlbumUpdate(e){
+    function handlerEditImageUpdate(e){
       e.preventDefault();
 
       $.ajax({
-        url: '/users/' + currentUserNameId + '/albums/' + albumId,
+        url: '/images/' + imageId,
         type: 'PATCH',
-        data: $('form').serialize(),
-        success: function(album){
-          article.find('.title').html(album.title);
-          article.find('.body').html(album.description);
-          $('#modalUpdateAlbum').modal('hide');
+        data: $('#update_image_form').serialize(),
+        success: function(image){
+          article.find('.description').html(image.description);
+          $('#modalUpdateImage').modal('hide');
         },
         error: function(xhr, ajaxOptions, thrownError){
           errorText = handleConstructErrorMessage(xhr.responseText);

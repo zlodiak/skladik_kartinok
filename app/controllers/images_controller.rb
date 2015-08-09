@@ -62,19 +62,9 @@ class ImagesController < ApplicationController
 
   def update
     if @image.update_attributes(image_params)
-      if params[:image]
-        @image.update_attributes(
-          image_file_name: nil, 
-          image_content_type: nil, 
-          image_file_size: nil
-        )
-      end
-      
-      flash[:success] = :profile_updated
-      redirect_to @image
+      render json: @image, :status => 200 
     else
-      flash[:error] = :profile_update_failed
-      render  'index'
+      render json: @image.errors.full_messages, :status => 403 
     end
   end
 
