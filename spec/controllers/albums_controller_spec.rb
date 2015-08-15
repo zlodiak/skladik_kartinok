@@ -6,6 +6,7 @@ describe AlbumsController, type: :controller do
       user = FactoryGirl.create(:user)
       get :index, { user_id: user.id }
       response.should render_template('index')
+      response.should render_template "layouts/application"
     end
   end
 
@@ -14,6 +15,7 @@ describe AlbumsController, type: :controller do
       album = FactoryGirl.create(:album)
       get :show, { user_id: 1, id: album.id }
       response.should render_template('show')
+      response.should render_template "layouts/application"
     end
   end  
 end

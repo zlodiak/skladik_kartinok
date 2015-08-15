@@ -3,7 +3,6 @@ class ImagesController < ApplicationController
   before_action :logged_check, only: [:create, :create_direct, :edit, :update, :destroy]
 
   def index
-    # @images = Image.all.order(created_at: :DESC)
     @images = Image.where(is_delete: nil).paginate(page: params[:page], :per_page => 18).order(created_at: :DESC)  
   end
 
