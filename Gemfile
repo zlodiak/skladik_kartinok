@@ -22,6 +22,7 @@ gem 'populate'
 gem 'paperclip'
 gem 'russian'
 gem 'will_paginate'
+gem 'database_cleaner'
 
 group :test do
   gem 'rspec-rails'

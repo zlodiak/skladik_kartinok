@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :album do
-    title 'qqq_title'
+    sequence(:title){ |i| "title#{i}" }
     user_id 1
     closed nil
     description 'g dgd fghf ghj gj gj gj gj g'
