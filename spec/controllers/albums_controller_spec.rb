@@ -8,6 +8,11 @@ describe AlbumsController, type: :controller do
       response.should render_template('index')
       response.should render_template "layouts/application"
     end
+
+    #it 'render fail template if user not found' do
+    #  get :index, { user_id: 12345 }
+    #  response.status.should == 404
+    #end    
   end
 
   describe 'show action' do

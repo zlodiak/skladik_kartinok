@@ -12,15 +12,15 @@ class ImagesController < ApplicationController
 
     if image_detail
       render json: {
-                    url_giant: image_detail.image.url(:giant),
-                    description: image_detail.description,
-                    album_id: image_detail.album_id,
-                    album_title: image_detail.album.title,
-                    url_original: image_detail.image.url,
-                    user_id: image_detail.user_id,
-                    created_at: l(image_detail.created_at, format: "%e %b %Y, %H:%I"),
-                    updated_at: l(image_detail.updated_at, format: "%e %b %Y, %H:%I"),
-                    owner: owner.name
+        url_giant: image_detail.image.url(:giant),
+        description: image_detail.description,
+        album_id: image_detail.album_id,
+        album_title: image_detail.album.title,
+        url_original: image_detail.image.url,
+        user_id: image_detail.user_id,
+        created_at: l(image_detail.created_at, format: "%e %b %Y, %H:%I"),
+        updated_at: l(image_detail.updated_at, format: "%e %b %Y, %H:%I"),
+        owner: owner.name
       }, :status => 200 
     else
       render nothing: true, :status => 404 
