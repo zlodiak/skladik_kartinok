@@ -23,6 +23,10 @@ gem 'paperclip'
 gem 'russian'
 gem 'will_paginate'
 gem 'database_cleaner'
+gem 'capybara'
+gem 'pry-rails'        
+gem 'pry-debugger'      
+gem 'pry-stack_explorer'
 
 group :test do
   gem 'rspec-rails'
