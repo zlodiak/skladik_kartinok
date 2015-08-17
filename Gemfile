@@ -27,11 +27,8 @@ gem 'capybara'
 gem 'pry-rails'        
 gem 'pry-debugger'      
 gem 'pry-stack_explorer'
-
-group :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-end
+gem 'rspec-rails'
+gem 'factory_girl_rails'
 
 
 group :development, :test do
