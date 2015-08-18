@@ -4,25 +4,25 @@
   <div class="row">
     <div class="col-xs-12 col-sm-4">
       <div class="row">
-        <div class="form-group col-xs-12">
+        <div class="form-group col-xs-12 email_cell">
           <div class="label_block"><%= f.label :email %></div>
           <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
         </div>
 
-        <div class="form-group col-xs-12">
+        <div class="form-group col-xs-12 password_cell">
           <div class="label_block"><%= f.label :password %></div>
           <%= f.password_field :password, class: 'form-control' %>
         </div>
         
-        <div class="form-group col-xs-12">
+        <div class="form-group col-xs-12 remember_me_cell">
           <div class=""><%= f.check_box :remember_me %>&nbsp;<%= f.label 'Запомнить меня' %></div>
         </div>
         
-        <div class="form-group col-xs-12 col-sm-6 col-md-4">
+        <div class="form-group col-xs-12 col-sm-6 col-md-4 commit_cell">
           <%= f.submit 'Войти', class: 'btn btn-default', id: "commit_sign_in" %>      
         </div>
 
-        <div class="form-group col-xs-12 col-sm-6 col-md-8">
+        <div class="form-group col-xs-12 col-sm-6 col-md-8 restore_pass_cell">
           <%= link_to 'Восстановление пароля', new_user_password_path %>     
         </div>    
       </div>

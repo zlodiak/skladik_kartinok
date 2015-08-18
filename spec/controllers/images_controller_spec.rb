@@ -6,12 +6,7 @@ describe ImagesController, type: :controller do
       get :index
       response.should render_template('index')
       response.should render_template "layouts/application"
-    end
-
-    #it 'index page has h1' do
-    #  visit '/users/sign_in'
-    #  page.should have_selector("title", :text => "I am learning Rails")
-    #end    
+    end       
   end
  
   #describe 'show action' do
