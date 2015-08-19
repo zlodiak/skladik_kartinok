@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy, :get_album_data]
-  before_action :owner_check, only: [:edit, :create, :update, :destroy]
+  before_action :owner_check, only: [:edit, :update, :destroy]
 
   def index
     @user = User.find(params[:user_id])

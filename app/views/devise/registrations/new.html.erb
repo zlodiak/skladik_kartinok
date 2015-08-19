@@ -6,8 +6,6 @@
       <div class="row">
         <%#= devise_error_messages! %>
 
-        <%= hidden_field(:user, :status_id, :value => 1) %>
-
         <div class="form-group col-xs-12 name_cell">
           <div class="label_block">Имя</div>
           <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
