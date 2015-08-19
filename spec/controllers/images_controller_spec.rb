@@ -6,8 +6,11 @@ describe ImagesController, type: :controller do
       get :index
       response.should render_template('index')
       response.should render_template "layouts/application"
-    end       
+    end   
+
+
   end
+
  
   #describe 'show action' do
   #  it 'render overlay with details image' do

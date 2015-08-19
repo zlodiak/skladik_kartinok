@@ -6,8 +6,17 @@ describe AlbumsController, type: :controller do
       user = FactoryGirl.create(:user)
       get :index, { user_id: user.id }
       response.should render_template('index')
-      response.should render_template "layouts/application"      
+      response.should render_template("layouts/application")
     end
+
+    it 'check albums page' do
+      user = FactoryGirl.create(:user)  
+      visit user_albums_path(user.id)      
+      expect(response.status).to eq(200)      
+      expect(response).to render_template(:index)
+      #binding.pry
+      #expect(page).to have_selector(".albums_list_label")     
+    end      
 
     it 'check title on page and status 200' do
       visit '/'
@@ -24,7 +33,7 @@ describe AlbumsController, type: :controller do
       album = FactoryGirl.create(:album)
       get :show, { user_id: 1, id: album.id }
       response.should render_template('show')
-      response.should render_template "layouts/application"
+      response.should render_template("layouts/application")
     end
-  end  
+  end 
 end
