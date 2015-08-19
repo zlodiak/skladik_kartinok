@@ -7,27 +7,7 @@ describe AlbumsController, type: :controller do
       get :index, { user_id: user.id }
       response.should render_template('index')
       response.should render_template("layouts/application")
-    end
-
-    it 'check albums page capybara' do
-      user = FactoryGirl.create(:user)  
-      visit user_albums_path(user.id)      
-      expect(response.status).to eq(200)      
-      expect(response).to render_template(:index)
-      #binding.pry
-      #expect(page).to have_selector(".albums_list_label")     
-    end     
-
-    it 'check albums page rspec' do
-      #@request.env["devise.mapping"] = Devise.mappings[:admin]
-      #sign_in FactoryGirl.create(:user)      
-  
-      #visit user_albums_path(user.id) 
-
-      #expect(response.status).to eq(200)      
-      #expect(response).to render_template(:index)
-      #expect(page).to have_selector(".albums_list_label")     
-    end          
+    end         
 
     it 'check title on page and status 200' do
       visit '/'

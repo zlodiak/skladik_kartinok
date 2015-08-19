@@ -84,6 +84,17 @@ describe PersonsController, type: :controller do
       click_button "commitSignIn"      
 
       expect(page).to have_selector('.alert-notice')         
-    end  
-  end                                                        
+    end           
+  end    
+
+  describe 'user albums' do
+    it 'check albums page capybara for not authenticated user' do
+      user = FactoryGirl.create(:user)  
+      visit user_albums_path(user.id)  
+
+      expect(response.status).to eq(200)      
+      expect(response).to render_template(:index)
+      expect(page).to have_selector(".albums_list_label")     
+    end                                                      
+  end                                                      
 end
