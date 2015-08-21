@@ -118,5 +118,7 @@ RSpec.configure do |config|
   #  DatabaseCleaner.clean
   #end 
 
-  require 'capybara/rspec'
+  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :helper
+  config.include ApplicationHelper
 end

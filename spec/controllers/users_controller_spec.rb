@@ -84,7 +84,9 @@ describe PersonsController, type: :controller do
       click_button "commitSignIn"      
 
       expect(page).to have_selector('.alert-notice')         
-    end           
+    end   
+
+           
   end    
 
   describe 'user albums' do

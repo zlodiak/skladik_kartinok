@@ -27,4 +27,13 @@ describe AlbumsController, type: :controller do
       response.should render_template("layouts/application")
     end
   end 
+
+  #it 'check display username on top panel' do
+    #@request.env["devise.mapping"] = Devise.mappings[:user]
+    #user = FactoryGirl.create(:user)
+    #sign_in user
+    #visit user_albums_path(user.id)
+    #binding.pry
+    #expect(page).to have_selector('.logo_area .name')         
+  #end   
 end
