@@ -1,7 +1,7 @@
 module SessionsHelper
   def admin_status
     if current_user
-      if current_user.status_id == 3
+      if current_user.status_id == 2
         return true 
       else
         return nil
@@ -13,7 +13,7 @@ module SessionsHelper
 
   def manager_status
     if current_user
-      if current_user.status_id == 2
+      if current_user.status_id == 1
         return true 
       else
         return nil
@@ -25,7 +25,7 @@ module SessionsHelper
 
   def user_status
     if current_user
-      if current_user.status_id == 1
+      if current_user.status_id == 0
         return true 
       else
         return nil

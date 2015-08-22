@@ -17,7 +17,9 @@
       </article>
     <% end %>
 
-    <%= will_paginate @images, :previous_label => '', :next_label => '' %>
+    <div class="col-xs-12">
+      <%= will_paginate @images, :previous_label => '', :next_label => '' %>
+    </div>
   <% else %>
     <div class="col-xs-12">Нет картинок</div>
   <% end %>
