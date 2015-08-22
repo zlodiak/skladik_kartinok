@@ -1,29 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <div class="row sort_by">
+    <%= form_tag(users_path, method: 'get') do %>
+      <div class="col-xs-12 col-sm-3">
+        <%= label_tag 'fld_status', 'Статус', class: 'lbl_status' %>
+        <%= select_tag "fld_status", options_from_collection_for_select(@statuses, "id", "title"), include_blank: 'Любой' %>
+      </div>
 
-<h1>Listing users</h1>
-
-
-<br><br>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td></td>
-        <td></td>
-      </tr>
+      <div class="col-xs-12 col-sm-3">
+        <%= submit_tag 'Фильтровать', class: "btn_submit" %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
+<h1>
+  <span class="users_list_label" id="usersListLabel">Список пользователей</span>
+</h1>
 
+<div class="users_container" id="usersList">
+  <% if @users.length > 0 %>
+    <div class="users_table" id="usersTable">
+      <div class="article_heads row">
+        <div class="col-sm-3 hidden-xs name_head">Имя</div>
+        <div class="col-sm-3 hidden-xs status_head">Статус</div>
+        <div class="col-sm-3 hidden-xs created_head">Дата регистрации</div>
+        <div class="col-sm-3 hidden-xs last_login_head">Дата последнего входа</div>
+      </div>   
+       
+      <% @users.each do |user| %>
+        <article class="article row">
+          <div class="col-xs-6 col-sm-3 name"><%= link_to user.name, user_path(user) if user.name %></div>
+          <div class="col-xs-6 col-sm-3 status"><%= user.status.title if user.status.title %></div>
+          <div class="col-xs-6 col-sm-3 created"><%= l(user.created_at, format: "%e %b %Y, %H:%I") if user.created_at %></div>
+          <div class="col-xs-6 col-sm-3 last_login"><%= l(user.last_sign_in_at, format: "%e %b %Y, %H:%I") if user.last_sign_in_at %></div>
+        </article>
+      <% end %>
+    </div>
 
-
+    <div class="row">
+      <div class="col-xs-12 pagination_outer">
+        <%= will_paginate @users, :previous_label => '', :next_label => '' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="col-xs-12 no_users" id="noAlbums">Нет пользователей</div>
+  <% end %>
+</div>
