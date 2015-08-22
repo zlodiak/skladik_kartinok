@@ -2,14 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    fld_status = params[:fld_status] || [0, 1, 2, 3]
-    @users = User.where(status_id: fld_status).paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)  
     @statuses = Status.all
 
-    p '-------------'
-    p @statuses
-    p '-------------'
-    p fld_status
+    if (params[:fld_status] == nil) || (params[:fld_status] == '')
+      @users = User.paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)        
+    else
+      @users = User.where(status_id: params[:fld_status]).paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)  
+    end
   end
 
   def show
