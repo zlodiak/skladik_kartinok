@@ -5,10 +5,13 @@ class UsersController < ApplicationController
     @statuses = Status.all
 
     if (params[:fld_status] == nil) || (params[:fld_status] == '')
-      @users = User.paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)        
+      @users = User.where("name LIKE :query", query: "%#{params[:fld_name]}%").paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)        
     else
-      @users = User.where(status_id: params[:fld_status]).paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)  
+      @users = User.where(status_id: params[:fld_status]).where("name LIKE :query", query: "%#{params[:fld_name]}%").paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)  
     end
+
+    @value_name = params[:fld_name]
+    @selected_status = params[:fld_status]
   end
 
   def show
@@ -51,6 +54,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :info, :avatar, :delete_avatar, :fld_status)
+      params.require(:user).permit(:name, :email, :info, :avatar, :delete_avatar, :fld_status, :fld_name)
     end
 end

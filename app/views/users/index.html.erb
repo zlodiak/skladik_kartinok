@@ -1,13 +1,18 @@
 <div class="jumbotron">
   <div class="row sort_by">
-    <%= form_tag(users_path, method: 'get') do %>
-      <div class="col-xs-12 col-sm-3">
+    <%= form_tag(users_path, method: 'get', :class => 'users_sort_form') do %>
+      <div class="col-xs-12 col-sm-4">
         <%= label_tag 'fld_status', 'Статус', class: 'lbl_status' %>
-        <%= select_tag "fld_status", options_from_collection_for_select(@statuses, "id", "title"), include_blank: 'Любой' %>
+        <%= select_tag "fld_status", options_from_collection_for_select(@statuses, "id", "title", @selected_status), include_blank: 'Любой', class: 'form-control' %>
       </div>
 
-      <div class="col-xs-12 col-sm-3">
-        <%= submit_tag 'Фильтровать', class: "btn_submit" %>
+      <div class="col-xs-12 col-sm-4">
+        <%= label_tag 'fld_name', 'Имя', class: 'lbl_name' %>
+        <%= text_field_tag 'fld_name', @value_name, class: 'form-control' %>
+      </div>      
+
+      <div class="col-xs-12 col-sm-4">
+        <%= submit_tag 'Фильтровать', class: "btn_submit btn btn-default pull-right" %>
       </div>
     <% end %>
   </div>

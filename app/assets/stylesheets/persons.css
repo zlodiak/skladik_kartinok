@@ -17,3 +17,16 @@
   .article_heads{
     font-weight: bold;
   }
+
+
+.users_sort_form{
+
+}  
+
+  .users_sort_form > div{
+    margin-bottom: 10px;
+  }
+
+  .users_sort_form .btn_submit{
+    margin-top: 25px;
+  }
