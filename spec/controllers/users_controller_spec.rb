@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe PersonsController, type: :controller do
   before(:each) do
-    13.times do |n|
+    4.times do |n|
       FactoryGirl.create(:user)  
     end
     @user = FactoryGirl.create(:user)  
@@ -123,7 +123,21 @@ describe PersonsController, type: :controller do
       visit users_path
       click_link(@user.name)
       expect(page).to have_selector("#userProfile") 
-    end          
+    end 
+
+    it 'should not display list after change name optin in filter to noexisting' do      
+      visit users_path
+      fill_in('fld_name', :with => 'werwwterterteter')  
+      click_button('Фильтровать')
+      expect(page).to have_selector("#noAlbums") 
+    end 
+
+    it 'should display list after change name optin in filter to existing' do      
+      visit users_path
+      fill_in('fld_name', :with => 'us1')  
+      click_button('Фильтровать')
+      expect(page).to have_selector(".name_link") 
+    end    
   end 
 
 

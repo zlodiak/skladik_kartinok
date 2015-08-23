@@ -5,6 +5,6 @@ FactoryGirl.define do
     password 'qwerty'
     password_confirmation{ |u| u.password } 
     association :status 
-  end
+  end 
 end
 
