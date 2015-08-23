@@ -3,15 +3,14 @@ class UsersController < ApplicationController
 
   def index
     @statuses = Status.all
+    @value_name = params[:fld_name]
+    @selected_status = params[:fld_status]
 
-    if (params[:fld_status] == nil) || (params[:fld_status] == '')
+    if params[:fld_status].blank?
       @users = User.where("name LIKE :query", query: "%#{params[:fld_name]}%").paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)        
     else
       @users = User.where(status_id: params[:fld_status]).where("name LIKE :query", query: "%#{params[:fld_name]}%").paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)  
     end
-
-    @value_name = params[:fld_name]
-    @selected_status = params[:fld_status]
   end
 
   def show

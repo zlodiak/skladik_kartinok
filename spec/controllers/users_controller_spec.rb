@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+
+
 describe PersonsController, type: :controller do
   describe 'registration' do
     it 'check response status code for registration page' do
@@ -86,7 +88,6 @@ describe PersonsController, type: :controller do
       expect(page).to have_selector('.alert-notice')         
     end   
 
-           
   end    
 
   describe 'user albums' do
@@ -99,4 +100,17 @@ describe PersonsController, type: :controller do
       expect(page).to have_selector(".albums_list_label")     
     end                                                      
   end                                                      
+
+  describe 'users:index action' do
+    it 'check response status code for index page' do
+      user = FactoryGirl.create(:user)  
+      visit users_path
+      expect(response).to be_success
+      response.should render_template('index')
+      response.should render_template "layouts/application"
+      expect(page).to have_selector("span")  
+    end 
+  end 
+
+
 end
