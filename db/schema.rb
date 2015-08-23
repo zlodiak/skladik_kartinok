@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823064134) do
+ActiveRecord::Schema.define(version: 20150823175425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,15 @@ ActiveRecord::Schema.define(version: 20150823064134) do
     t.text     "description"
     t.integer  "album_id"
     t.boolean  "is_delete"
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "is_closed"
+    t.integer  "owner"
+    t.string   "title"
+    t.text     "description"
   end
 
   create_table "statuses", force: :cascade do |t|
