@@ -1,14 +1,16 @@
-<%= form_for [current_user, @album], :html => { 'data-current-user' => current_user.id }  do |f| %>
-  <div class="row">
-    <div class="form-group col-xs-12 col-sm-6">
-      <div class="label_block">Описание</div>
-      <%= f.text_area(:description, rows: 4, class: 'form-control') %>
-    </div>
+<% if @album %>
+  <%= form_for [current_user, @album], :html => { 'data-current-user' => current_user.id }  do |f| %>
+    <div class="row">
+      <div class="form-group col-xs-12 col-sm-6">
+        <div class="label_block">Описание</div>
+        <%= f.text_area(:description, rows: 4, class: 'form-control') %>
+      </div>
 
-    <div class="form-group col-xs-12 col-sm-6">
-      <div class="label_block">Название</div>
-      <%= f.text_field :title, class: "form-control desc_album" %>
-      <%= f.submit 'Создать альбом', class: 'btn btn-default pull-right' %>      
+      <div class="form-group col-xs-12 col-sm-6">
+        <div class="label_block">Название</div>
+        <%= f.text_field :title, class: "form-control desc_album" %>
+        <%= f.submit 'Создать альбом', class: 'btn btn-default pull-right' %>      
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

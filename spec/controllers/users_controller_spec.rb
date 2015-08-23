@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-
-
 describe PersonsController, type: :controller do
   before(:each) do
     4.times do |n|
@@ -19,37 +17,31 @@ describe PersonsController, type: :controller do
 
     it 'check successful registration user' do
       visit new_user_registration_path
-
       fill_in "user_name", :with => "admin"
       fill_in "user_email", :with => "ad@ad.ad"
       fill_in "user_password", :with => "qwerty"
       fill_in "user_password_confirmation", :with => "qwerty"
       click_button "commitRegistration"      
-
       expect(page).to have_selector('.alert', :text => "Добро пожаловать. Вы зарегистрировались")         
     end   
 
     it 'check failed registration user via failed password confirmation' do
       visit new_user_registration_path
-
       fill_in "user_name", :with => "admin"
       fill_in "user_email", :with => "ad@ad.ad"
       fill_in "user_password", :with => "qwerty"
       fill_in "user_password_confirmation", :with => "qwertyzzz"
       click_button "commitRegistration"      
-
       expect(page).to have_selector('.password_conformation_cell .field_with_errors')         
     end  
 
     it 'check failed registration user via exist email' do
       visit new_user_registration_path
-
       fill_in "user_name", :with => "us1235235"
       fill_in "user_email", :with => @user.email
       fill_in "user_password", :with => "qwerty"
       fill_in "user_password_confirmation", :with => "qwerty"
       click_button "commitRegistration"      
-
       expect(page).to have_selector('.email_cell .field_with_errors')         
     end         
   end  
@@ -63,41 +55,43 @@ describe PersonsController, type: :controller do
 
     it 'check failed login user via wrong password' do
       visit new_user_session_path
-
       fill_in "user_email", :with => @user.email
       fill_in "user_password", :with => "qwertyzzz"
       click_button "commitSignIn"      
-
       expect(page).to have_selector('.alert-alert')         
     end  
 
     it 'check failed login user via wrong email' do
       visit new_user_session_path 
-
       fill_in "user_email", :with => 'sdafsdfsdf@ds.sd'
       fill_in "user_password", :with => "qwerty"
       click_button "commitSignIn"      
-
       expect(page).to have_selector('.alert-alert')         
     end        
 
     it 'check successful login user' do
       visit new_user_session_path
-
       fill_in "user_email", :with => @user.email
       fill_in "user_password", :with => "qwerty"
       click_button "commitSignIn"      
-
       expect(page).to have_selector('.alert-notice')         
     end   
 
+    it 'check display username on top panel' do
+      @user = FactoryGirl.create(:user) 
+      visit new_user_session_path
+      fill_in "user_email", :with => @user.email
+      fill_in "user_password", :with => "qwerty"
+      click_button "commitSignIn"  
+      visit '/'
+      expect(page).to have_selector('.logo_area .name')         
+    end
   end    
 
   describe 'user albums' do
     it 'check albums page capybara for not authenticated user' do
       user = FactoryGirl.create(:user)  
       visit user_albums_path(user.id)  
-
       expect(response.status).to eq(200)      
       expect(response).to render_template(:index)
       expect(page).to have_selector(".albums_list_label")     
@@ -107,7 +101,6 @@ describe PersonsController, type: :controller do
   describe 'users:index action' do
     it 'check response status code for index page' do
       visit users_path
-
       expect(response).to be_success
       response.should render_template('index')
       response.should render_template "layouts/application"

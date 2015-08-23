@@ -14,7 +14,7 @@
         <% if user_signed_in? %>  
           <span class="name">
             <%= current_user.name %>
-            <%= link_to '(Выйти)', destroy_user_session_path, :method => :delete, :class => 'exit'  %>
+            <%= link_to '(Выйти)', destroy_user_session_path, :method => :delete, :class => 'exit', :id => 'exit'  %>
           </span>
         <% end %>
       </span>      
