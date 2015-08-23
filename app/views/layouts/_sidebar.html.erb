@@ -12,7 +12,10 @@
       <%= link_to 'Мои альбомы', user_albums_path(current_user), class: 'list-group-item' %>
       <%= link_to 'Добавить картинку', new_image_path, class: 'list-group-item' %>
       <%= link_to 'Анкета', user_path(current_user), class: 'list-group-item' %>
-      <%= link_to "Изменить пароль", edit_user_registration_path, class: 'list-group-item' %>    
+      <%= link_to "Изменить пароль", edit_user_registration_path, class: 'list-group-item' %>  
+      <% if true %>  
+        <%= link_to "Создать голосование", new_user_poll_path, class: 'list-group-item' %>  
+      <% end %>  
     </div>
   <% else %>
     <div class="about_projest_sidebar">

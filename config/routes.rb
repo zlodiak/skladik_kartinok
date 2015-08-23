@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  resources :polls
   devise_for :users
 
   #get 'persons/profile'
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
   resources :images
 
   resources :users do
+    resources :polls
     resources :albums
     get "get_album_data/:id" => 'albums#get_album_data'
   end

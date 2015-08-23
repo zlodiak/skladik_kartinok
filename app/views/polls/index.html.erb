@@ -1,25 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  ааа
+</div>
 
-<h1>Listing Polls</h1>
+<h1>
+  <span class="albums_list_label" id="albumsListLabel">Список голосований</span>
+  <% if @user != current_user  %>
+    <span class="name">:: <%= @user.name %></span>
+  <% end %>
+</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row polls_user_container" id="pollsList">
+  <% if @polls.length > 0 %>
     <% @polls.each do |poll| %>
-      <tr>
-        <td><%= link_to 'Show', poll %></td>
-        <td><%= link_to 'Edit', edit_poll_path(poll) %></td>
-        <td><%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <article class="col-xs-12 col-sm-6 col-md-4" data-current-user="<%= current_user.id if current_user %>" data-poll-id="<%= poll.id %>">
+        <h3 class="title"><%= truncate(poll.title, length: 40, omission: '...') %></h3>
+
+        <p class="body"><%= truncate(poll.description, length: 225, omission: '...') %></p>
+        
+        <p class="details">
+          <%= link_to 'Подробнее...', user_poll_path(@user, poll.id), class: "btn btn-default" %>
+
+          <% if admin_status || @user == current_user  %>
+            <span class="glyphicon glyphicon-remove pull-right destroy_album"></span>
+            <span class="glyphicon glyphicon-edit pull-right edit_album"></span>
+          <% end %>
+        </p>
+      </article>
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Poll', new_poll_path %>
+    <div class="col-xs-12">
+      <%= will_paginate @polls, :previous_label => '', :next_label => '' %>
+    </div>
+  <% else %>
+    <div class="col-xs-12 no_polls" id="noPolls">Нет голосований</div>
+  <% end %>
+</div>

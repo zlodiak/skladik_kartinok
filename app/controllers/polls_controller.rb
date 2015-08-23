@@ -1,44 +1,36 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
 
-  # GET /polls
-  # GET /polls.json
   def index
-    @polls = Poll.all
+    @user = User.find(params[:user_id])
+    @polls = Poll.paginate(page: params[:page], :per_page => 10).order(title: :DESC)
   end
 
-  # GET /polls/1
-  # GET /polls/1.json
   def show
   end
 
-  # GET /polls/new
   def new
+    @user = User.find(params[:user_id])
     @poll = Poll.new
   end
 
-  # GET /polls/1/edit
   def edit
   end
 
-  # POST /polls
-  # POST /polls.json
   def create
     @poll = Poll.new(poll_params)
 
-    respond_to do |format|
-      if @poll.save
-        format.html { redirect_to @poll, notice: 'Poll was successfully created.' }
-        format.json { render :show, status: :created, location: @poll }
-      else
-        format.html { render :new }
-        format.json { render json: @poll.errors, status: :unprocessable_entity }
-      end
+    if @poll.save
+      flash[:success] = 'Голосование создано'
+      binding.pry
+      redirect_to user_polls_path(current_user)
+    else
+      flash.now[:error] = 'Голосование не создано'
+      @user = User.find(params[:user_id])
+      render 'new'
     end
   end
 
-  # PATCH/PUT /polls/1
-  # PATCH/PUT /polls/1.json
   def update
     respond_to do |format|
       if @poll.update(poll_params)
@@ -51,8 +43,6 @@ class PollsController < ApplicationController
     end
   end
 
-  # DELETE /polls/1
-  # DELETE /polls/1.json
   def destroy
     @poll.destroy
     respond_to do |format|
@@ -62,13 +52,11 @@ class PollsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_poll
       @poll = Poll.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params[:poll]
-    end
+      params.require(:poll).permit(:title, :description)
+    end    
 end
