@@ -3,6 +3,13 @@ require 'spec_helper'
 
 
 describe PersonsController, type: :controller do
+  before(:each) do
+    13.times do |n|
+      FactoryGirl.create(:user)  
+    end
+    @user = FactoryGirl.create(:user)  
+  end
+
   describe 'registration' do
     it 'check response status code for registration page' do
       visit new_user_registration_path      
@@ -36,10 +43,9 @@ describe PersonsController, type: :controller do
 
     it 'check failed registration user via exist email' do
       visit new_user_registration_path
-      user = FactoryGirl.create(:user)  
 
       fill_in "user_name", :with => "us1235235"
-      fill_in "user_email", :with => user.email
+      fill_in "user_email", :with => @user.email
       fill_in "user_password", :with => "qwerty"
       fill_in "user_password_confirmation", :with => "qwerty"
       click_button "commitRegistration"      
@@ -57,9 +63,8 @@ describe PersonsController, type: :controller do
 
     it 'check failed login user via wrong password' do
       visit new_user_session_path
-      user = FactoryGirl.create(:user)  
 
-      fill_in "user_email", :with => user.email
+      fill_in "user_email", :with => @user.email
       fill_in "user_password", :with => "qwertyzzz"
       click_button "commitSignIn"      
 
@@ -67,8 +72,7 @@ describe PersonsController, type: :controller do
     end  
 
     it 'check failed login user via wrong email' do
-      visit new_user_session_path
-      user = FactoryGirl.create(:user)  
+      visit new_user_session_path 
 
       fill_in "user_email", :with => 'sdafsdfsdf@ds.sd'
       fill_in "user_password", :with => "qwerty"
@@ -79,9 +83,8 @@ describe PersonsController, type: :controller do
 
     it 'check successful login user' do
       visit new_user_session_path
-      user = FactoryGirl.create(:user)  
 
-      fill_in "user_email", :with => user.email
+      fill_in "user_email", :with => @user.email
       fill_in "user_password", :with => "qwerty"
       click_button "commitSignIn"      
 
@@ -103,13 +106,24 @@ describe PersonsController, type: :controller do
 
   describe 'users:index action' do
     it 'check response status code for index page' do
-      user = FactoryGirl.create(:user)  
       visit users_path
+
       expect(response).to be_success
       response.should render_template('index')
       response.should render_template "layouts/application"
-      expect(page).to have_selector("span")  
+      expect(page).to have_selector("span", :text => 'Список пользователей')  
     end 
+
+    it 'should pagination presence if users more than 10' do
+      visit users_path
+      expect(page).to have_selector(".pagination")  
+    end 
+
+    it 'should click on username lead to userprofile page ' do      
+      visit users_path
+      click_link(@user.name)
+      expect(page).to have_selector("#userProfile") 
+    end          
   end 
 
 
