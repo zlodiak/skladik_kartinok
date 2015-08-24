@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy, :get_poll_data]
-  before_action :owner_check, only: [:edit, :update, :destroy]  
+  before_action :permission_check, only: [:edit, :update, :destroy]  
 
   def index
     @user = User.find(params[:user_id])
@@ -64,8 +64,8 @@ class PollsController < ApplicationController
       params.require(:poll).permit(:title, :description)
     end   
 
-    def owner_check
-      unless (admin_status) || (@poll.user.id == current_user.id)
+    def permission_check
+      unless (admin_status || manager_status)
         render nothing: true, :status => 403 
       end
     end       

@@ -13,7 +13,7 @@
       <%= link_to 'Добавить картинку', new_image_path, class: 'list-group-item' %>
       <%= link_to 'Анкета', user_path(current_user), class: 'list-group-item' %>
       <%= link_to "Изменить пароль", edit_user_registration_path, class: 'list-group-item' %>  
-      <% if true %>  
+      <% if(admin_status || manager_status) %>  
         <%= link_to "Мои голосования", user_polls_path(current_user), class: 'list-group-item' %>  
         <%= link_to "Создать голосование", new_user_poll_path(current_user), class: 'list-group-item' %>  
       <% end %>  
