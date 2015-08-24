@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824113206) do
+ActiveRecord::Schema.define(version: 20150824125506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,7 @@ ActiveRecord::Schema.define(version: 20150824113206) do
     t.text     "description"
     t.integer  "album_id"
     t.boolean  "is_delete"
-  end
-
-  create_table "images_polls", id: false, force: :cascade do |t|
-    t.integer "image_id"
-    t.integer "poll_id"
+    t.integer  "poll_id"
   end
 
   create_table "polls", force: :cascade do |t|

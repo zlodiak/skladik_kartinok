@@ -1,0 +1,23 @@
+// Place all the styles related to the albums controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.thumb_album_container{
+
+}
+
+  .thumb_album_container .poll_select_area{
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+    .thumb_album_container .poll_select{
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .thumb_album_container .add_to_poll_button{
+      text-align: center;
+
+      cursor: pointer;
+    }

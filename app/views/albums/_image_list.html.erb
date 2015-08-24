@@ -8,9 +8,20 @@
           <p class="description"><%= truncate(image.description, length: 100, omission: '...') %></p>
 
           <% if admin_status || @user == current_user  %>
-            <div class="actions">
-              <span class="glyphicon glyphicon-remove pull-right destroy_image"></span>
-              <span class="glyphicon glyphicon-edit pull-right edit_image"></span>
+            <div class="actions row">
+              <div class="poll_select_area col-xs-12 col-sm-8">
+                <% if image.poll_id %>
+                  del from poll
+                <% else %>                
+                  <%= select_tag "poll", options_from_collection_for_select(@polls, "id", "title"), class: 'poll_select form-control' %>
+                  <div class="add_to_poll_button btn-xs btn-info">Добавить в голосование</div>
+                <% end %>
+              </div>
+
+              <div class="glyphicon_area col-xs-12 col-sm-4">
+                <span class="glyphicon glyphicon-remove destroy_image"></span>
+                <span class="glyphicon glyphicon-edit edit_image"></span>
+              </div>
             </div>
           <% end %>          
         <% end %>

@@ -13,6 +13,7 @@ class AlbumsController < ApplicationController
     @image = Image.new
     @album_id = params[:id]
     @images = Image.where(album_id: @album_id, user_id: @user.id, is_delete: nil).paginate(page: params[:page], :per_page => 6).order(created_at: :DESC)
+    @polls = Poll.where(is_closed: nil)
   end
 
   def new
