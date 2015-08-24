@@ -1,7 +1,7 @@
 $( document ).ready(function() {
   // album ajax events
   $(document).on('click', '.destroy_album', handlerDestroyAlbum);
-  $(document).on('click', '.edit_album', handlerEditAlbumFormOutput);
+  $(document).on('click', '.edit_album', handlerEditAlbumFormOutput); 
 
   // editalbum form output through ajax
   function handlerEditAlbumFormOutput(){

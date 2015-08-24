@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy, :get_image_data]
   before_action :logged_check, only: [:create, :create_direct, :edit, :update, :destroy]
+  before_action :owner_check, only: [:new, :edit, :create, :update, :destroy, :add_image_to_poll]
 
   def index
     @images = Image.where(is_delete: nil).paginate(page: params[:page], :per_page => 18).order(created_at: :DESC)  
@@ -87,6 +88,16 @@ class ImagesController < ApplicationController
     end
   end
 
+  def add_image_to_poll 
+    @image = Image.find(params[:image_id])
+
+    if @image.update_attributes(:poll_id => params[:poll_id])
+      render json: @image, :status => 200 
+    else
+      render nothing: true, :status => 404  
+    end    
+  end  
+
   private
 
     def set_image
@@ -96,4 +107,12 @@ class ImagesController < ApplicationController
     def image_params
       params.require(:image).permit(:description, :image, :album_id, :image_id)
     end
+
+    def owner_check
+      @image = Image.find(params[:image_id])
+
+      unless (admin_status) || (@image.user_id == current_user.id)
+        render nothing: true, :status => 403 
+      end
+    end     
 end

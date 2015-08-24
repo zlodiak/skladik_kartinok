@@ -9,18 +9,22 @@
 
           <% if admin_status || @user == current_user  %>
             <div class="actions row">
-              <div class="poll_select_area col-xs-12 col-sm-8">
+              <div class="poll_select_area col-xs-10 col-sm-8">
                 <% if image.poll_id %>
-                  del from poll
+                  <div class="vote_name">
+                    <span class="label_vote_name">Участвует в голосовании: </span>
+                    <span class="value_vote_name">fgjfgjn hfgf jf</span>
+                  </div>
+                  <div class="remove_from_poll_button btn-xs btn-info">Снять с голосования</div>
                 <% else %>                
                   <%= select_tag "poll", options_from_collection_for_select(@polls, "id", "title"), class: 'poll_select form-control' %>
                   <div class="add_to_poll_button btn-xs btn-info">Добавить в голосование</div>
                 <% end %>
               </div>
 
-              <div class="glyphicon_area col-xs-12 col-sm-4">
-                <span class="glyphicon glyphicon-remove destroy_image"></span>
-                <span class="glyphicon glyphicon-edit edit_image"></span>
+              <div class="glyphicon_area col-xs-2 col-sm-4">
+                <span class="glyphicon glyphicon-remove destroy_image pull-right"></span>
+                <span class="glyphicon glyphicon-edit edit_image pull-right"></span>
               </div>
             </div>
           <% end %>          

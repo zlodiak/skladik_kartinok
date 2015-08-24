@@ -2,6 +2,33 @@ $( document ).ready(function() {
   // image ajax events
   $(document).on('click', '.destroy_image', handlerDestroyImage);
   $(document).on('click', '.edit_image', handlerEditImageFormOutput);
+  $(document).on('click', '.add_to_poll_button', handlerAddToPoll);
+
+  // add to poll image ajax handler
+  function handlerAddToPoll(e){ 
+    var link = $(this),
+        article = link.closest('article'),
+        currentUserNameId = article.attr('data-current-user'),
+        pollId = article.find(":selected").val(),
+        imageId = article.attr('data-image-id');
+
+    $.ajax({
+      url: '/add_image_to_poll',
+      type: 'GET',
+      data: {
+        user_id: currentUserNameId,
+        image_id: imageId,
+        poll_id: pollId
+      },
+      success: function(result){
+        article.fadeOut(300);
+        handleModal('Удаление альбома прошло успешно', '', '00ff2a', 2000);
+      },
+      error: function(xhr, ajaxOptions, thrownError){
+        handleModal('Удаление альбома завершилось с ошибкой', 'У вас не хватает прав. ' + xhr.status + ' error', 'f00', 2000);
+      }        
+    })
+  }   
 
   // editimage form output via ajax
   function handlerEditImageFormOutput(){

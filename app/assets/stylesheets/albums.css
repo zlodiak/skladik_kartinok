@@ -16,6 +16,7 @@
       margin-bottom: 10px;
     }
 
+    .thumb_album_container .remove_from_poll_button,
     .thumb_album_container .add_to_poll_button{
       text-align: center;
 
