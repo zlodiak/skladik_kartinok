@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :polls
     resources :albums
     get "get_album_data/:id" => 'albums#get_album_data'
+    get "get_poll_data/:id" => 'polls#get_poll_data'
   end
 
 

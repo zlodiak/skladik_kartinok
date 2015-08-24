@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :set_poll, only: [:show, :edit, :update, :destroy, :get_poll_data]
   before_action :owner_check, only: [:edit, :update, :destroy]  
 
   def index
@@ -32,14 +32,10 @@ class PollsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @poll.update(poll_params)
-        format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
-        format.json { render :show, status: :ok, location: @poll }
-      else
-        format.html { render :edit }
-        format.json { render json: @poll.errors, status: :unprocessable_entity }
-      end
+    if @poll.update_attributes(poll_params)
+      render json: @poll, :status => 200 
+    else
+      render json: @poll.errors.full_messages, :status => 403 
     end
   end
 
@@ -50,6 +46,14 @@ class PollsController < ApplicationController
       render nothing: true, :status => 403 
     end
   end
+
+  def get_poll_data
+    if @poll
+      render json: @poll, :status => 200 
+    else
+      render nothing: true, :status => 404  
+    end
+  end  
 
   private
     def set_poll
