@@ -21,8 +21,8 @@
           <%= link_to 'Подробнее...', user_poll_path(@user, poll.id), class: "btn btn-default" %>
 
           <% if admin_status || @user == current_user  %>
-            <span class="glyphicon glyphicon-remove pull-right destroy_album"></span>
-            <span class="glyphicon glyphicon-edit pull-right edit_album"></span>
+            <span class="glyphicon glyphicon-remove pull-right destroy_poll"></span>
+            <span class="glyphicon glyphicon-edit pull-right edit_poll"></span>
           <% end %>
         </p>
       </article>

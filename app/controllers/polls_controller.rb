@@ -1,9 +1,10 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :owner_check, only: [:edit, :update, :destroy]  
 
   def index
     @user = User.find(params[:user_id])
-    @polls = Poll.paginate(page: params[:page], :per_page => 10).order(title: :DESC)
+    @polls = @user.polls.paginate(page: params[:page], :per_page => 10).order(title: :DESC)
   end
 
   def show
@@ -18,11 +19,10 @@ class PollsController < ApplicationController
   end
 
   def create
-    @poll = Poll.new(poll_params)
+    @poll = current_user.polls.build(poll_params)
 
-    if @poll.save
+    if @poll.save      
       flash[:success] = 'Голосование создано'
-      binding.pry
       redirect_to user_polls_path(current_user)
     else
       flash.now[:error] = 'Голосование не создано'
@@ -44,10 +44,10 @@ class PollsController < ApplicationController
   end
 
   def destroy
-    @poll.destroy
-    respond_to do |format|
-      format.html { redirect_to polls_url, notice: 'Poll was successfully destroyed.' }
-      format.json { head :no_content }
+    if @poll.destroy
+      render nothing: true, :status => 200 
+    else      
+      render nothing: true, :status => 403 
     end
   end
 
@@ -58,5 +58,11 @@ class PollsController < ApplicationController
 
     def poll_params
       params.require(:poll).permit(:title, :description)
-    end    
+    end   
+
+    def owner_check
+      unless (admin_status) || (@poll.user.id == current_user.id)
+        render nothing: true, :status => 403 
+      end
+    end       
 end
