@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy, :get_image_data]
   before_action :logged_check, only: [:create, :create_direct, :edit, :update, :destroy]
-  before_action :owner_check, only: [:add_image_to_poll, :remove_image_from_poll]
+  before_action :owner_check, only: [:image_poll_associated]
 
   def index
     @images = Image.where(is_delete: nil).paginate(page: params[:page], :per_page => 18).order(created_at: :DESC)  
@@ -86,27 +86,40 @@ class ImagesController < ApplicationController
     else
       render nothing: true, :status => 404  
     end
-  end
-
-  def add_image_to_poll 
-    @image = Image.find(params[:image_id])
-
-    if @image.update_attributes(:poll_id => params[:poll_id])
-      render json: { poll_title: @image.poll.title }, :status => 200 
-    else
-      render nothing: true, :status => 404  
-    end    
   end  
 
-  def remove_image_from_poll 
-    @image = Image.find(params[:image_id])
+  def image_poll_associated
+    p '==============='
+    p poll_params[:user_id]
+    p poll_params[:image_id]
+    p poll_params[:operation]
+    p poll_params[:poll_id]
 
-    if @image.update_attributes(:poll_id => nil)
-      render json: @image, :status => 200 
+    @image = Image.find(poll_params[:image_id])
+
+    if(poll_params[:operation] == 'link')
+      poll_id_value = poll_params[:poll_id]
+    else
+      poll_id_value = nil
+    end
+
+    p '--------------'
+    p @image
+    p '--------------'
+    poll_id_value
+
+    if @image.update_attributes(:poll_id => poll_id_value)
+      if(poll_params[:operation] == 'link')
+        json_returned = { poll_title: @image.poll.title } 
+      else
+        json_returned = {} 
+      end
+      
+      render json: json_returned, :status => 200 
     else
       render nothing: true, :status => 404  
-    end    
-  end    
+    end 
+  end
 
   private
 
@@ -115,11 +128,15 @@ class ImagesController < ApplicationController
     end
 
     def image_params
-      params.require(:image).permit(:description, :image, :album_id, :image_id)
+      params.require(:image).permit(:description, :image, :album_id, :image_id, :poll_id)
     end
 
+    def poll_params
+      params.permit(:user_id, :image_id, :poll_id, :operation)
+    end    
+
     def owner_check
-      @image = Image.find(params[:image_id])
+      @image = Image.find(poll_params[:image_id])
 
       unless (admin_status) || (@image.user_id == current_user.id)
         render nothing: true, :status => 403 

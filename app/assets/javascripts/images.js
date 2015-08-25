@@ -15,12 +15,14 @@ $( document ).ready(function() {
         imageId = article.attr('data-image-id');
 
     $.ajax({
-      url: '/remove_image_from_poll',
-      type: 'GET',
+      url: '/image_poll_associated',
+      type: 'POST',
       data: {
         user_id: currentUserNameId,
         image_id: imageId,
-        poll_id: pollId
+        poll_id: pollId,
+        operation: 'unlink'
+
       },
       success: function(result){
         pollSelectArea.find('.remove_from_poll_outer').hide();
@@ -49,12 +51,13 @@ $( document ).ready(function() {
       handleModal('Добавление невозможно', 'Необходимо выбрать голосование из выпадающего списка', 'f00', 10000);  
     }else{
       $.ajax({
-        url: '/add_image_to_poll',
-        type: 'GET',
+        url: '/image_poll_associated',
+        type: 'POST',
         data: {
           user_id: currentUserNameId,
           image_id: imageId,
-          poll_id: pollId
+          poll_id: pollId,
+          operation: 'link'
         },
         success: function(result){
           // appendDelFrompoll(result.poll_title);

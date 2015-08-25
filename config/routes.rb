@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   #get 'persons/profile'
 
   resources :images
-  get "add_image_to_poll" => 'images#add_image_to_poll'
-  get "remove_image_from_poll" => 'images#remove_image_from_poll'
+  post "image_poll_associated" => 'images#image_poll_associated'
 
   resources :users do
     resources :polls
