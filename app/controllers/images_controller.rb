@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy, :get_image_data]
   before_action :logged_check, only: [:create, :create_direct, :edit, :update, :destroy]
-  before_action :owner_check, only: [:add_image_to_poll]
+  before_action :owner_check, only: [:add_image_to_poll, :remove_image_from_poll]
 
   def index
     @images = Image.where(is_delete: nil).paginate(page: params[:page], :per_page => 18).order(created_at: :DESC)  

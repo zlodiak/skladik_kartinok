@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="add_to_poll_outer" style="<% if image.poll_id %>display: none;<% end %>">           
-                  <%= select_tag "poll", options_from_collection_for_select(@polls, "id", "title"), class: 'poll_select form-control' %>
+                  <%= select_tag "poll", options_from_collection_for_select(@polls, "id", "title"), class: 'poll_select form-control', :include_blank => 'Выберите' %>
                   <div class="add_to_poll_button btn-xs btn-info">Добавить в голосование</div>
                 </div>
               </div>

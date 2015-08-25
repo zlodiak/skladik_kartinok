@@ -43,25 +43,31 @@ $( document ).ready(function() {
         pollSelectArea = article.find('.poll_select_area'),
         imageId = article.attr('data-image-id');
 
-    $.ajax({
-      url: '/add_image_to_poll',
-      type: 'GET',
-      data: {
-        user_id: currentUserNameId,
-        image_id: imageId,
-        poll_id: pollId
-      },
-      success: function(result){
-        // appendDelFrompoll(result.poll_title);
-        pollSelectArea.find('.add_to_poll_outer').hide();
-        pollSelectArea.find('.value_vote_name').html(result.poll_title);        
-        pollSelectArea.find('.remove_from_poll_outer').show();        
-        handleModal('Добавление в голосование', 'прошло успешно', '00ff2a', 2000);        
-      },
-      error: function(xhr, ajaxOptions, thrownError){
-        handleModal('Добавление в голосование', 'завершилось с ошибкой ' + xhr.status + ' error', 'f00', 2000);
-      }        
-    })
+    // check null value in select widjet
+    console.log(pollId);
+    if(!pollId){
+      handleModal('Добавление невозможно', 'Необходимо выбрать голосование из выпадающего списка', 'f00', 10000);  
+    }else{
+      $.ajax({
+        url: '/add_image_to_poll',
+        type: 'GET',
+        data: {
+          user_id: currentUserNameId,
+          image_id: imageId,
+          poll_id: pollId
+        },
+        success: function(result){
+          // appendDelFrompoll(result.poll_title);
+          pollSelectArea.find('.add_to_poll_outer').hide();
+          pollSelectArea.find('.value_vote_name').html(result.poll_title);        
+          pollSelectArea.find('.remove_from_poll_outer').show();        
+          handleModal('Добавление в голосование', 'прошло успешно', '00ff2a', 2000);        
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+          handleModal('Добавление в голосование', 'завершилось с ошибкой ' + xhr.status + ' error', 'f00', 2000);
+        }        
+      })
+    }
   }   
 
   // editimage form output via ajax
