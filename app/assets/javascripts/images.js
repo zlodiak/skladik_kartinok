@@ -22,13 +22,13 @@ $( document ).ready(function() {
         poll_id: pollId
       },
       success: function(result){
-        //article.find('.poll_select').hide();
-        //article.find('.add_to_poll_button').hide();
-        handleModal('Удаление альбома прошло успешно', '', '00ff2a', 2000);
-        //pollSelectArea.append('<div class="remove_from_poll_button btn-xs btn-info">Снять с голосования</div>');
+        pollSelectArea.html('');
+        pollSelectArea.append('<div class="vote_name"><span class="label_vote_name">Участвует в: </span><span class="value_vote_name">' + result.poll_title + '</span></div> \
+          <div class="remove_from_poll_button btn-xs btn-info">Снять с голосования</div>');
+        handleModal('Добавление в голосование', 'прошло успешно', '00ff2a', 2000);        
       },
       error: function(xhr, ajaxOptions, thrownError){
-        handleModal('Удаление альбома завершилось с ошибкой', 'У вас не хватает прав. ' + xhr.status + ' error', 'f00', 2000);
+        handleModal('Добавление в голосование', 'завершилось с ошибкой ' + xhr.status + ' error', 'f00', 2000);
       }        
     })
   }   
