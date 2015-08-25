@@ -3,7 +3,36 @@ $( document ).ready(function() {
   $(document).on('click', '.destroy_image', handlerDestroyImage);
   $(document).on('click', '.edit_image', handlerEditImageFormOutput);
   $(document).on('click', '.add_to_poll_button', handlerAddToPoll);
- 
+  $(document).on('click', '.remove_from_poll_button', handlerRemoveFromPoll);
+
+  // remove from poll image ajax handler
+  function handlerRemoveFromPoll(e){ 
+    var link = $(this),
+        article = link.closest('article'),
+        currentUserNameId = article.attr('data-current-user'),
+        pollId = article.find(":selected").val(),
+        pollSelectArea = article.find('.poll_select_area'),
+        imageId = article.attr('data-image-id');
+
+    $.ajax({
+      url: '/remove_image_from_poll',
+      type: 'GET',
+      data: {
+        user_id: currentUserNameId,
+        image_id: imageId,
+        poll_id: pollId
+      },
+      success: function(result){
+        pollSelectArea.find('.remove_from_poll_outer').hide();
+        pollSelectArea.find('.value_vote_name').html('');        
+        pollSelectArea.find('.add_to_poll_outer').show();         
+        handleModal('Снятие с голосования', 'прошло успешно. Все лайки обнулены.', '00ff2a', 4000);        
+      },
+      error: function(xhr, ajaxOptions, thrownError){
+        handleModal('Снятие с голосования', 'завершилось с ошибкой ' + xhr.status + ' error', 'f00', 2000);
+      }        
+    })
+  }   
 
   // add to poll image ajax handler
   function handlerAddToPoll(e){ 
@@ -23,23 +52,16 @@ $( document ).ready(function() {
         poll_id: pollId
       },
       success: function(result){
-        appendDelFrompoll(result.poll_title);
+        // appendDelFrompoll(result.poll_title);
+        pollSelectArea.find('.add_to_poll_outer').hide();
+        pollSelectArea.find('.value_vote_name').html(result.poll_title);        
+        pollSelectArea.find('.remove_from_poll_outer').show();        
         handleModal('Добавление в голосование', 'прошло успешно', '00ff2a', 2000);        
       },
       error: function(xhr, ajaxOptions, thrownError){
         handleModal('Добавление в голосование', 'завершилось с ошибкой ' + xhr.status + ' error', 'f00', 2000);
       }        
     })
-
-    function appendDelFrompoll(pollTitle){
-        pollSelectArea.find('.poll_select').hide();
-        pollSelectArea.find('.add_to_poll_button').hide();
-        pollSelectArea.append('<div class="vote_name"> \
-          <span class="label_vote_name">Участвует в: </span> \
-          <span class="value_vote_name">' + pollTitle + '</span> \
-          </div> \
-          <div class="remove_from_poll_button btn-xs btn-info">Снять с голосования</div>');
-    }
   }   
 
   // editimage form output via ajax

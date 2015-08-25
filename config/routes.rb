@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :images
   get "add_image_to_poll" => 'images#add_image_to_poll'
+  get "remove_image_from_poll" => 'images#remove_image_from_poll'
 
   resources :users do
     resources :polls

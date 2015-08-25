@@ -92,13 +92,21 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:image_id])
 
     if @image.update_attributes(:poll_id => params[:poll_id])
-      p '1111111111111'
       render json: { poll_title: @image.poll.title }, :status => 200 
     else
-      p '2222222222'
       render nothing: true, :status => 404  
     end    
   end  
+
+  def remove_image_from_poll 
+    @image = Image.find(params[:image_id])
+
+    if @image.update_attributes(:poll_id => nil)
+      render json: @image, :status => 200 
+    else
+      render nothing: true, :status => 404  
+    end    
+  end    
 
   private
 

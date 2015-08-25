@@ -10,7 +10,7 @@
           <% if admin_status || @user == current_user  %>
             <div class="actions row">
               <div class="poll_select_area col-xs-10 col-sm-8">  
-                <div class="remove_from_poll_outer <% unless image.poll_id %>hide<% end %>">              
+                <div class="remove_from_poll_outer" style="<% unless image.poll_id %>display: none;<% end %>">              
                   <div class="vote_name">
                     <span class="label_vote_name">Участвует в: </span>
                     <span class="value_vote_name"><%= image.poll.title if image.poll_id %></span>
@@ -18,7 +18,7 @@
                   <div class="remove_from_poll_button btn-xs btn-info">Снять с голосования</div>    
                 </div>
 
-                <div class="add_to_poll_outer <% if image.poll_id %>hide<% end %>">           
+                <div class="add_to_poll_outer" style="<% if image.poll_id %>display: none;<% end %>">           
                   <%= select_tag "poll", options_from_collection_for_select(@polls, "id", "title"), class: 'poll_select form-control' %>
                   <div class="add_to_poll_button btn-xs btn-info">Добавить в голосование</div>
                 </div>
