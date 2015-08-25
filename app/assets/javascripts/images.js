@@ -3,6 +3,7 @@ $( document ).ready(function() {
   $(document).on('click', '.destroy_image', handlerDestroyImage);
   $(document).on('click', '.edit_image', handlerEditImageFormOutput);
   $(document).on('click', '.add_to_poll_button', handlerAddToPoll);
+ 
 
   // add to poll image ajax handler
   function handlerAddToPoll(e){ 
@@ -22,15 +23,23 @@ $( document ).ready(function() {
         poll_id: pollId
       },
       success: function(result){
-        pollSelectArea.html('');
-        pollSelectArea.append('<div class="vote_name"><span class="label_vote_name">Участвует в: </span><span class="value_vote_name">' + result.poll_title + '</span></div> \
-          <div class="remove_from_poll_button btn-xs btn-info">Снять с голосования</div>');
+        appendDelFrompoll(result.poll_title);
         handleModal('Добавление в голосование', 'прошло успешно', '00ff2a', 2000);        
       },
       error: function(xhr, ajaxOptions, thrownError){
         handleModal('Добавление в голосование', 'завершилось с ошибкой ' + xhr.status + ' error', 'f00', 2000);
       }        
     })
+
+    function appendDelFrompoll(pollTitle){
+        pollSelectArea.find('.poll_select').hide();
+        pollSelectArea.find('.add_to_poll_button').hide();
+        pollSelectArea.append('<div class="vote_name"> \
+          <span class="label_vote_name">Участвует в: </span> \
+          <span class="value_vote_name">' + pollTitle + '</span> \
+          </div> \
+          <div class="remove_from_poll_button btn-xs btn-info">Снять с голосования</div>');
+    }
   }   
 
   // editimage form output via ajax
