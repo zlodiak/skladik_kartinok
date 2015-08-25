@@ -10,6 +10,7 @@ $( document ).ready(function() {
         article = link.closest('article'),
         currentUserNameId = article.attr('data-current-user'),
         pollId = article.find(":selected").val(),
+        pollSelectArea = article.find('.poll_select_area'),
         imageId = article.attr('data-image-id');
 
     $.ajax({
@@ -21,8 +22,10 @@ $( document ).ready(function() {
         poll_id: pollId
       },
       success: function(result){
-        article.fadeOut(300);
+        //article.find('.poll_select').hide();
+        //article.find('.add_to_poll_button').hide();
         handleModal('Удаление альбома прошло успешно', '', '00ff2a', 2000);
+        //pollSelectArea.append('<div class="remove_from_poll_button btn-xs btn-info">Снять с голосования</div>');
       },
       error: function(xhr, ajaxOptions, thrownError){
         handleModal('Удаление альбома завершилось с ошибкой', 'У вас не хватает прав. ' + xhr.status + ' error', 'f00', 2000);

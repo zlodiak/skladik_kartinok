@@ -22,3 +22,9 @@
 
       cursor: pointer;
     }
+
+
+    .label_vote_name{
+      font-size: 10px;
+      color: blue;
+    }

@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :album
-  belongs_to :polls
+  belongs_to :poll
 
   has_attached_file :image, 
                     :styles => { 

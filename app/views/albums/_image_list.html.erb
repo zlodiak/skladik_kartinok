@@ -12,8 +12,8 @@
               <div class="poll_select_area col-xs-10 col-sm-8">
                 <% if image.poll_id %>
                   <div class="vote_name">
-                    <span class="label_vote_name">Участвует в голосовании: </span>
-                    <span class="value_vote_name">fgjfgjn hfgf jf</span>
+                    <span class="label_vote_name">Участвует в: </span>
+                    <span class="value_vote_name"><%= image.poll.title %></span>
                   </div>
                   <div class="remove_from_poll_button btn-xs btn-info">Снять с голосования</div>
                 <% else %>                
