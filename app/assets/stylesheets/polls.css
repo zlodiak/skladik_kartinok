@@ -9,3 +9,11 @@
   .jumbotron_show_poll .meta_area{
     font-size: 12px;
   }  
+
+  .polls_sort_form > div{
+    margin-bottom: 10px;
+  }
+  
+  .polls_sort_form .btn_submit{
+    margin-top: 25px;
+  }  
