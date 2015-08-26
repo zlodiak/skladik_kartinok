@@ -57,7 +57,21 @@ class PollsController < ApplicationController
   end  
 
   def poll_list
-    @polls = Poll.all.paginate(page: params[:page], :per_page => 10).order(title: :DESC)
+    @value_title = params[:fld_title]
+    @order = params[:fld_order] || 'Сначала старые'
+
+    if params[:fld_order] == 'Сначала новые'
+      order_dir = :DESC
+    else
+      order_dir = :ASC
+    end    
+
+    if params[:fld_title].blank?
+      @polls = Poll.all.paginate(page: params[:page], :per_page => 10).order(title: order_dir)
+    else
+      @polls = Poll.where("title LIKE :query", query: "%#{params[:fld_title]}%").paginate(page: params[:page], :per_page => 10).order(title: order_dir)
+    end
+
   end
 
   private

@@ -12,18 +12,18 @@
 
   <div class="meta_area row">
     <div class="col-xs-6 col-sm-4 status">
-      <span class="status_label">Статус </span>
+      <span class="status_label label_block">Статус </span>
       <span class="status_value"><%= @poll.status_poll.title %></span>
     </div>
 
     <div class="col-xs-6 col-sm-4 created_at">
-      <span class="created_at_label">Дата открытия </span>
+      <span class="created_at_label label_block">Дата открытия </span>
       <span class="created_at_value"><%= l(@poll.created_at, format: "%e %b %Y, %H:%I") %></span>
     </div>
 
     <div class="col-xs-6 col-sm-4 owner">
-      <span class="created_at_label">Создатель </span>
-      <span class="created_at_value"><%= @poll.user.name %></span>
+      <span class="created_at_label label_block">Создатель </span>
+      <span class="created_at_value"><%= link_to @poll.user.name, user_path(@poll.user_id) %></span>
     </div>          
   </div>
 </div>

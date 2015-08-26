@@ -1,3 +1,25 @@
+<div class="jumbotron">
+  <div class="row sort_by">
+    <%= form_tag(poll_list_path, method: 'get', :class => 'polls_sort_form') do %>
+      <div class="col-xs-12 col-sm-4">
+        <%= label_tag 'fld_order', 'Сортировка по дате', class: 'lbl_order label_block' %>
+        <%= select_tag "fld_order", options_for_select(['Сначала старые', 'Сначала новые' ], @order), class: 'form-control' %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <%= label_tag 'fld_title', 'Имя', class: 'lbl_title label_block' %>
+        <%= text_field_tag 'fld_title', @value_title, class: 'form-control' %>
+      </div>      
+
+      <div class="col-xs-12 col-sm-4">
+        <%= submit_tag 'Фильтровать', class: "btn_submit btn btn-default pull-right" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<h1>Список всех голосований</h1>
+
 <div class="row polls_all_container" id="allPollsList">
   <% if @polls.length > 0 %>
     <% @polls.each do |poll| %>
