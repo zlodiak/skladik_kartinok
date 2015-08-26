@@ -17,3 +17,12 @@
   .polls_sort_form .btn_submit{
     margin-top: 25px;
   }  
+
+
+.poll_image_container{
+
+}  
+
+  .poll_image_container article{
+    padding-bottom: 30px;
+  }

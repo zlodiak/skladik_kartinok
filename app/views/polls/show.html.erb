@@ -28,7 +28,27 @@
   </div>
 </div>
 
-<%#= render 'image_list' %>
+<div class="row poll_image_container" id="thumbsList">
+  <% if @images.length > 0  %>
+    <% @images.each do |image| %>
+      <article class="col-xs-12" data-image-id="<%= image.id %>" data-current-user="<%= current_user.id if current_user %>">
+        <%= form_tag('/images/' + image.id.to_s, method: :get) do %>
+          <%= hidden_field(:image, :image_id, :value => image.id) %>
+          <%= image_tag(image.image.url(:medium), class: "thumb") %>        
+        <% end %>
+      </article>
+    <% end %>
+
+    <div class="col-xs-12">
+      <%= will_paginate @images, :previous_label => '', :next_label => '' %>
+    </div>
+  <% else %>
+    <div class="col-xs-12">Нет картинок</div>
+  <% end %>
+</div>
+
+
+
 
 
 

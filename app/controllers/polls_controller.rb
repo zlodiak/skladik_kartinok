@@ -9,6 +9,7 @@ class PollsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
+    @images = @poll.images.paginate(page: params[:page], :per_page => 10)
   end
 
   def new
