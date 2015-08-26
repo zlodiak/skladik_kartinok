@@ -72,7 +72,6 @@ class PollsController < ApplicationController
     else
       @polls = Poll.where("title LIKE :query", query: "%#{params[:fld_title]}%").paginate(page: params[:page], :per_page => 10).order(title: order_dir)
     end
-
   end
 
   private

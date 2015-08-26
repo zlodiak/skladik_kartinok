@@ -1,6 +1,6 @@
-<div class="jumbotron">
-  ааа
-</div>
+<!--<div class="jumbotron">
+  TODO filter
+</div>-->
 
 <h1>
   <span class="albums_list_label" id="albumsListLabel">Список голосований</span>
@@ -12,7 +12,7 @@
 <div class="row polls_user_container" id="pollsList">
   <% if @polls.length > 0 %>
     <% @polls.each do |poll| %>
-      <article class="col-xs-12 col-sm-6 col-md-4" data-current-user="<%= current_user.id if current_user %>" data-poll-id="<%= poll.id %>">
+      <article class="col-xs-12 col-sm-6 col-md-4 <% if poll.status_poll_id == 1 %>closed<% end %>" data-current-user="<%= current_user.id if current_user %>" data-poll-id="<%= poll.id %>">
         <h3 class="title"><%= truncate(poll.title, length: 40, omission: '...') %></h3>
 
         <p class="body"><%= truncate(poll.description, length: 225, omission: '...') %></p>

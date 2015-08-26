@@ -23,8 +23,8 @@
 <div class="row polls_all_container" id="allPollsList">
   <% if @polls.length > 0 %>
     <% @polls.each do |poll| %>
-      <article class="col-xs-12 col-sm-6 col-md-4" data-current-user="<%= current_user.id if current_user %>" data-poll-id="<%= poll.id %>">
-        <h3 class="title"><%= truncate(poll.title, length: 40, omission: '...') %></h3>
+      <article class="col-xs-12 col-sm-6 col-md-4 <% if poll.status_poll_id == 1 %>closed<% end %>" data-current-user="<%= current_user.id if current_user %>" data-poll-id="<%= poll.id %>">
+        <h3 class="title"><%= truncate(poll.title, length: 40, omission: '...') %></h3>        
 
         <p class="body"><%= truncate(poll.description, length: 225, omission: '...') %></p>
         

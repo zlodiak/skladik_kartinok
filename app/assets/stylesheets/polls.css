@@ -23,6 +23,18 @@
 
 }  
 
+  .polls_user_container article,
+  .polls_all_container article,
   .poll_image_container article{
     padding-bottom: 30px;
+  }
+
+  .polls_user_container article.closed,
+  .polls_all_container article.closed{
+    color: #ccc;    
+  }  
+
+  .polls_user_container article.closed h3:before,
+  .polls_all_container article.closed h3:before{
+    content: 'ЗАКРЫТО:';
   }
