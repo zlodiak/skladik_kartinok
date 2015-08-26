@@ -89,12 +89,6 @@ class ImagesController < ApplicationController
   end  
 
   def image_poll_associated
-    p '==============='
-    p poll_params[:user_id]
-    p poll_params[:image_id]
-    p poll_params[:operation]
-    p poll_params[:poll_id]
-
     @image = Image.find(poll_params[:image_id])
 
     if(poll_params[:operation] == 'link')
@@ -102,11 +96,6 @@ class ImagesController < ApplicationController
     else
       poll_id_value = nil
     end
-
-    p '--------------'
-    p @image
-    p '--------------'
-    poll_id_value
 
     if @image.update_attributes(:poll_id => poll_id_value)
       if(poll_params[:operation] == 'link')
