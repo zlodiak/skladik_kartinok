@@ -11,9 +11,10 @@ Rails.application.routes.draw do
     resources :polls
     resources :albums
     get "get_album_data/:id" => 'albums#get_album_data'
-    get "get_poll_data/:id" => 'polls#get_poll_data'
-    get "poll_list" => 'polls#poll_list'
+    get "get_poll_data/:id" => 'polls#get_poll_data'    
   end
+
+  get "poll_list" => 'polls#poll_list'
 
 
   get 'persons/profile', as: 'user_root'

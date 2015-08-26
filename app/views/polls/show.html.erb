@@ -1,1 +1,34 @@
-shoe
+<h1>
+  <span class="poll_label">Голосование :: </span>
+  <span class="name"><%= @poll.title %></span>
+</h1>
+
+<div class="jumbotron jumbotron_show_poll" id="jumbotronShowPoll">
+  <div class="row">
+    <div class="col-xs-12 description_area">
+      <%= @poll.description %>
+    </div>
+  </div>
+
+  <div class="meta_area row">
+    <div class="col-xs-6 col-sm-4 status">
+      <span class="status_label">Статус </span>
+      <span class="status_value"><%#= @poll.status.title %></span>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 created_at">
+      <span class="created_at_label">Дата открытия </span>
+      <span class="created_at_value"><%= l(@poll.created_at, format: "%e %b %Y, %H:%I") %></span>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 owner">
+      <span class="created_at_label">Создатель </span>
+      <span class="created_at_value"><%= @poll.user.name %></span>
+    </div>           
+  </div>
+</div>
+
+<%#= render 'image_list' %>
+
+
+
