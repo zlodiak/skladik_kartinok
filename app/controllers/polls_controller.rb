@@ -55,6 +55,10 @@ class PollsController < ApplicationController
     end
   end  
 
+  def poll_list
+    @polls = Poll.all.paginate(page: params[:page], :per_page => 10).order(title: :DESC)
+  end
+
   private
     def set_poll
       @poll = Poll.find(params[:id])
