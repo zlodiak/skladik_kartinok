@@ -61,9 +61,9 @@ class PollsController < ApplicationController
     @order = params[:fld_order] || 'Сначала старые'
 
     if params[:fld_order] == 'Сначала новые'
-      order_dir = :DESC
-    else
       order_dir = :ASC
+    else
+      order_dir = :DESC
     end    
 
     if params[:fld_title].blank?
