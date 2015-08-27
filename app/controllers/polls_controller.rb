@@ -1,13 +1,13 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy, :get_poll_data]
-  before_action :permission_check, only: [:edit, :update, :destroy]  
+  before_action :admin_or_manager_check, only: [:edit, :update, :destroy]  
 
   def index
     @user = User.find(params[:user_id])
     @polls = @user.polls.paginate(page: params[:page], :per_page => 10).order(title: :DESC)
   end
 
-  def show
+  def show    
     @user = User.find(params[:user_id])
     @images = @poll.images.paginate(page: params[:page], :per_page => 10)
   end
@@ -74,6 +74,16 @@ class PollsController < ApplicationController
     end
   end
 
+  def change_poll_state
+    @poll = Poll.find(params[:pollId])
+
+    if(@poll.update_attributes(status_poll_id: params[:newStateCode])) && admin_or_owner_check(current_user.id, params[:userId])
+      render json: @poll, :status => 200 
+    else
+      render json: @poll.errors.full_messages, :status => 403 
+    end
+  end
+
   private
     def set_poll
       @poll = Poll.find(params[:id])
@@ -83,7 +93,15 @@ class PollsController < ApplicationController
       params.require(:poll).permit(:title, :description)
     end   
 
-    def permission_check
+    def admin_or_owner_check(current_user_id, owner_id)
+      if (current_user_id.to_i == owner_id.to_i) || (admin_status)
+        return true
+      else
+        return nil
+      end
+    end
+      
+    def admin_or_manager_check
       unless (admin_status || manager_status)
         render nothing: true, :status => 403 
       end

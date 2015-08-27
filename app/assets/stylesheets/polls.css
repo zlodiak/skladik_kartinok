@@ -2,6 +2,17 @@
 
 }
 
+  .jumbotron_show_poll .state_poll:hover{
+    text-decoration: underline;
+  }
+
+  .jumbotron_show_poll .state_poll{
+    text-decoration: none;
+    color: #2a6496;
+
+    cursor: pointer;
+  }
+
   .jumbotron_show_poll .description_area{
     padding-bottom: 20px;
   }

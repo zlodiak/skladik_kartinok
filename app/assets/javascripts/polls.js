@@ -2,6 +2,7 @@ $( document ).ready(function() {
   // album ajax events
   $(document).on('click', '.destroy_poll', handlerDestroyPoll);
   $(document).on('click', '.edit_poll', handlerEditPollFormOutput);
+  $(document).on('click', '.state_poll', handlerStatePoll);
 
   // editpoll form output through ajax
   function handlerEditPollFormOutput(){
@@ -69,6 +70,41 @@ $( document ).ready(function() {
       }        
     })
   }  
+
+  // change state poll ajax handler
+  function handlerStatePoll(e){
+    var link = $(this),
+        pollId = link.closest('.meta_area').attr('data-poll-id'),
+        userId = link.closest('.meta_area').find('.owner').attr('data-user-id'),
+        newStateCode = link.attr('data-new-state-code');
+
+    $.ajax({
+      url: '/change_poll_state',
+      type: 'POST',
+      data: { 
+        newStateCode: newStateCode, 
+        userId: userId, 
+        pollId: pollId 
+      },
+      success: function(poll){
+        toggleStatePollButton(poll.status_poll_id)
+        handleModal('Статус голосования', 'изменён успешно', '00ff2a', 2000);
+      },
+      error: function(xhr, ajaxOptions, thrownError){
+        handleModal('Статус голосования', 'Не изменён. У вас не хватает прав. ' + xhr.status + ' error', 'f00', 2000);
+      }        
+    })
+
+    function toggleStatePollButton(statusPollId){
+      if(statusPollId == 0){
+        $('#stateClosed').addClass('hide');
+        $('#stateOpen').removeClass('hide');
+      }else{
+        $('#stateClosed').removeClass('hide');
+        $('#stateOpen').addClass('hide');
+      }
+    }
+  }   
 });
 
 

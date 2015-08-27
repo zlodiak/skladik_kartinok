@@ -2,16 +2,15 @@ Rails.application.routes.draw do
   
   devise_for :users
 
-  #get 'persons/profile'
-
   resources :images
   post "image_poll_associated" => 'images#image_poll_associated'
+  post "change_poll_state" => 'polls#change_poll_state'     
 
   resources :users do
     resources :polls
     resources :albums
     get "get_album_data/:id" => 'albums#get_album_data'
-    get "get_poll_data/:id" => 'polls#get_poll_data'    
+    get "get_poll_data/:id" => 'polls#get_poll_data'     
   end
 
   get "poll_list" => 'polls#poll_list'
@@ -19,7 +18,6 @@ Rails.application.routes.draw do
 
   get 'persons/profile', as: 'user_root'
   match 'images/create_direct', to: 'images#create_direct', via: :post
-  #match "get_image_data/:id", to: 'image#get_image_data', via: :post
   get "get_image_data/:id" => 'images#get_image_data'
 
   namespace :admin do

@@ -10,10 +10,13 @@
     </div>
   </div>
 
-  <div class="meta_area row">
+  <div class="meta_area row" data-poll-id="<%= @poll.id %>">
     <div class="col-xs-6 col-sm-4 status">
       <span class="status_label label_block">Статус </span>
-      <span class="status_value"><%= @poll.status_poll.title %></span>
+      <span class="status_value">        
+        <span class="state_poll state_closed <% if @poll.status_poll_id == 0 %>hide<% end %>" id="stateClosed" data-new-state-code="0">Закрыто</span>
+        <span class="state_poll state_open <% if @poll.status_poll_id == 1 %>hide<% end %>" id="stateOpen" data-new-state-code="1">Открыто</span>
+      </span>
     </div>
 
     <div class="col-xs-6 col-sm-4 created_at">
@@ -21,7 +24,7 @@
       <span class="created_at_value"><%= l(@poll.created_at, format: "%e %b %Y, %H:%I") %></span>
     </div>
 
-    <div class="col-xs-6 col-sm-4 owner">
+    <div class="col-xs-6 col-sm-4 owner" data-user-id="<%= @poll.user_id %>">
       <span class="created_at_label label_block">Создатель </span>
       <span class="created_at_value"><%= link_to @poll.user.name, user_path(@poll.user_id) %></span>
     </div>          
