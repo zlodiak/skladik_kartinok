@@ -49,3 +49,20 @@
   .polls_all_container article.closed h3:before{
     content: 'ЗАКРЫТО:';
   }
+
+  .poll_image_container .image_area{
+    padding-bottom: 10px;
+  }
+
+  .poll_image_container .vote_area{
+    padding-bottom: 10px;
+  }
+
+  .poll_image_container .vote_area .glyphicon-thumbs-up:before{
+    padding-right: 10px;
+  }
+
+  .poll_image_container .vote_area .glyphicon-thumbs-up{
+    margin-right: 30px;
+    margin-top:3px;
+  }
