@@ -35,13 +35,25 @@
   <% if @images.length > 0  %>
     <% @images.each do |image| %>
       <article class="col-xs-12" data-image-id="<%= image.id %>" data-current-user="<%= current_user.id if current_user %>">
-        <%= form_tag('/images/' + image.id.to_s, method: :get) do %>
-          <%= hidden_field(:image, :image_id, :value => image.id) %>
-          <%= image_tag(image.image.url(:medium), class: "thumb") %>  
-          <%= get_summary_votes_for_image(image.id) %>  
-          <%= link_to 'Голосовать', user_poll_path(@user, @poll.id, image_id: image.id) %>
-          <hr />    
-        <% end %>
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 col-md-6">
+            <%= form_tag('/images/' + image.id.to_s, method: :get) do %>
+              <%= hidden_field(:image, :image_id, :value => image.id) %>
+              <%= image_tag(image.image.url(:medium), class: "thumb") %>  
+            <% end %>
+          </div>
+
+          <div class="col-xs-12 col-sm-4 col-md-6">
+            <div class="pull-left"><%= get_summary_votes_for_image(image.id) %></div>
+
+            <% unless user_vote_image_check(image.id) %>
+              <%= form_tag(user_poll_path(@user, @poll.id), method: :post, class: 'pull-left') do %>
+                <%= hidden_field_tag(:image_id, image.id) %>
+                <%= submit_tag 'Проголосовать', class: 'btn-sm btn-info' %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>          
       </article>
     <% end %>
 

@@ -101,6 +101,10 @@ class ImagesController < ApplicationController
 
     # insert variable to image table
     if @image.update_attributes(:poll_id => poll_id_value)
+      # remove likes for this image
+      ImageLike.where(image_id: poll_params[:image_id]).destroy_all
+
+      # ready return poll title value
       if(poll_params[:operation] == 'link')
         json_returned = { poll_title: @image.poll.title } 
       else

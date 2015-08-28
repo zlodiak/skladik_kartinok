@@ -12,9 +12,9 @@ class PollsController < ApplicationController
     @images = @poll.images.paginate(page: params[:page], :per_page => 10)
 
     # if click on votelink and vote not exist then create record in image_likes table
-    if params[:image_id]
+    if vote_params[:image_id]
       if user_vote_check(current_user.id, params[:image_id])
-        flash.now[:error] = 'Вы уже голосовали'    
+        flash.now[:error] = 'Вы уже голосовали за это фото'    
       else
         flash.now[:success] = 'Ваш голос учтён'    
         ImageLike.create(user_id: current_user.id, image_id: params[:image_id])
@@ -102,6 +102,10 @@ class PollsController < ApplicationController
     def poll_params
       params.require(:poll).permit(:title, :description)
     end   
+
+    def vote_params
+      params.permit(:image_id)
+    end       
 
     def admin_or_owner_check(current_user_id, owner_id)
       if (current_user_id.to_i == owner_id.to_i) || (admin_status)
