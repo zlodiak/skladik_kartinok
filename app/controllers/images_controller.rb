@@ -92,11 +92,14 @@ class ImagesController < ApplicationController
     @image = Image.find(poll_params[:image_id])
 
     if(poll_params[:operation] == 'link')
+      # ready variable for add image to poll
       poll_id_value = poll_params[:poll_id]
     else
+      # ready variable for remove image from poll
       poll_id_value = nil
     end
 
+    # insert variable to image table
     if @image.update_attributes(:poll_id => poll_id_value)
       if(poll_params[:operation] == 'link')
         json_returned = { poll_title: @image.poll.title } 

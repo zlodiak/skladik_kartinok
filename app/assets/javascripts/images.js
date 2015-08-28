@@ -46,7 +46,6 @@ $( document ).ready(function() {
         imageId = article.attr('data-image-id');
 
     // check null value in select widjet
-    console.log(pollId);
     if(!pollId){
       handleModal('Добавление невозможно', 'Необходимо выбрать голосование из выпадающего списка', 'f00', 10000);  
     }else{
@@ -60,7 +59,6 @@ $( document ).ready(function() {
           operation: 'link'
         },
         success: function(result){
-          // appendDelFrompoll(result.poll_title);
           pollSelectArea.find('.add_to_poll_outer').hide();
           pollSelectArea.find('.value_vote_name').html(result.poll_title);        
           pollSelectArea.find('.remove_from_poll_outer').show();        

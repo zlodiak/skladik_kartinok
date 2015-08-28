@@ -10,6 +10,10 @@ class PollsController < ApplicationController
   def show    
     @user = User.find(params[:user_id])
     @images = @poll.images.paginate(page: params[:page], :per_page => 10)
+
+    if params[:image_id]
+      ImageLike.create(user_id: current)
+    end
   end
 
   def new

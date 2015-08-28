@@ -37,7 +37,10 @@
       <article class="col-xs-12" data-image-id="<%= image.id %>" data-current-user="<%= current_user.id if current_user %>">
         <%= form_tag('/images/' + image.id.to_s, method: :get) do %>
           <%= hidden_field(:image, :image_id, :value => image.id) %>
-          <%= image_tag(image.image.url(:medium), class: "thumb") %>        
+          <%= image_tag(image.image.url(:medium), class: "thumb") %>  
+          <%= get_summary_votes_for_image(image.id) %>  
+          <%= link_to 'Голосовать', user_poll_path(@user, @poll.id, image_id: image.id) %>
+          <hr />    
         <% end %>
       </article>
     <% end %>
