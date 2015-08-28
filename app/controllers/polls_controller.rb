@@ -11,8 +11,14 @@ class PollsController < ApplicationController
     @user = User.find(params[:user_id])
     @images = @poll.images.paginate(page: params[:page], :per_page => 10)
 
+    # if click on votelink and vote not exist then create record in image_likes table
     if params[:image_id]
-      ImageLike.create(user_id: current)
+      if user_vote_check(current_user.id, params[:image_id])
+        flash.now[:error] = 'Вы уже голосовали'    
+      else
+        flash.now[:success] = 'Ваш голос учтён'    
+        ImageLike.create(user_id: current_user.id, image_id: params[:image_id])
+      end      
     end
   end
 
@@ -109,5 +115,14 @@ class PollsController < ApplicationController
       unless (admin_status || manager_status)
         render nothing: true, :status => 403 
       end
-    end       
+    end      
+
+    # return nil if user not vote for this image
+    def user_vote_check(user_id, image_id)
+      if ImageLike.where(user_id: user_id, image_id: image_id).count == 0
+        user_is_vote = nil
+      else
+        user_is_vote = true
+      end
+    end 
 end
