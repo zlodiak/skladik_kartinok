@@ -1,0 +1,30 @@
+<div class="admin_edit_image_form">
+  <%= form_for(@image, :html => {class: 'admin_edit_image' }, :url => admin_image_path) do |f| %>
+    <% if @image.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+        <ul>
+        <% @image.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-2">
+        <%= f.label :Описание, class: 'label_block' %>
+      </div>
+      <div class="col-xs-12 col-sm-10">
+        <%= f.text_area :description, class: 'form-control', rows: "10" %>
+      </div>
+    </div>
+
+    <div class="actions row">
+      <div class="col-xs-12">
+        <%= f.submit 'Сохранить', class: 'btn btn-default pull-right' %>
+      </div>
+    </div>
+  <% end %>
+</div>

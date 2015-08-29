@@ -67,6 +67,8 @@ class AlbumsController < ApplicationController
     end
 
     def owner_check
+      p '-------------------'
+      p admin_status
       unless (admin_status) || (@album.user.id == current_user.id)
         render nothing: true, :status => 403 
       end

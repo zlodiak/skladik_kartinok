@@ -75,7 +75,7 @@ class PollsController < ApplicationController
       order_dir = :ASC
     else
       order_dir = :DESC
-    end    
+    end     
 
     if params[:fld_title].blank?
       @polls = Poll.all.paginate(page: params[:page], :per_page => 10).order(title: order_dir)

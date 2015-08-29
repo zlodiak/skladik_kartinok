@@ -1,0 +1,27 @@
+<div class="admin_thumb_album_container" id="thumbsList">
+  <% if @images.length > 0  %>
+    <% @images.each do |image| %>
+      <div class="row">
+        <article class="col-xs-4" data-image-id="<%= image.id %>" data-current-user="<%= current_user.id if current_user %>">
+          <%= form_tag('/images/' + image.id.to_s, method: :get) do %>
+            <%= hidden_field(:image, :image_id, :value => image.id) %>
+            <%= image_tag(image.image.url(:thumb), class: "thumb img-rounded") %>       
+          <% end %>
+        </article>
+
+        <div class="col-xs-8 admin_actions">
+          <%= link_to '', admin_image_path(image.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove destroy_image_admin pull-right' %>
+          <%= link_to '', edit_admin_image_path(image.id), class: 'glyphicon glyphicon-edit edit_image_admin pull-right' %>        
+        </div>
+      </div>
+    <% end %>
+
+    <div class="col-xs-12">
+      <%= will_paginate @images, :previous_label => '', :next_label => '' %>
+    </div>
+  <% else %>
+    <div class="col-xs-12">Нет картинок</div>
+  <% end %>
+</div>
+
+
