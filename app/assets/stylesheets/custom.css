@@ -399,11 +399,13 @@ form .field_with_errors{
     color: #000;
   }
 
-
+.admin .actions a:hover,
 .admin_thumb_album_container a:hover{
   text-decoration: none;
 }
 
+.admin_users_container .article_heads,
+.admin_users_container .article,
 .admin_edit_image > .row,
 .admin_thumb_album_container > .row{
   padding-bottom: 20px;

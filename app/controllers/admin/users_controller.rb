@@ -9,7 +9,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -17,13 +16,20 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
+    @statuses = Status.all
+    @selected_status = @user.status_id
   end
 
   def create
   end
 
   def update
+    p '-----------------------------------------------'
+    p user_params[:status_id]
+    p '-----------------------------------------------'
+    p user_params
     if @user.update_attributes(user_params)
+      #@user.update_attributes(status_id: user_params[:status_id])
       flash[:success] = 'Данные пользователя отредактированы'
     else
       flash[:error] = 'Данные пользователя не отредактированы'      
@@ -33,7 +39,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    p '-========================================'
     if @user.destroy
       flash[:success] = "Пользователь удалён"      
     else
@@ -49,6 +54,6 @@ class Admin::UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :info, :avatar, :delete_avatar, :fld_status, :fld_name)
+      params.require(:user).permit(:name, :email, :info, :avatar, :delete_avatar, :status_id)
     end
 end

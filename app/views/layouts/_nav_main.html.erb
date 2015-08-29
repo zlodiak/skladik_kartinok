@@ -27,9 +27,11 @@
         <% end %>             
         <li><a href="#1" id="about">О проекте</a></li>
         <li><a href="#2" id="rules">Правила</a></li>
-        <li><a href="#3"></a></li>
         <li><%= link_to 'Голосования', poll_list_path %></li>
         <li><%= link_to 'Люди', users_path %></li>
+        <% if admin_status %>
+          <li><%= link_to 'В админку', admin_users_path %></li>
+        <% end %>
       </ul>
     </div><!-- /.nav-collapse -->
   </div><!-- /.container -->
