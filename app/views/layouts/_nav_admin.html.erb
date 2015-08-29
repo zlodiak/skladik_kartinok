@@ -11,10 +11,10 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#1">Видео</a></li>
-        <li><a href="#2">Пользователи</a></li>
-        <li><a href="#3">Статитика</a></li>
-        <li><a href="#4">В публичную часть</a></li>
+        <li><%= link_to 'Видео', admin_images_path %></li>
+        <li><%= link_to 'Пользователи', admin_users_path %></li>
+        <li><a href="#3">Статистика</a></li>
+        <li><%= link_to 'В публичную часть', root_path %></li>
       </ul>
     </div><!-- /.nav-collapse -->
   </div><!-- /.container -->

@@ -1,0 +1,38 @@
+<h1>
+  <span class="users_list_label" id="usersListLabel">Список пользователей</span>
+</h1>
+
+<div class="users_container" id="usersList">
+  <% if @users.length > 0 %>
+    <div class="users_table" id="usersTable">
+      <div class="article_heads row">
+        <div class="col-sm-3 hidden-xs name_head">Имя</div>
+        <div class="col-sm-3 hidden-xs status_head">Статус</div>
+        <div class="col-sm-2 hidden-xs created_head">Дата регистрации</div>
+        <div class="col-sm-2 hidden-xs last_login_head">Дата последнего входа</div>
+        <div class="col-sm-2 hidden-xs actions">Действия</div>
+      </div>   
+       
+      <% @users.each do |user| %>
+        <article class="article row">
+          <div class="col-xs-6 col-sm-3 name name_link"><%= link_to user.name, user_path(user) if user.name %></div>
+          <div class="col-xs-6 col-sm-3 status"><%= user.status.title if user.status.title %></div>
+          <div class="col-xs-6 col-sm-2 created"><%= l(user.created_at, format: "%e %b %Y, %H:%I") if user.created_at %></div>
+          <div class="col-xs-6 col-sm-2 last_login"><%= l(user.last_sign_in_at, format: "%e %b %Y, %H:%I") if user.last_sign_in_at %></div>
+          <div class="col-xs-6 col-sm-2 last_login">
+            <%= link_to '', edit_admin_user_path(user.id), class: 'glyphicon glyphicon-edit edit_user_admin pull-left' %>            
+            <%= link_to '', admin_user_path(user.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove destroy_user_admin pull-left' %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 pagination_outer">
+        <%= will_paginate @users, :previous_label => '', :next_label => '' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="col-xs-12 no_users" id="noAlbums">Нет пользователей</div>
+  <% end %>
+</div>

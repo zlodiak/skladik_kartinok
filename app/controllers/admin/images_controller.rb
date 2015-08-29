@@ -1,11 +1,11 @@
 class Admin::ImagesController < ApplicationController
-  before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy]
   before_action :admin_check
 
   layout 'admin'
 
   def index
-    @images = Image.all.paginate(page: params[:page], :per_page => 6).order(created_at: :DESC)
+    @images = Image.all.paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)
   end
 
   def show
@@ -16,23 +16,10 @@ class Admin::ImagesController < ApplicationController
     @image = Image.new
   end
 
-  def edit
-    p '-------------------------------'
-    p @image    
+  def edit  
   end
 
   def create
-    @image = Image.new(image_params)
-
-    respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'Video was successfully created.' }
-        format.json { render :show, status: :created, location: @image }
-      else
-        format.html { render :new }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def update
@@ -56,7 +43,7 @@ class Admin::ImagesController < ApplicationController
   end
 
   private
-    def set_video
+    def set_image
       @image = Image.find(params[:id])
     end
 

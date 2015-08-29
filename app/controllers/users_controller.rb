@@ -41,9 +41,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if current_user.destroy
-      flash[:success] = 'Аккаунт удалён'
-      redirect_to root_path
+    if (current_user.id == @user.id) 
+      if @user.destroy
+        flash[:success] = 'Аккаунт удалён'
+        redirect_to root_path
+      end
     end
   end
 
@@ -54,5 +56,5 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :info, :avatar, :delete_avatar, :fld_status, :fld_name)
-    end
+    end  
 end
