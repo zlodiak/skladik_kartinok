@@ -5,7 +5,7 @@ class Admin::ImagesController < ApplicationController
   layout 'admin'
 
   def index
-    @images = Image.all.paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)
+    @images = Image.where(is_delete: nil).paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)
   end
 
   def show
@@ -33,7 +33,7 @@ class Admin::ImagesController < ApplicationController
   end
 
   def destroy
-    if @image.destroy
+    if @image.update_attributes(is_delete: true)
       flash[:success] = "Картинка удалена"      
     else
       flash[:error] = "Картинка не удалена" 
