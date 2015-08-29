@@ -24,12 +24,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    p '-----------------------------------------------'
-    p user_params[:status_id]
-    p '-----------------------------------------------'
-    p user_params
     if @user.update_attributes(user_params)
-      #@user.update_attributes(status_id: user_params[:status_id])
       flash[:success] = 'Данные пользователя отредактированы'
     else
       flash[:error] = 'Данные пользователя не отредактированы'      
