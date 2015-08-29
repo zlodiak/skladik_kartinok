@@ -11,8 +11,8 @@ class PollsController < ApplicationController
     @user = User.find(params[:user_id])
     @images = @poll.images.paginate(page: params[:page], :per_page => 10)
 
-    # if click on votelink and vote not exist then create record in image_likes table
-    if vote_params[:image_id]
+    # if click on votelink and vote not exist and poll is open then create record in image_likes table
+    if (vote_params[:image_id]) && (@poll.status_poll_id == 0)
       if user_vote_check(current_user.id, params[:image_id])
         flash.now[:error] = 'Вы уже голосовали за это фото'    
       else

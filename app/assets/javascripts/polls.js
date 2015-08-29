@@ -97,11 +97,15 @@ $( document ).ready(function() {
 
     function toggleStatePollButton(statusPollId){
       if(statusPollId == 0){
+        // poll is open
         $('#stateClosed').addClass('hide');
         $('#stateOpen').removeClass('hide');
+        $('.vote_submit_container').removeClass('hide');
       }else{
+        // poll is closed
         $('#stateClosed').removeClass('hide');
         $('#stateOpen').addClass('hide');
+        $('.vote_submit_container').addClass('hide');
       }
     }
   }   
