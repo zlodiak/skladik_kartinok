@@ -1,1 +1,29 @@
-s
+<h2 class="h2">Статистика</h2>
+
+
+<div class="statistic_container">
+  <div class="row">
+    <div class="col-xs-3 label_block">Кол-во администраторов</div>
+    <div class="col-xs-9"><%= @admins_quantity %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 label_block">Кол-во менеджеров</div>
+    <div class="col-xs-9"><%= @managers_quantity %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 label_block">Кол-во пользователей</div>
+    <div class="col-xs-9"><%= @users_quantity %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 label_block">Всего аккаунтов</div>
+    <div class="col-xs-9"><%= @accounts_quantity %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 label_block">Из них аккаунтов с аватарами</div>
+    <div class="col-xs-9"><%= @accounts_with_avatar_quantity %></div>
+  </div>  
+</div>

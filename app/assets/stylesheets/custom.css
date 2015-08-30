@@ -390,6 +390,10 @@ form .field_with_errors{
 
 }
 
+  .admin .sidebar_toggler{
+    display: none;
+  }
+
   .admin .navbar-fixed-top{
     background: red;
   }
@@ -410,6 +414,14 @@ form .field_with_errors{
 .admin_thumb_album_container > .row{
   padding-bottom: 20px;
 }
+
+.statistic_container{
+
+}
+
+  .statistic_container .row{
+    padding-bottom: 20px;
+  } 
 
 
 

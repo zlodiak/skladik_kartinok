@@ -46,14 +46,14 @@ module SessionsHelper
   def admin_check
     unless admin_status
       flash[:notice] = "Войдите в систему"
-      redirect_to new_user_session_path      
+      redirect_to root_path      
     end
   end  
 
   def logged_check
     unless admin_status || manager_status || user_status
       flash[:notice] = "Войдите в систему"
-      redirect_to new_user_session_path      
+      redirect_to root_path      
     end
   end   
 end
