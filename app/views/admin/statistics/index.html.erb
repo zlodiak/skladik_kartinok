@@ -3,27 +3,62 @@
 
 <div class="statistic_container">
   <div class="row">
-    <div class="col-xs-3 label_block">Кол-во администраторов</div>
-    <div class="col-xs-9"><%= @admins_quantity %></div>
+    <div class="col-xs-9 col-sm-3 label_block">Кол-во администраторов</div>
+    <div class="col-xs-3 col-sm-9"><%= @admins_quantity %></div>
   </div>
 
   <div class="row">
-    <div class="col-xs-3 label_block">Кол-во менеджеров</div>
-    <div class="col-xs-9"><%= @managers_quantity %></div>
+    <div class="col-xs-9 col-sm-3 label_block">Кол-во менеджеров</div>
+    <div class="col-xs-3 col-sm-9"><%= @managers_quantity %></div>
   </div>
 
   <div class="row">
-    <div class="col-xs-3 label_block">Кол-во пользователей</div>
-    <div class="col-xs-9"><%= @users_quantity %></div>
+    <div class="col-xs-9 col-sm-3 label_block">Кол-во пользователей</div>
+    <div class="col-xs-3 col-sm-9"><%= @users_quantity %></div>
   </div>
 
   <div class="row">
-    <div class="col-xs-3 label_block">Всего аккаунтов</div>
-    <div class="col-xs-9"><%= @accounts_quantity %></div>
+    <div class="col-xs-9 col-sm-3 label_block">Всего аккаунтов</div>
+    <div class="col-xs-3 col-sm-9"><%= @accounts_quantity %></div>
   </div>
 
   <div class="row">
-    <div class="col-xs-3 label_block">Из них аккаунтов с аватарами</div>
-    <div class="col-xs-9"><%= @accounts_with_avatar_quantity %></div>
+    <div class="col-xs-9 col-sm-3 label_block">Из них аккаунтов с аватарами</div>
+    <div class="col-xs-3 col-sm-9"><%= @accounts_with_avatar_quantity %></div>
   </div>  
+
+  <div class="row">
+    <div class="col-xs-9 col-sm-3 label_block">Всего картинок</div>
+    <div class="col-xs-3 col-sm-9"><%= @images_quantity %></div>
+  </div>  
+
+  <div class="row">
+    <div class="col-xs-9 col-sm-3 label_block">Картинок участвующих в голосовании</div>
+    <div class="col-xs-3 col-sm-9"><%= @images_in_poll_quantity %></div>
+  </div>  
+
+  <div class="row">
+    <div class="col-xs-9 col-sm-3 label_block">Всего голосований</div>
+    <div class="col-xs-3 col-sm-9"><%= @polls_quantity %></div>
+  </div>  
+
+  <div class="row">
+    <div class="col-xs-9 col-sm-3 label_block">Из них закрытых</div>
+    <div class="col-xs-3 col-sm-9"><%= @polls_closed_quantity %></div>
+  </div>  
+
+  <div class="row">
+    <div class="col-xs-9 col-sm-3 label_block">Из них открытых</div>
+    <div class="col-xs-3 col-sm-9"><%= @polls_opened_quantity %></div>
+  </div>  
+
+  <div class="row">
+    <div class="col-xs-9 col-sm-3 label_block">Всего альбомов</div>
+    <div class="col-xs-3 col-sm-9"><%= @albums_quantity %></div>
+  </div>  
+
+  <div class="row">
+    <div class="col-xs-9 col-sm-3 label_block">Среднее количество картинок в альбоме</div>
+    <div class="col-xs-3 col-sm-9"><%= @average_images_in_album_quantity %></div>
+  </div>              
 </div>
