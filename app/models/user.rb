@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   belongs_to :status
   has_many :images    #, dependent: :destroy
   has_many :albums, dependent: :destroy
-  has_many :polls    #, dependent: :destroy
+  has_many :polls, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true
