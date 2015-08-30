@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :images
     resources :users
     get "" => 'images#index'
+    get "statistics" => 'statistics#index'
   end
 
 
