@@ -10,6 +10,10 @@ describe Album do
       expect(FactoryGirl.build(:album, title: nil)).not_to be_valid
     end  
 
+    it "is invalid with short title" do
+      expect(FactoryGirl.build(:album, title: 'q')).not_to be_valid
+    end      
+
     it "is invalid with duplicate title" do
       FactoryGirl.create(:album, title: 'qwerty')
       expect(FactoryGirl.build(:album, title: 'qwerty')).not_to be_valid
@@ -24,6 +28,10 @@ describe Album do
   describe 'description' do
     it "is invalid without description" do
       expect(FactoryGirl.build(:album, description: nil)).not_to be_valid
+    end   
+
+    it "is invalid with short description" do
+      expect(FactoryGirl.build(:album, description: 'a')).not_to be_valid
     end   
 
     it "is invalid with long description" do
