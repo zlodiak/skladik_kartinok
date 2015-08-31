@@ -20,6 +20,6 @@ class Image < ActiveRecord::Base
   validate :file_size_validation, :if => "image?"  
 
   def file_size_validation
-    errors[:image] << "should be less than 2MB" if image.size.to_i > 5.megabytes
+    errors[:image] << "Размер файла картинки должен быть менее 5MB" if image.size.to_i > 5.megabytes
   end  
 end
