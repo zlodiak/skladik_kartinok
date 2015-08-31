@@ -18,11 +18,17 @@ describe Image do
       )).not_to be_valid
     end     
 
-    it "is invalid when image content_type is not: png, gif,jpg" do
+    it "is valid when image content_type is: image/*" do
       expect(FactoryGirl.build(:image, 
-        image_content_type: 'png'
+        image_content_type: 'image/png'
+      )).to be_valid
+    end 
+
+    it "is invalid when image content_type is not: image/*" do
+      expect(FactoryGirl.build(:image, 
+        image_content_type: 'video/png'
       )).not_to be_valid
-    end     
+    end         
   end  
 
   describe 'associations' do
