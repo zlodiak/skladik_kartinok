@@ -3,6 +3,6 @@ FactoryGirl.define do
     sequence(:title){ |i| "title#{i}" }
     association :user 
     closed nil
-    description 'The behavior of the association method varies depending on the build strategy used for the parent object.'
+    description Faker::Lorem.paragraph(7)
   end
 end
