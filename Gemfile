@@ -29,6 +29,7 @@ gem 'pry-debugger'
 gem 'pry-stack_explorer'
 gem 'rspec-rails'
 gem 'factory_girl_rails'
+gem 'shoulda'
 
 
 group :development, :test do
