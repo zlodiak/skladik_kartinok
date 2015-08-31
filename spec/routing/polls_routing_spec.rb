@@ -1,5 +1,6 @@
 require "rails_helper"
 
+=begin
 RSpec.describe PollsController, type: :routing do
   describe "routing" do
 
@@ -37,3 +38,4 @@ RSpec.describe PollsController, type: :routing do
 
   end
 end
+=end
