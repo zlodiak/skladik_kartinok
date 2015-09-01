@@ -19,6 +19,7 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe PollsController, type: :controller do
+  #let(:poll) { create :poll, :poll_with_status_poll_0 }
 
   # This should return the minimal set of attributes required to create a valid
   # Poll. As you add validations to Poll, be sure to
