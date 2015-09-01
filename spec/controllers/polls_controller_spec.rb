@@ -7,34 +7,44 @@ RSpec.describe PollsController, type: :controller do
     end 
 
     it "assign user as @user" do      
-      get :index, user_id: @user
+      get :index, user_id: @user.id
       expect(assigns(:user)).to eq(@user)
     end     
 
     it "assigns polls as @polls" do      
-      get :index, user_id: @user  
+      get :index, user_id: @user.id
       expect(assigns(:polls)).to eq(@user.polls)
     end       
 
     it "redirects to the index view" do
-      get :index, user_id: @user
+      get :index, user_id: @user.id
       expect(response).to render_template("index")
     end       
   end
 
-=begin
+
   describe "GET #show" do
-    before :each do
-      @poll = FactoryGirl.create(:poll)
-      @user = User.find(@poll.id)
+    before :all do
+      @user = FactoryGirl.create(:user)
+      @poll = FactoryGirl.create(:poll, user_id: @user.id)      
     end
 
-    it "assigns the requested poll as @poll" do
-      get :show, user_id: @poll.user_id, id:@poll.id
-      expect(assigns(:polls)).to eq([@poll])
+    it "assigns the requested user as @user" do
+      get :show, user_id: @user.id, id: @poll.id
+      expect(assigns(:user)).to eq(@user)
     end
+
+    it "assigns the requested images as @images" do
+      get :show, user_id: @user.id, id: @poll.id
+      expect(assigns(:images)).to eq(@poll.images)
+    end   
+
+    it "redirects to the show view" do
+      get :show, user_id: @user.id, id: @poll.id
+      expect(response).to render_template("show")
+    end      
   end
-
+=begin
   describe "GET #new" do
     it "assigns a new poll as @poll" do
       get :new, {}, valid_session
