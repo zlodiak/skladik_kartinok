@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :poll do
+    sequence(:id){ |i| i }
     association :user
     sequence(:title){ |i| "title#{i}" }
     description Faker::Lorem.paragraph(7)

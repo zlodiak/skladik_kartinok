@@ -19,13 +19,19 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe PollsController, type: :controller do
-  #let(:poll) { create :poll, :poll_with_status_poll_0 }
 
   # This should return the minimal set of attributes required to create a valid
   # Poll. As you add validations to Poll, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      id: 1,
+      created_at: nil,
+      updated_at: nil,
+      user_id: 1,
+      title: "title1",
+      description: "Fuga aut quis assumenda. Voluptas impedit fugiat iusto possimus. Molestias officiis omnis delectus. Omnis vel quisquam. Est doloribus minima ducimus excepturi libero. Asperiores laboriosam enim labore quo id iure. Quas libero facere. Eius occaecati culpa magnam vero natus."
+    }
   }
 
   let(:invalid_attributes) {
@@ -39,12 +45,16 @@ RSpec.describe PollsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all polls as @polls" do
-      poll = Poll.create! valid_attributes
-      get :index, {}, valid_session
+      poll = FactoryGirl.create(:poll)
+      user = User.find(poll.id)
+      #binding.pry
+      get :index, user_id: poll.user_id
       expect(assigns(:polls)).to eq([poll])
+      expect(assigns(:user)).to eq(user)
     end
   end
 
+=begin
   describe "GET #show" do
     it "assigns the requested poll as @poll" do
       poll = Poll.create! valid_attributes
@@ -156,5 +166,6 @@ RSpec.describe PollsController, type: :controller do
       expect(response).to redirect_to(polls_url)
     end
   end
+=end
 
 end
