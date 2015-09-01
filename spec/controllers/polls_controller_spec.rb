@@ -44,14 +44,20 @@ RSpec.describe PollsController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all polls as @polls" do
-      poll = FactoryGirl.create(:poll)
-      user = User.find(poll.id)
-      #binding.pry
-      get :index, user_id: poll.user_id
-      expect(assigns(:polls)).to eq([poll])
-      expect(assigns(:user)).to eq(user)
+    before :each do
+      @poll = FactoryGirl.create(:poll)
     end
+
+    it "assigns all polls as @polls" do      
+      get :index, user_id: @poll.user_id
+      expect(assigns(:polls)).to eq([@poll])
+    end
+
+    it "assigns user as @user" do
+      @user = User.find(@poll.id)
+      get :index, user_id: @poll.user_id
+      expect(assigns(:user)).to eq(@user)
+    end    
   end
 
 =begin
