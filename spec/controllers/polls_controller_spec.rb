@@ -57,7 +57,12 @@ RSpec.describe PollsController, type: :controller do
       @user = User.find(@poll.id)
       get :index, user_id: @poll.user_id
       expect(assigns(:user)).to eq(@user)
-    end    
+    end  
+
+    it "redirects to the index view" do
+      get :index, user_id: @poll.user_id
+      expect(response).to render_template("index")
+    end      
   end
 
 =begin
