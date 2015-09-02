@@ -42,16 +42,30 @@ RSpec.describe PollsController, type: :controller do
     it "redirects to the show view" do
       get :show, user_id: @user.id, id: @poll.id
       expect(response).to render_template("show")
-    end      
-  end
-=begin
-  describe "GET #new" do
-    it "assigns a new poll as @poll" do
-      get :new, {}, valid_session
-      expect(assigns(:poll)).to be_a_new(Poll)
-    end
+    end               
   end
 
+  describe "GET #new" do
+    before :all do
+      @user = FactoryGirl.create(:user) 
+    end
+
+    it "assigns a new poll as @poll" do
+      get :new, user_id: @user.id
+      expect(assigns(:poll)).to be_a_new(Poll)
+    end
+
+    it "assigns the requested user as @user" do
+      get :new, user_id: @user.id
+      expect(assigns(:user)).to eq(@user)
+    end  
+
+    it "redirects to the new view" do
+      get :new, user_id: @user.id
+      expect(response).to render_template("new")
+    end       
+  end
+=begin
   describe "GET #edit" do
     it "assigns the requested poll as @poll" do
       poll = Poll.create! valid_attributes
