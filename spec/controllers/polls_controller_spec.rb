@@ -78,20 +78,12 @@ RSpec.describe PollsController, type: :controller do
       end
 
       it "creates a new Poll" do  
-        @user = FactoryGirl.create(:user) 
-        @poll = @user.polls.build(user_id: @user.id)
-        visit new_user_session_path
+      login_user
 
-        fill_in "user_email", :with => @user.email
-        fill_in "user_password", :with => "qwerty"
-        click_button "commitSignIn" 
-
+      expect {
         post :create, user_id: @user.id
-        binding.pry      
-
-        #expect {
-        #  post :create, user_id: @user.id
-        #}.to change(Poll, :count).by(1)
+        @poll = FactoryGirl.create(:poll, user_id: 1)          
+      }.to change(Poll, :count).by(1)
       end
     end
   end
