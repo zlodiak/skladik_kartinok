@@ -1,4 +1,9 @@
 require 'rails_helper'
+require 'helpers/application_helper_spec'
+
+RSpec.configure do |c|
+  c.include Helpers
+end
 
 RSpec.describe PollsController, type: :controller do
   describe "GET #index" do
@@ -161,26 +166,13 @@ RSpec.describe PollsController, type: :controller do
   end
 =end
   describe "DELETE #destroy" do
-    it "destroys the requested poll" do
-        @user = FactoryGirl.create(:user) 
-        visit new_user_session_path
-
-        fill_in "user_email", :with => @user.email
-        fill_in "user_password", :with => "qwerty"
-        click_button "commitSignIn" #OK sign in
+    it "destroys the polls for a specific user " do
+      login_user
 
       expect {
         @poll = FactoryGirl.create(:poll, user_id: @user.id)  
         delete :destroy, { user_id: @user.id, id: @poll.id }
       }.to change(Poll, :count).by(1)
     end
-
-    #it "redirects to the polls list" do
-    #  poll = Poll.create! valid_attributes
-    #  delete :destroy, {:id => poll.to_param}, valid_session
-    #  expect(response).to redirect_to(polls_url)
-    #end
   end
-
-
 end
