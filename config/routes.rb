@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post "change_poll_state" => 'polls#change_poll_state'     
 
   resources :users do
-    resources :polls
+    resources :polls, except: [:edit]
     resources :albums
     get "get_album_data/:id" => 'albums#get_album_data'
     get "get_poll_data/:id" => 'polls#get_poll_data'     
