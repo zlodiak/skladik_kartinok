@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :images    #, dependent: :destroy
   has_many :albums, dependent: :destroy
   has_many :polls, dependent: :destroy
+  has_many :image_likes, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true

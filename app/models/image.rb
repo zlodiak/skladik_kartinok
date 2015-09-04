@@ -4,6 +4,7 @@ class Image < ActiveRecord::Base
   belongs_to :user
   belongs_to :album
   belongs_to :poll
+  has_many :image_likes
 
   has_attached_file :image, 
                     :styles => { 
