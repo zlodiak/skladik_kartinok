@@ -94,7 +94,14 @@ RSpec.describe PollsController, type: :routing do
         "controller" => "polls", 
         "action" => "poll_list"
       )
-    end      
+    end   
+
+    it "routes to #change_poll_state" do
+      expect(:post => "/change_poll_state").to route_to(
+        "controller" => "polls", 
+        "action" => "change_poll_state"
+      )
+    end        
   end
 end
 

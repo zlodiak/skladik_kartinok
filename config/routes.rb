@@ -2,24 +2,25 @@ Rails.application.routes.draw do
   
   devise_for :users
 
-  resources :images
+  resources :images, except: [:edit]
   post "image_poll_associated" => 'images#image_poll_associated'
+  match 'images/create_direct', to: 'images#create_direct', via: :post
+  get "get_image_data/:id" => 'images#get_image_data'  
+
   post "change_poll_state" => 'polls#change_poll_state'     
 
   resources :users do
-    resources :polls, except: [:edit]
     resources :albums
     get "get_album_data/:id" => 'albums#get_album_data'
+
+    resources :polls, except: [:edit]    
     get "get_poll_data/:id" => 'polls#get_poll_data'     
     post "polls/:id" => 'polls#show'     
   end
 
   get "poll_list" => 'polls#poll_list'
 
-
   get 'persons/profile', as: 'user_root'
-  match 'images/create_direct', to: 'images#create_direct', via: :post
-  get "get_image_data/:id" => 'images#get_image_data'
 
   namespace :admin do
     resources :images
