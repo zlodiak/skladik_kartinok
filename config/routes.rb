@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  
   devise_for :users
+  get 'persons/profile', as: 'user_root'  
 
   resources :images, except: [:edit]
   post "image_poll_associated" => 'images#image_poll_associated'
   match 'images/create_direct', to: 'images#create_direct', via: :post
-  get "get_image_data/:id" => 'images#get_image_data'  
-
-  post "change_poll_state" => 'polls#change_poll_state'     
+  get "get_image_data/:id" => 'images#get_image_data'     
 
   resources :users do
     resources :albums
@@ -19,8 +17,7 @@ Rails.application.routes.draw do
   end
 
   get "poll_list" => 'polls#poll_list'
-
-  get 'persons/profile', as: 'user_root'
+  post "change_poll_state" => 'polls#change_poll_state'    
 
   namespace :admin do
     resources :images
@@ -29,8 +26,6 @@ Rails.application.routes.draw do
     get "statistics" => 'statistics#index'
   end
 
-
-  # You can have the root of your site routed with "root"
   root 'images#index'
 
   #devise_for :users, :controllers => { registrations: 'registrations' }

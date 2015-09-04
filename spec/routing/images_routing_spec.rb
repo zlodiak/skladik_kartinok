@@ -83,7 +83,14 @@ RSpec.describe ImagesController, type: :routing do
         "action" => "get_image_data", 
         "id" => "1"
       )
-    end             
+    end   
+
+    it "routes to #index via empty string" do
+      expect(:get => "/").to route_to(
+        "controller" => "images", 
+        "action" => "index"
+      )
+    end              
   end
 end
 
