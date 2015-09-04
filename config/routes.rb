@@ -21,8 +21,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :images
-    resources :users
     get "" => 'images#index'
+
+    resources :users
+    
     get "statistics" => 'statistics#index'
   end
 
