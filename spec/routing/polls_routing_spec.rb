@@ -28,7 +28,7 @@ RSpec.describe PollsController, type: :routing do
     end
 
     it "routes to #edit" do
-      expect(:get => "/users/1/polls/1/edit").to route_to(
+      expect(:get => "/users/1/polls/1/edit").not_to route_to(
         "controller" => "polls", 
         "action" => "edit", 
         "user_id" => "1",
@@ -70,6 +70,31 @@ RSpec.describe PollsController, type: :routing do
         "id" => "1"
       )
     end
+
+    it "routes to #get_poll_data" do
+      expect(:get => "/users/1/get_poll_data/1").to route_to(
+        "controller" => "polls", 
+        "action" => "get_poll_data", 
+        "user_id" => "1",
+        "id" => "1"
+      )
+    end 
+
+    it "routes to #show via post" do
+      expect(:post => "/users/1/polls/1").to route_to(
+        "controller" => "polls", 
+        "action" => "show", 
+        "user_id" => "1",
+        "id" => "1"
+      )
+    end   
+
+    it "routes to #poll_list" do
+      expect(:get => "/poll_list").to route_to(
+        "controller" => "polls", 
+        "action" => "poll_list"
+      )
+    end      
   end
 end
 

@@ -71,6 +71,15 @@ RSpec.describe AlbumsController, type: :routing do
         "id" => "1"
       )
     end
+
+    it "routes to #get_album_data" do
+      expect(:get => "/users/1/get_album_data/1").to route_to(
+        "controller" => "albums", 
+        "action" => "get_album_data", 
+        "user_id" => "1",
+        "id" => "1"
+      )
+    end    
   end
 end
 
