@@ -18,11 +18,19 @@ describe PollsHelper do
       expect(ImageLike.where(image_id: 1).count()).to eq(0)
     end  
 
-    it "return true for not signed user" do
-      val = user_vote_image_check(1)
+    it "return true for voted user" do
+      login_user
+      @image = FactoryGirl.create(:image, user_id: @user.id)
+      @image_like = FactoryGirl.create(:image_like, image_id: @image.id, user_id: @user.id)
+      return_value = ImageLike.where(image_id: @image.id, user_id: @user.id).count()
+      expect(return_value).to be > 0
+    end 
 
-      expect(val).to be_false
-    end        
+    it "return nil for not voted user" do
+      login_user
+      return_value = ImageLike.where(image_id: -22, user_id: @user.id).count()
+      expect(return_value).to eq(0)
+    end            
   end
 end
 
