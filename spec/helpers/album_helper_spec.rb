@@ -1,15 +1,12 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the AlbumHelper. For example:
-#
-# describe AlbumHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
-RSpec.describe AlbumHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe AlbumsHelper do
+  describe "albums helpers" do
+    it "rrrrrrrrrrrrrrrrr" do
+      @album = FactoryGirl.create(:album, :closed_nil)
+      binding.pry
+    end          
+  end
 end
+
+
