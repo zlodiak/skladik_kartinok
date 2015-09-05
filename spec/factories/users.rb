@@ -4,6 +4,7 @@ FactoryGirl.define do
     sequence(:email){ |i| "us#{i}@ad.ad" }
     password 'qwerty'
     password_confirmation{ |u| u.password } 
+    info Faker::Lorem.paragraph(7)
 
     trait :user_status do
       status_id 0
