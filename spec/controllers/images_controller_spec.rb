@@ -1,27 +1,47 @@
 require 'spec_helper'
 
 describe ImagesController, type: :controller do
-  describe 'index action' do
-    it 'render index template for root page' do
-      get :index
-      response.should render_template('index')
-      response.should render_template "layouts/application"
-    end   
-  end
 
-  #describe 'index action' do
-    #it 'check title on page and status 200' do
-      #@image = FactoryGirl.create(:image)  
-      #@images = []
-      #@images.push @image
-      #visit root_path(images: @images)
-      #binding.pry
-      #expect(response.status).to eq(200)
-      #expect(page).to have_title "Складник картинок"    
-      #expect(response).to render_template(:index)
-      #page.should have_selector("#thumbsList")
-      #page.should have_selector("h1", :text => "Последние загруженные изображения")
-    #end    
-  #end  
+  describe 'GET #index' do
+    it 'response is success' do
+      get :index
+      expect(response).to be_success
+    end  
+
+    it 'response code is 200' do
+      get :index
+      expect(response).to have_http_status(200)
+    end     
+
+    it "renders the index template" do    
+      get :index
+      expect(response).to render_template("index")
+    end
+
+    it "loads all of the images into @images" do
+      image1, image2 = FactoryGirl.create(:image), FactoryGirl.create(:image)
+      get :index
+      expect(assigns(:images)).to match_array([image1, image2])
+    end                  
+  end 
+
+  describe "GET #show" do
+    before(:each) do
+      image = FactoryGirl.create(:image)      
+      get :show, id: image.id, image_id: image.id
+    end    
+
+    it 'response is success' do
+      expect(response).to be_success
+    end  
+
+    it 'response code is 200' do
+      expect(response).to have_http_status(200)
+    end     
+
+    it "responds with json" do    
+      expect(response.content_type).to eq "application/json"
+    end
+  end
 end
 

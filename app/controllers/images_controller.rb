@@ -8,7 +8,7 @@ class ImagesController < ApplicationController
   end
 
   def show
-    image_detail = Image.find(image_params[:image_id])
+    image_detail = Image.find(params[:image_id])
     owner = User.find(image_detail.user_id)
 
     if image_detail

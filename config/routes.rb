@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "get_image_data/:id" => 'images#get_image_data'     
 
   resources :users do
-    resources :albums
+    resources :albums, except: [:edit]
     get "get_album_data/:id" => 'albums#get_album_data'
 
     resources :polls, except: [:edit]    
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post "change_poll_state" => 'polls#change_poll_state'    
 
   namespace :admin do
-    resources :images
+    resources :images, except: [:new, :show, :create]
     get "" => 'images#index'
 
     resources :users
