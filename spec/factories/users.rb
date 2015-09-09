@@ -6,17 +6,17 @@ FactoryGirl.define do
     password_confirmation{ |u| u.password } 
     info Faker::Lorem.paragraph(7)
 
-    trait :user_status do
-      status_id 0
+    trait :regular do
+      association :status, factory: :user_status
     end
 
-    trait :manager_status do
-      status_id 1
+    trait :manager do
+      association :status, factory: :manager_status
     end
 
-    trait :admin_status do
-      status_id 2
-    end    
+    trait :admin do
+      association :status, factory: :admin_status
+    end      
   end 
 end
 

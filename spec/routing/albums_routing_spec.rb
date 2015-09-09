@@ -28,15 +28,6 @@ RSpec.describe AlbumsController, type: :routing do
       )
     end
 
-    it "routes to #edit" do
-      expect(:get => "/users/1/albums/1/edit").to route_to(
-        "controller" => "albums", 
-        "action" => "edit", 
-        "user_id" => "1",
-        "id" => "1"
-      )
-    end
-
     it "routes to #create" do
       expect(:post => "/users/1/albums").to route_to(
         "controller" => "albums", 

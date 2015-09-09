@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Users", type: :request do
   describe "return 200 status code for GET /users" do
     before :all do   
-      @user = FactoryGirl.create(:user, :user_status)
+      @user = FactoryGirl.create(:user, :regular)
     end
 
     it "#show" do

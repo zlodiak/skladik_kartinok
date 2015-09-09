@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe ImagesController, type: :controller do
-
   describe 'GET #index' do
     it 'response is success' do
       get :index
@@ -43,14 +42,5 @@ describe ImagesController, type: :controller do
       expect(response.content_type).to eq "application/json"
     end
   end
-
-  describe 'GET #new' do
-    it 'response is success' do
-      user = FactoryGirl.create(:user)  
-      image = FactoryGirl.create(:image, user_id: user.id)  
-      get :new, image_id: image.id, current_user: user
-      expect(response).to be_success
-    end  
-  end  
 end
 

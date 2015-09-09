@@ -5,7 +5,6 @@ RSpec.configure do |c|
   c.include Helpers
 end
 
-
 describe PollsHelper do
   describe "polls helpers" do
     it "get_summary_votes_for_image return value for real images" do
