@@ -4,7 +4,7 @@ class PollsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @polls = @user.polls.paginate(page: params[:page], :per_page => 10).order(title: :DESC)
+    @polls = @user.polls.paginate(page: params[:page], :per_page => 10).order(created_at: :DESC)
   end
 
   def show    

@@ -1,14 +1,14 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy, :get_image_data]
   before_action :logged_check, only: [:create, :create_direct, :edit, :update, :destroy]
-  before_action :owner_check, only: [:new, :image_poll_associated]
+  before_action :owner_check, only: [:image_poll_associated]
 
   def index
     @images = Image.where(is_delete: nil).paginate(page: params[:page], :per_page => 18).order(created_at: :DESC)  
   end
 
   def show
-    image_detail = Image.find(params[:image_id])
+    image_detail = Image.find(image_params[:image_id])
     owner = User.find(image_detail.user_id)
 
     if image_detail

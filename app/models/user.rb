@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
           :validatable
 
   belongs_to :status
-  has_many :images    #, dependent: :destroy
+  has_many :images    , dependent: :destroy
   has_many :albums, dependent: :destroy
   has_many :polls, dependent: :destroy
   has_many :image_likes, dependent: :destroy
