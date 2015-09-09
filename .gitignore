@@ -12,6 +12,6 @@
 !/log/.keep
 /tmp
 
-/config/database.yml
-/lib/tasks
+#/config/database.yml
+#/lib/tasks
 /public/system
