@@ -4,3 +4,4 @@ this education project on rails4. service has ability upload and storage of grap
 
 use postgresql DB
 
+test site on heroku with temporary containers for static files storage: https://frozen-retreat-2087.herokuapp.com/
