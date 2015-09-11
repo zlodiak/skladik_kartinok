@@ -32,6 +32,6 @@ module Vd
         g.fixture_replacement   :factory_girl, dir: 'spec/factories' 
     end
 
-    config.serve_static_assets = true
+    config.serve_static_files = true
   end
 end
