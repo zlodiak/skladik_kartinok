@@ -31,5 +31,7 @@ module Vd
         g.test_framework        :rspec, fixtures: true, views: false
         g.fixture_replacement   :factory_girl, dir: 'spec/factories' 
     end
+
+    config.serve_static_assets = true
   end
 end
