@@ -81,9 +81,9 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: d4af3al9f5eo71
-  username: 'ffqhqzbljupvcf'
-  password: '7PRixFYxcwBkQFdsSFU5GYBFB4'
-  url: ec2-46-137-159-123.eu-west-1.compute.amazonaws.com
+#production:
+  #<<: *default
+  #database: d4af3al9f5eo71
+  #username: 'ffqhqzbljupvcf'
+  #password: '7PRixFYxcwBkQFdsSFU5GYBFB4'
+  #url: ec2-46-137-159-123.eu-west-1.compute.amazonaws.com
